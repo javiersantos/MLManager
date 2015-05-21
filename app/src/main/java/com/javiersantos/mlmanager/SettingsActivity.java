@@ -1,4 +1,4 @@
-package com.javiersantos.mlextractor;
+package com.javiersantos.mlmanager;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

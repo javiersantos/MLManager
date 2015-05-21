@@ -1,4 +1,4 @@
-package com.javiersantos.mlextractor;
+package com.javiersantos.mlmanager;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,6 +1,5 @@
-package com.javiersantos.mlextractor;
+package com.javiersantos.mlmanager;
 
-import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
