@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -13,11 +14,13 @@ public class SettingsActivity extends PreferenceActivity {
     private Preference prefVersion;
     private String versionName;
     private int versionCode;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.activity_settings);
+        this.context = this;
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 //        prefs.registerOnSharedPreferenceChangeListener(this);
@@ -33,7 +36,7 @@ public class SettingsActivity extends PreferenceActivity {
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                UtilsDialog.showAboutDialog(getApplicationContext()); //TODO You need to use a Theme.AppCompat theme (or descendant) with this activity
+                UtilsDialog.showAboutDialog(context);
                 return false;
             }
         });

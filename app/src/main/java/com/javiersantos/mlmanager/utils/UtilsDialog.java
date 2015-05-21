@@ -1,45 +1,40 @@
 package com.javiersantos.mlmanager.utils;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.javiersantos.mlmanager.R;
 
 public class UtilsDialog {
-    private static AlertDialog alertDialog;
+    private static MaterialDialog materialDialog;
 
-    public static AlertDialog showSavedDialog(Context context, String name, String apk) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(String.format(context.getResources().getString(R.string.dialog_saved), name));
-        builder.setMessage(String.format(context.getResources().getString(R.string.dialog_saved_description), name, apk));
-        builder.setPositiveButton(context.getResources().getString(R.string.button_ok), new DialogInterface.OnClickListener() {
+    public static void showSavedDialog(Context context, String name, String apk) {
+        new MaterialDialog.Builder(context)
+        .title(String.format(context.getResources().getString(R.string.dialog_saved), name))
+        .content(String.format(context.getResources().getString(R.string.dialog_saved_description), name, apk))
+        .positiveText(context.getResources().getString(R.string.button_ok))
+        .callback(new MaterialDialog.ButtonCallback() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                alertDialog.dismiss();
+            public void onPositive(MaterialDialog dialog) {
+                dialog.dismiss();
             }
-        });
-        alertDialog = builder.create();
-
-        return alertDialog;
+        }).show();
     }
 
-    public static AlertDialog showAboutDialog(Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(String.format(context.getResources().getString(R.string.dialog_about), context.getResources().getString(R.string.app_name)));
-        builder.setMessage(context.getResources().getString(R.string.dialog_about_description));
-        builder.setCancelable(false);
-        builder.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_launcher));
-        builder.setPositiveButton(context.getResources().getString(R.string.button_ok), new DialogInterface.OnClickListener() {
+    public static void showAboutDialog(Context context) {
+        new MaterialDialog.Builder(context)
+        .title(String.format(context.getResources().getString(R.string.dialog_about), context.getResources().getString(R.string.app_name)))
+        .content(context.getResources().getString(R.string.dialog_about_description))
+        .cancelable(false)
+        .icon(ContextCompat.getDrawable(context, R.drawable.ic_launcher))
+        .positiveText(context.getResources().getString(R.string.button_ok))
+        .callback(new MaterialDialog.ButtonCallback() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                alertDialog.dismiss();
+            public void onPositive(MaterialDialog dialog) {
+                dialog.dismiss();
             }
-        });
-        alertDialog = builder.create();
-
-        return alertDialog;
+        }).show();
     }
 
 }

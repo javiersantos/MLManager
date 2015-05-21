@@ -28,5 +28,6 @@ dependencies {
     compile 'commons-io:commons-io:+'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
     compile 'com.android.support:support-v4:22.1.1'
+    compile 'com.afollestad:material-dialogs:0.7.4.1'
 
 }

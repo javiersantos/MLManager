@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,11 +31,13 @@ public class AppActivity extends AppCompatActivity {
 
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+        this.context = this;
 
         getInitialConfiguration();
         setInitialConfiguration();
@@ -87,7 +90,7 @@ public class AppActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     File file = UtilsApp.copyFile(appApk, appSource);
-                    UtilsDialog.showSavedDialog(getApplicationContext(), appName, appApk).show(); //TODO You need to use a Theme.AppCompat theme (or descendant) with this activity
+                    UtilsDialog.showSavedDialog(context, appName, appApk);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
