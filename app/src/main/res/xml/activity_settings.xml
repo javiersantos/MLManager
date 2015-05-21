@@ -3,14 +3,7 @@
     android:orientation="vertical">
     <PreferenceCategory
         android:title="@string/settings_customizations">
-        <Preference
-            android:title="@string/settings_googleplay"
-            android:summary="@string/settings_googleplay_description">
-        </Preference>
-        <Preference
-            android:key="prefVersion"
-            android:title="@string/app_name"
-            android:summary="@string/settings_about" />
+
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/action_about">

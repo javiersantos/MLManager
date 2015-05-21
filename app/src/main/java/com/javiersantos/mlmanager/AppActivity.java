@@ -87,7 +87,7 @@ public class AppActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     File file = UtilsApp.copyFile(appApk, appSource);
-                    UtilsDialog.showSavedDialog(getApplicationContext(), appName, appApk).show();
+                    UtilsDialog.showSavedDialog(getApplicationContext(), appName, appApk).show(); //TODO You need to use a Theme.AppCompat theme (or descendant) with this activity
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
