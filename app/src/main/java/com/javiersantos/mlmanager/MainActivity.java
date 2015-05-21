@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.javiersantos.mlmanager.adapters.AppAdapter;
+import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;

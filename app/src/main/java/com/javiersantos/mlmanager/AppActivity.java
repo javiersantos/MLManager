@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.javiersantos.mlmanager.utils.UtilsApp;
+import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
