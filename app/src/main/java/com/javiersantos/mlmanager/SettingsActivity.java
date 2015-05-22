@@ -9,7 +9,7 @@ import android.preference.PreferenceManager;
 
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private SharedPreferences prefs;
     private Preference prefVersion;
     private String versionName;
@@ -23,7 +23,7 @@ public class SettingsActivity extends PreferenceActivity {
         this.context = this;
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//        prefs.registerOnSharedPreferenceChangeListener(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         prefVersion = findPreference("prefVersion");
         try {
@@ -40,6 +40,13 @@ public class SettingsActivity extends PreferenceActivity {
                 return false;
             }
         });
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference pref = findPreference(key);
+
 
     }
 

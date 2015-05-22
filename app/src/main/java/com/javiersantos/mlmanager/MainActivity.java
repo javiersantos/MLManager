@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.listeners.HidingScrollListener;
+import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
@@ -27,6 +28,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    //Load Settings
+    AppPreferences appPreferences;
+
     // General variables
     private List<String> appListName = new ArrayList<String>();
     private List<String> appListApk = new ArrayList<String>();
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        appPreferences = new AppPreferences(getApplicationContext());
 
         setInitialConfiguration();
         setMLExtractorDir();

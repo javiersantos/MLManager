@@ -2,6 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
     <PreferenceCategory
+        android:title="@string/action_settings">
+        <CheckBoxPreference
+            android:key="prefStartDelete"
+            android:title="@string/settings_delete_on_start"
+            android:summary="@string/settings_delete_on_start_description"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="@string/settings_customizations">
 
     </PreferenceCategory>

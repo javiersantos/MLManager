@@ -30,6 +30,8 @@
     <string name="button_share">Share APK</string>
 
     <!-- Settings -->
+    <string name="settings_delete_on_start">Delete APKs</string>
+    <string name="settings_delete_on_start_description">Remove all the extracted APKs on every app starts</string>
     <string name="settings_customizations">Customizations</string>
     <string name="settings_primary_color">Primary color</string>
     <string name="settings_primary_color_description">Set the primary color for the toolbar and navigation bar</string>
