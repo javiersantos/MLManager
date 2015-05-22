@@ -32,7 +32,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         } catch (Exception e) {
             e.printStackTrace();
         }
-        prefVersion.setTitle(getResources().getString(R.string.app_name) + " v" + versionName + " (" + versionCode + ")");
+        prefVersion.setTitle(getResources().getString(R.string.app_name) + " v" + versionName + " (" + versionCode + ")" + " Beta");
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
