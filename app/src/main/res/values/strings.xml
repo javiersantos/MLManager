@@ -10,6 +10,8 @@
     <!-- Dialogs -->
     <string name="dialog_saved">%s APK saved</string>
     <string name="dialog_saved_description">%1$s APK has been saved into \"MLExtractor\" folder with name: %2$s</string>
+    <string name="dialog_saving">Saving %s APK...</string>
+    <string name="dialog_saving_description">ML Manager is saving the APK into \"MLExtractor\" folder.</string>
     <string name="dialog_about">About %s</string>
     <string name="dialog_about_description">For testing purpose</string>
     <string name="dialog_run">Tap to open</string>

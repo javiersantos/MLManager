@@ -36,7 +36,7 @@ public class SettingsActivity extends PreferenceActivity {
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                UtilsDialog.showAboutDialog(context);
+                UtilsDialog.showAboutDialog(context).show();
                 return false;
             }
         });

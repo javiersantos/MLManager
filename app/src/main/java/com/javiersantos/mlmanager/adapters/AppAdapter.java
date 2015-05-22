@@ -66,7 +66,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
             public void onClick(View view) {
                 try {
                     File file = UtilsApp.copyFile(appApk, appSource);
-                    UtilsDialog.showSavedDialog(context, appName, appApk);
+                    UtilsDialog.showSavedDialog(context, appName, appApk).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
