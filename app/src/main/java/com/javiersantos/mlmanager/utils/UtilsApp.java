@@ -12,7 +12,7 @@ public class UtilsApp {
 
     public static File copyFile(String apk, String source) {
         File initialFile = new File(source);
-        File finalFile = new File(Environment.getExternalStorageDirectory() + "/MLExtractor/" + apk + ".apk");
+        File finalFile = new File(Environment.getExternalStorageDirectory() + "/MLManager/" + apk + ".apk");
 
         try {
             FileUtils.copyFile(initialFile, finalFile);

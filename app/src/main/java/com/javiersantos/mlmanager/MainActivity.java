@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         appPreferences = new AppPreferences(getApplicationContext());
 
         setInitialConfiguration();
-        setMLExtractorDir();
+        setAppDir();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.appList);
         recyclerView.setHasFixedSize(true);
@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setMLExtractorDir() {
-        File appDir = new File(Environment.getExternalStorageDirectory() + "/MLExtractor");
+    private void setAppDir() {
+        File appDir = new File(Environment.getExternalStorageDirectory() + "/MLManager");
         if(!appDir.exists()) {
             appDir.mkdir();
         }

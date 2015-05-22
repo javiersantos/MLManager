@@ -126,7 +126,7 @@ public class AppActivity extends AppCompatActivity {
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(Intent.createChooser(shareIntent, getResources().getString(R.string.send_to)));
+                startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appName)));
             }
         });
 
