@@ -64,11 +64,14 @@ public class AppActivity extends AppCompatActivity {
         });
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.primary));
+            getWindow().setNavigationBarColor(appPreferences.getKeyPrimaryColorPref());
+            getWindow().setStatusBarColor(appPreferences.getKeyPrimaryColorPref());
+            toolbar.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
         }
     }
 
     private void setScreenElements() {
+        TextView header = (TextView) findViewById(R.id.header);
         ImageView icon = (ImageView) findViewById(R.id.app_icon);
         TextView name = (TextView) findViewById(R.id.app_name);
         TextView apk = (TextView) findViewById(R.id.app_apk);
@@ -81,6 +84,9 @@ public class AppActivity extends AppCompatActivity {
         icon.setImageDrawable(appIcon);
         name.setText(appName);
         apk.setText(appApk);
+
+        // Header
+        header.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
 
         // CardView
         start.setOnClickListener(new View.OnClickListener() {
