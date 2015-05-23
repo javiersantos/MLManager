@@ -14,6 +14,7 @@ public class AppPreferences {
     public static final String KeyStartDelete = "prefStartDelete";
     public static final String KeyPrimaryColor = "prefPrimaryColor";
     public static final String KeyFABColor = "prefFABColor";
+    public static final String KeyNavigationBlack = "prefNavigationBlack";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -29,19 +30,27 @@ public class AppPreferences {
         editor.commit();
     }
 
-    public int getKeyPrimaryColorPref() {
+    public int getPrimaryColorPref() {
         return sharedPreferences.getInt(KeyPrimaryColor, context.getResources().getColor(R.color.primary));
     }
-    public void setKeyPrimaryColorPref(Integer res) {
+    public void setPrimaryColorPref(Integer res) {
         editor.putInt(KeyPrimaryColor, res);
         editor.commit();
     }
 
-    public int getKeyFABColorPref() {
+    public int getFABColorPref() {
         return sharedPreferences.getInt(KeyFABColor, context.getResources().getColor(R.color.pink));
     }
-    public void setKeyFABColorPref(Integer res) {
+    public void setFABColorPref(Integer res) {
         editor.putInt(KeyFABColor, res);
+        editor.commit();
+    }
+
+    public Boolean getNavigationBlackPref() {
+        return sharedPreferences.getBoolean(KeyNavigationBlack, false);
+    }
+    public void setNavigationBlackPref(Boolean res) {
+        editor.putBoolean(KeyNavigationBlack, res);
         editor.commit();
     }
 

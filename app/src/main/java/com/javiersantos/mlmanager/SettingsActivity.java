@@ -8,9 +8,14 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    // Load Settings
+    AppPreferences appPreferences;
+
+    // Settings variables
     private SharedPreferences prefs;
     private Preference prefVersion, prefPrimaryColor;
     private String versionName;
@@ -22,6 +27,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.activity_settings);
         this.context = this;
+        this.appPreferences = new AppPreferences(getApplicationContext());
+
+        setInitialConfiguration();
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
@@ -48,6 +56,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             prefPrimaryColor.setEnabled(false);
         }
 
+    }
+
+    private void setInitialConfiguration() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(appPreferences.getPrimaryColorPref());
+            if (!appPreferences.getNavigationBlackPref()) {
+                getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
+            }
+        }
     }
 
     @Override

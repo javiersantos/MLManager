@@ -32,4 +32,6 @@
     <string name="settings_primary_color_description">Ajustar el color primario para la barra de herramientas y navegación. Requiere Android 5.0 o superior.</string>
     <string name="tap_exit">Pulsa de nuevo para salir</string>
     <string name="dialog_cache_description">Eliminar la caché para esta app: %.2f MB</string>
+    <string name="settings_navigation_black_description">No usar un color personalizado para la barra de navegación.</string>
+    <string name="settings_navigation_black">Mostrar barra de navegación en negro</string>
 </resources>

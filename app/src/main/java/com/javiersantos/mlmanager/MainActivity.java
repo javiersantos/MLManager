@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //                toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2)).start();
                 fab.hide();
             }
+
             @Override
             public void onShow() {
 //                toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
@@ -82,14 +83,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(appPreferences.getKeyPrimaryColorPref());
-            getWindow().setStatusBarColor(appPreferences.getKeyPrimaryColorPref());
-            toolbar.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
+            getWindow().setStatusBarColor(appPreferences.getPrimaryColorPref());
+            toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
+            if (!appPreferences.getNavigationBlackPref()) {
+                getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
+            }
         }
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
-        fab.setBackgroundColor(appPreferences.getKeyFABColorPref());
+        fab.setBackgroundColor(appPreferences.getFABColorPref());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

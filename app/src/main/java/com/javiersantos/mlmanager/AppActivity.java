@@ -41,8 +41,8 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        this.appPreferences = new AppPreferences(getApplicationContext());
         this.context = this;
+        this.appPreferences = new AppPreferences(getApplicationContext());
 
         getInitialConfiguration();
         setInitialConfiguration();
@@ -64,9 +64,11 @@ public class AppActivity extends AppCompatActivity {
         });
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(appPreferences.getKeyPrimaryColorPref());
-            getWindow().setStatusBarColor(appPreferences.getKeyPrimaryColorPref());
-            toolbar.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
+            getWindow().setStatusBarColor(appPreferences.getPrimaryColorPref());
+            toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
+            if (!appPreferences.getNavigationBlackPref()) {
+                getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
+            }
         }
     }
 
@@ -86,7 +88,7 @@ public class AppActivity extends AppCompatActivity {
         apk.setText(appApk);
 
         // Header
-        header.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
+        header.setBackgroundColor(appPreferences.getPrimaryColorPref());
 
         // CardView
         start.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +130,7 @@ public class AppActivity extends AppCompatActivity {
 
         // FAB
         fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_share));
-        fab.setBackgroundColor(appPreferences.getKeyFABColorPref());
+        fab.setBackgroundColor(appPreferences.getFABColorPref());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

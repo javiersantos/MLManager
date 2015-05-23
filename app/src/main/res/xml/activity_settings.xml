@@ -21,6 +21,11 @@
             android:defaultValue="@color/pink"
             android:title="@string/settings_fab_color"
             android:summary="@string/settings_fab_color_description"/>
+        <CheckBoxPreference
+            android:key="prefNavigationBlack"
+            android:title="@string/settings_navigation_black"
+            android:summary="@string/settings_navigation_black_description"
+            android:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/action_about">
