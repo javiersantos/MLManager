@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.melnykov.fab.FloatingActionButton;
@@ -25,6 +26,9 @@ import java.io.File;
 
 
 public class AppActivity extends AppCompatActivity {
+    // Load Settings
+    AppPreferences appPreferences;
+
     // General variables
     private String appName, appApk, appSource, appData;
     private Drawable appIcon;
@@ -37,6 +41,7 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+        this.appPreferences = new AppPreferences(getApplicationContext());
         this.context = this;
 
         getInitialConfiguration();
@@ -71,7 +76,7 @@ public class AppActivity extends AppCompatActivity {
         CardView extract = (CardView) findViewById(R.id.extract_card);
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
         CardView cache = (CardView) findViewById(R.id.cache_card);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_app);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         icon.setImageDrawable(appIcon);
         name.setText(appName);
@@ -116,6 +121,8 @@ public class AppActivity extends AppCompatActivity {
         cache.setVisibility(View.GONE);
 
         // FAB
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_share));
+        fab.setBackgroundColor(appPreferences.getKeyFABColorPref());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

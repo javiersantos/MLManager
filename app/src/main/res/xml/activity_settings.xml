@@ -11,7 +11,16 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_customizations">
-
+        <yuku.ambilwarna.widget.AmbilWarnaPreference
+            android:key="prefPrimaryColor"
+            android:defaultValue="@color/primary"
+            android:title="@string/settings_primary_color"
+            android:summary="@string/settings_primary_color_description"/>
+        <yuku.ambilwarna.widget.AmbilWarnaPreference
+            android:key="prefFABColor"
+            android:defaultValue="@color/pink"
+            android:title="@string/settings_fab_color"
+            android:summary="@string/settings_fab_color_description"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/action_about">

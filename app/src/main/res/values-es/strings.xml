@@ -29,7 +29,7 @@
     <string name="settings_googleplay">Valorar en Google Play</string>
     <string name="settings_googleplay_description">¿Tienes unos segundos para valorar esta aplicación? Queremos escuchar tu opinión</string>
     <string name="settings_primary_color">Color primario</string>
-    <string name="settings_primary_color_description">Ajustar el color primario para la barra de herramientas y navegación</string>
+    <string name="settings_primary_color_description">Ajustar el color primario para la barra de herramientas y navegación. Requiere Android 5.0 o superior.</string>
     <string name="tap_exit">Pulsa de nuevo para salir</string>
     <string name="dialog_cache_description">Eliminar la caché para esta app: %.2f MB</string>
 </resources>

@@ -28,7 +28,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    //Load Settings
+    // Load Settings
     AppPreferences appPreferences;
 
     // General variables
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        appPreferences = new AppPreferences(getApplicationContext());
+        this.appPreferences = new AppPreferences(getApplicationContext());
 
         setInitialConfiguration();
         setAppDir();
@@ -82,10 +82,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.primary));
+            getWindow().setNavigationBarColor(appPreferences.getKeyPrimaryColorPref());
+            getWindow().setStatusBarColor(appPreferences.getKeyPrimaryColorPref());
+            toolbar.setBackgroundColor(appPreferences.getKeyPrimaryColorPref());
         }
 
-        fab = (FloatingActionButton) findViewById(R.id.fab_main);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
+        fab.setBackgroundColor(appPreferences.getKeyFABColorPref());
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
             }
         });
+
     }
 
     private void getInstalledApps() {

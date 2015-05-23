@@ -2,6 +2,7 @@ package com.javiersantos.mlmanager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -11,7 +12,7 @@ import com.javiersantos.mlmanager.utils.UtilsDialog;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private SharedPreferences prefs;
-    private Preference prefVersion;
+    private Preference prefVersion, prefPrimaryColor;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -26,6 +27,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         prefVersion = findPreference("prefVersion");
+        prefPrimaryColor = findPreference("prefPrimaryColor");
+
         try {
             versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
@@ -40,6 +43,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 return false;
             }
         });
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            prefPrimaryColor.setEnabled(false);
+        }
 
     }
 
