@@ -21,15 +21,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fab_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_settings"
-            fab:fab_colorNormal="@color/pink"
-            fab:fab_colorPressed="@color/pinkDark" />
+        <include
+            android:id="@+id/fab"
+            layout="@layout/fab" />
     </FrameLayout>
 
 </RelativeLayout>
