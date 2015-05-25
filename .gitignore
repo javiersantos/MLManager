@@ -32,3 +32,4 @@ gen-external-apklibs
 
 ## Directory-based project format:
 .idea/
+*.db
