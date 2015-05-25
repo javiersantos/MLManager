@@ -9,6 +9,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 import com.javiersantos.mlmanager.utils.AppPreferences;
+import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -17,7 +18,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     // Settings variables
     private SharedPreferences prefs;
-    private Preference prefVersion, prefPrimaryColor;
+    private Preference prefVersion, prefPrimaryColor, prefFABColor, prefDeleteAll, prefDefaultValues;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -36,7 +37,11 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         prefVersion = findPreference("prefVersion");
         prefPrimaryColor = findPreference("prefPrimaryColor");
+        prefFABColor = findPreference("prefFABColor");
+        prefDeleteAll = findPreference("prefDeleteAll");
+        prefDefaultValues = findPreference("prefDefaultValues");
 
+        // prefVersion
         try {
             versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
@@ -52,9 +57,37 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             }
         });
 
+        // prefPrimaryColor
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             prefPrimaryColor.setEnabled(false);
         }
+
+        // prefDeleteAll
+        prefDeleteAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                prefDeleteAll.setSummary(R.string.deleting);
+                prefDeleteAll.setEnabled(false);
+                Boolean deleteAll = UtilsApp.deleteAppFiles();
+                if (deleteAll) {
+                    prefDeleteAll.setSummary(R.string.deleting_done);
+                } else {
+                    prefDeleteAll.setSummary(R.string.deleting_error);
+                }
+                prefDeleteAll.setEnabled(true);
+                return true;
+            }
+        });
+
+        // prefDefaultValues
+        prefDefaultValues.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                appPreferences.setPrimaryColorPref(getResources().getColor(R.color.primary));
+                appPreferences.setFABColorPref(getResources().getColor(R.color.fab));
+                return true;
+            }
+        });
 
     }
 
@@ -70,7 +103,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference pref = findPreference(key);
-
 
     }
 

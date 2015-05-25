@@ -8,6 +8,10 @@
             android:title="@string/settings_delete_on_start"
             android:summary="@string/settings_delete_on_start_description"
             android:defaultValue="false" />
+        <Preference
+            android:key="prefDeleteAll"
+            android:title="@string/settings_delete_all"
+            android:summary="@string/settings_delete_all_description" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_customizations">
@@ -18,7 +22,7 @@
             android:summary="@string/settings_primary_color_description"/>
         <yuku.ambilwarna.widget.AmbilWarnaPreference
             android:key="prefFABColor"
-            android:defaultValue="@color/pink"
+            android:defaultValue="@color/fab"
             android:title="@string/settings_fab_color"
             android:summary="@string/settings_fab_color_description"/>
         <CheckBoxPreference
@@ -26,6 +30,10 @@
             android:title="@string/settings_navigation_black"
             android:summary="@string/settings_navigation_black_description"
             android:defaultValue="false" />
+        <Preference
+            android:key="prefDefaultValues"
+            android:title="@string/settings_default_customization"
+            android:summary="@string/settings_default_customization_description" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/action_about">

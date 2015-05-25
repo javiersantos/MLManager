@@ -23,7 +23,7 @@
     <string name="settings_about">Hecho con \u2665 en España</string>
     <string name="settings_customizations">Personalizaciones</string>
     <string name="settings_delete_on_start">Eliminar APKs</string>
-    <string name="settings_delete_on_start_description">Eliminar todos los APK extraídos en cada inicio de la app</string>
+    <string name="settings_delete_on_start_description">Eliminar todos los APK extraídos en cada inicio de la aplicación</string>
     <string name="settings_fab_color">Color del botón flotante</string>
     <string name="settings_fab_color_description">Ajustar el color para el botón flotante (FAB)</string>
     <string name="settings_googleplay">Valorar en Google Play</string>
@@ -32,6 +32,13 @@
     <string name="settings_primary_color_description">Ajustar el color primario para la barra de herramientas y navegación. Requiere Android 5.0 o superior.</string>
     <string name="tap_exit">Pulsa de nuevo para salir</string>
     <string name="dialog_cache_description">Eliminar la caché para esta app: %.2f MB</string>
-    <string name="settings_navigation_black_description">No usar un color personalizado para la barra de navegación.</string>
+    <string name="settings_navigation_black_description">No usar un color personalizado para la barra de navegación</string>
     <string name="settings_navigation_black">Mostrar barra de navegación en negro</string>
+    <string name="deleting">Eliminando...</string>
+    <string name="deleting_done">¡Archivos eliminados!</string>
+    <string name="deleting_error">Algo fué mal eliminando los archivos</string>
+    <string name="settings_default_customization">Restaurar personalizaciones</string>
+    <string name="settings_default_customization_description">Restaurar colores a los valores por defecto</string>
+    <string name="settings_delete_all">Eliminar todos los APK extraídos</string>
+    <string name="settings_delete_all_description">Eliminar  los archivos APK extraídos en la carpeta de extracción</string>
 </resources>
