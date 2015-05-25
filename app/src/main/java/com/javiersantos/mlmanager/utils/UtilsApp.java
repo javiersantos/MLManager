@@ -10,9 +10,13 @@ import java.io.IOException;
 
 public class UtilsApp {
 
+    public static File getAppFolder() {
+        return new File(Environment.getExternalStorageDirectory() + "/MLManager");
+    }
+
     public static File copyFile(String apk, String source) {
         File initialFile = new File(source);
-        File finalFile = new File(Environment.getExternalStorageDirectory() + "/MLManager/" + apk + ".apk");
+        File finalFile = new File(getAppFolder().getPath() + "/" + apk + ".apk");
 
         try {
             FileUtils.copyFile(initialFile, finalFile);
@@ -48,6 +52,21 @@ public class UtilsApp {
 
         Log.i("App", Long.toString(size));
         return size;
+    }
+
+    public static Boolean deleteAppFiles() {
+        Boolean res = false;
+        File f = getAppFolder();
+        if (f.exists() && f.isDirectory()) {
+            File[] files = f.listFiles();
+            for (File file : files) {
+                file.delete();
+            }
+            if (f.listFiles().length == 0) {
+                return true;
+            }
+        }
+        return res;
     }
 
 }

@@ -5,7 +5,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.javiersantos.mlmanager.utils.AppPreferences;
+import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAppDir() {
-        File appDir = new File(Environment.getExternalStorageDirectory() + "/MLManager");
+        File appDir = UtilsApp.getAppFolder();
         if(!appDir.exists()) {
             appDir.mkdir();
         }
