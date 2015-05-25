@@ -39,7 +39,7 @@ public class AppPreferences {
     }
 
     public int getFABColorPref() {
-        return sharedPreferences.getInt(KeyFABColor, context.getResources().getColor(R.color.pink));
+        return sharedPreferences.getInt(KeyFABColor, context.getResources().getColor(R.color.fab));
     }
     public void setFABColorPref(Integer res) {
         editor.putInt(KeyFABColor, res);

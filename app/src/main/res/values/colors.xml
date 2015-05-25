@@ -2,8 +2,8 @@
 <resources>
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
-    <color name="pink">#E91E63</color>
-    <color name="pinkDark">#AD1457</color>
+    <color name="fab">#E91E63</color>
+    <color name="fabDark">#AD1457</color>
     <color name="accent">#448AFF</color>
     <color name="text_primary">#212121</color>
     <color name="bkg_card">#8C9EFF</color>
