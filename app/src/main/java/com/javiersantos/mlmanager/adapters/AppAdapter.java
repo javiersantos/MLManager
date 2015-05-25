@@ -82,7 +82,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(Intent.createChooser(shareIntent, context.getResources().getText(R.string.send_to)));
+                context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appName)));
             }
         });
 
