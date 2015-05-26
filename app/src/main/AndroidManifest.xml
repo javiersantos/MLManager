@@ -25,6 +25,9 @@
         <activity
             android:name="com.javiersantos.mlmanager.SettingsActivity">
         </activity>
+        <activity
+            android:name="com.javiersantos.mlmanager.AboutActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.javiersantos.mlmanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,8 +53,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                UtilsDialog.showAboutDialog(context).show();
-                return false;
+                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
+                return true;
             }
         });
 

@@ -41,4 +41,9 @@
     <string name="settings_default_customization_description">Restaurar colores a los valores por defecto</string>
     <string name="settings_delete_all">Eliminar todos los APK extraídos</string>
     <string name="settings_delete_all_description">Eliminar  los archivos APK extraídos en la carpeta de extracción</string>
+    <string name="about_description_1">Desarrollador</string>
+    <string name="about_description_2">Icono</string>
+    <string name="app_description">Moderno, sencillo y personalizable gestor de aplicaciones para Android</string>
+    <string name="settings_googleplus">Únete a la comunidad en Google+</string>
+    <string name="settings_googleplus_description">¿Quieres estar al tanto de las novedades de la aplicación? ¡Únete a nuestra comunidad!</string>
 </resources>

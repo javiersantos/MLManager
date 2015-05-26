@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">ML Manager</string>
+    <string name="app_description">Modern, easy and customizable app manager for Android</string>
 
     <!-- Labels -->
     <string name="action_settings">Settings</string>
@@ -47,7 +48,13 @@
     <string name="settings_default_customization_description">Restore colors to the default values</string>
     <string name="settings_googleplay">Rate on Google Play</string>
     <string name="settings_googleplay_description">Do you have a few seconds to rate this app? We want to hear your opinion</string>
+    <string name="settings_googleplus">Join the community on Google+</string>
+    <string name="settings_googleplus_description">Want to talk about APKs and keep abreast of developments in the application? Join to our community!</string>
     <string name="settings_about">Made with \u2665 from Spain</string>
+
+    <!-- About -->
+    <string name="about_description_1">App Developer</string>
+    <string name="about_description_2">Icon Designer</string>
 
     <!-- Toasts -->
     <string name="tap_exit">Tap again to close the app</string>
