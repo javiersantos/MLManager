@@ -42,7 +42,14 @@
             android:summary="@string/settings_googleplay_description">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://plus.google.com/communities/102574612559329723462" />
+                android:data="https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager" />
+        </Preference>
+        <Preference
+            android:title="@string/settings_googleplus"
+            android:summary="@string/settings_googleplus_description">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://plus.google.com/communities/111960842500303983487" />
         </Preference>
         <Preference
             android:key="prefVersion"
