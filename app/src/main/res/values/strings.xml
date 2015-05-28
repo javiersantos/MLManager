@@ -16,7 +16,7 @@
     <string name="dialog_saving">Saving %s APK...</string>
     <string name="dialog_saving_description">ML Manager is saving the APK into \"MLManager\" folder.</string>
     <string name="dialog_about">About %s</string>
-    <string name="dialog_about_description">Developed by Javier Santos.\n\nOpen Source under GPLv2 license.</string>
+    <string name="dialog_about_description">Developed by Javier Santos.\n\nOpen Source under GPLv3 license.</string>
     <string name="dialog_run">Tap to open</string>
     <string name="dialog_run_description">Run this app now</string>
     <string name="dialog_extract">Tap to extract</string>

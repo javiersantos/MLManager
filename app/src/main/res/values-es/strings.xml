@@ -7,7 +7,7 @@
     <string name="button_ok">Aceptar</string>
     <string name="button_share">Compartir APK</string>
     <string name="dialog_about">Sobre %s</string>
-    <string name="dialog_about_description">Desarrollado por Javier Santos.\n\nOpen Source bajo licencia GPLv2.</string>
+    <string name="dialog_about_description">Desarrollado por Javier Santos.\n\nOpen Source bajo licencia GPLv3.</string>
     <string name="dialog_cache">Toca para eliminar caché</string>
     <string name="dialog_extract">Toca para extraer</string>
     <string name="dialog_extract_description">Extraer esta app en el directorio \"MLManager\"</string>
@@ -40,7 +40,7 @@
     <string name="settings_default_customization">Restaurar personalizaciones</string>
     <string name="settings_default_customization_description">Restaurar colores a los valores por defecto</string>
     <string name="settings_delete_all">Eliminar todos los APK extraídos</string>
-    <string name="settings_delete_all_description">Eliminar  los archivos APK extraídos en la carpeta de extracción</string>
+    <string name="settings_delete_all_description">Eliminar los archivos APK extraídos en la carpeta de extracción</string>
     <string name="about_description_1">Desarrollador</string>
     <string name="about_description_2">Icono</string>
     <string name="app_description">Moderno, sencillo y personalizable gestor de aplicaciones para Android</string>
