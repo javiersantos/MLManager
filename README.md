@@ -13,5 +13,6 @@ Modern, easy and customizable app manager for Android with Material Design.
 * More Material Design animations
 
 ### Translations
+[Help translating this app](https://crowdin.com/project/ml-manager)
 * English
 * Spanish
