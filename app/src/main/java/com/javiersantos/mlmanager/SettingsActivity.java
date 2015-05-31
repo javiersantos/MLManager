@@ -19,7 +19,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     // Settings variables
     private SharedPreferences prefs;
-    private Preference prefVersion, prefPrimaryColor, prefFABColor, prefDeleteAll, prefDefaultValues;
+    private Preference prefVersion, prefPrimaryColor, prefFABColor, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -31,8 +31,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         this.context = this;
         this.appPreferences = new AppPreferences(getApplicationContext());
 
-        setInitialConfiguration();
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
@@ -41,6 +39,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefFABColor = findPreference("prefFABColor");
         prefDeleteAll = findPreference("prefDeleteAll");
         prefDefaultValues = findPreference("prefDefaultValues");
+        prefNavigationBlack = findPreference("prefNavigationBlack");
+
+        setInitialConfiguration();
 
         // prefVersion
         try {
@@ -58,11 +59,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 return true;
             }
         });
-
-        // prefPrimaryColor
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            prefPrimaryColor.setEnabled(false);
-        }
 
         // prefDeleteAll
         prefDeleteAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -94,11 +90,19 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     private void setInitialConfiguration() {
+        // Android 5.0+ devices
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(UtilsApp.darker(appPreferences.getPrimaryColorPref(), 0.8));
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
             }
+        }
+
+        // Pre-Lollipop devices
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            prefPrimaryColor.setEnabled(false);
+            prefNavigationBlack.setEnabled(false);
+            prefNavigationBlack.setDefaultValue(true);
         }
     }
 
