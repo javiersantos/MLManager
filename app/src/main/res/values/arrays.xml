@@ -6,7 +6,7 @@
         <item>Source</item>
         <item>Name</item>
     </string-array>
-    <string-array name="filenameValues">
+    <string-array name="filenameValues" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>3</item>
