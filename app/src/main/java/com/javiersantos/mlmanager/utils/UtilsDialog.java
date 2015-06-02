@@ -29,7 +29,7 @@ public class UtilsDialog {
                 .title(String.format(context.getResources().getString(R.string.dialog_about), context.getResources().getString(R.string.app_name)))
                 .content(context.getResources().getString(R.string.dialog_about_description))
                 .cancelable(false)
-                .icon(ContextCompat.getDrawable(context, R.drawable.ic_launcher))
+                .icon(ContextCompat.getDrawable(context, R.mipmap.ic_launcher))
                 .positiveText(context.getResources().getString(R.string.button_ok))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

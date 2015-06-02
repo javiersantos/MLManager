@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.javiersantos.mlmanager.utils.AppPreferences;
-import com.javiersantos.mlmanager.utils.UtilsApp;
+import com.javiersantos.mlmanager.utils.UtilsUI;
 
 public class AboutActivity extends AppCompatActivity {
     // Load Settings
@@ -42,7 +42,7 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(UtilsApp.darker(appPreferences.getPrimaryColorPref(), 0.8));
+            getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
