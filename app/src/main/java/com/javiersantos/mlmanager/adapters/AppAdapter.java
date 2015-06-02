@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -51,12 +50,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
     }
 
     private void setButtonEvents(AppViewHolder appViewHolder, final AppInfo appInfo) {
-        final String appName = appInfo.name;
-        final String appApk = appInfo.apk;
-        final String appSource = appInfo.source;
-        final String appData = appInfo.data;
-        final Drawable appIcon = appInfo.icon;
-
         ButtonFlat appExtract = appViewHolder.vExtract;
         ButtonFlat appShare = appViewHolder.vShare;
         CardView cardView = appViewHolder.vCard;
@@ -65,8 +58,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
             @Override
             public void onClick(View view) {
                 try {
-                    File file = UtilsApp.copyFile(appApk, appSource);
-                    UtilsDialog.showSavedDialog(context, appName, appApk).show();
+                    File file = UtilsApp.copyFile(context, appInfo);
+                    UtilsDialog.showSavedDialog(context, appInfo).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -75,14 +68,14 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
         appShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = UtilsApp.copyFile(appApk, appSource);
+                File file = UtilsApp.copyFile(context, appInfo);
 
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appName)));
+                context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appInfo.name)));
             }
         });
 
@@ -92,11 +85,12 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 Activity activity = (Activity) context;
 
                 Intent intent = new Intent(context, AppActivity.class);
-                intent.putExtra("app_name", appName);
-                intent.putExtra("app_apk", appApk);
-                intent.putExtra("app_source", appSource);
-                intent.putExtra("app_data", appData);
-                Bitmap bitmap = ((BitmapDrawable)appIcon).getBitmap();
+                intent.putExtra("app_name", appInfo.name);
+                intent.putExtra("app_apk", appInfo.apk);
+                intent.putExtra("app_version", appInfo.version);
+                intent.putExtra("app_source", appInfo.source);
+                intent.putExtra("app_data", appInfo.data);
+                Bitmap bitmap = ((BitmapDrawable)appInfo.icon).getBitmap();
                 intent.putExtra("app_icon", bitmap);
 
                 context.startActivity(intent);

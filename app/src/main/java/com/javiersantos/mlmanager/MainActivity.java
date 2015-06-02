@@ -1,7 +1,7 @@
 package com.javiersantos.mlmanager;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -25,6 +25,7 @@ import com.melnykov.fab.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     // General variables
     private List<String> appListName = new ArrayList<String>();
     private List<String> appListApk = new ArrayList<String>();
+    private List<String> appListVersion = new ArrayList<String>();
     private List<String> appListSource = new ArrayList<String>();
     private List<String> appListData = new ArrayList<String>();
     private List<Drawable> appListIcon = new ArrayList<Drawable>();
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         getInstalledApps();
-        AppAdapter appAdapter = new AppAdapter(createList(appListName, appListApk, appListSource, appListData, appListIcon), this);
+        AppAdapter appAdapter = new AppAdapter(createList(appListName, appListApk, appListVersion, appListSource, appListData, appListIcon), this);
         recyclerView.setAdapter(appAdapter);
 
         setFAB();
@@ -116,21 +118,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getInstalledApps() {
-        PackageManager packageManager = getPackageManager();
-        List<ApplicationInfo> packages = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-        Collections.sort(packages, new ApplicationInfo.DisplayNameComparator(packageManager));
-        for(ApplicationInfo packageInfo : packages) {
+        final PackageManager packageManager = getPackageManager();
+        List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
+        Collections.sort(packages, new Comparator<PackageInfo>() {
+            @Override
+            public int compare(PackageInfo p1, PackageInfo p2) {
+                return packageManager.getApplicationLabel(p1.applicationInfo).toString().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString());
+            }
+        });
+        for(PackageInfo packageInfo : packages) {
             if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
                 // Non System Apps
-                Log.i("App", packageManager.getApplicationLabel(packageInfo).toString());
+                Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
                 Log.i("App", packageInfo.packageName);
-                Log.i("App", packageInfo.sourceDir);
-                Log.i("App", packageInfo.dataDir);
-                appListName.add(packageManager.getApplicationLabel(packageInfo).toString());
+                Log.i("App", packageInfo.versionName);
+                Log.i("App", packageInfo.applicationInfo.packageName);
+                Log.i("App", packageInfo.applicationInfo.sourceDir);
+                Log.i("App", packageInfo.applicationInfo.dataDir);
+                appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
                 appListApk.add(packageInfo.packageName);
-                appListSource.add(packageInfo.sourceDir);
-                appListData.add(packageInfo.dataDir);
-                appListIcon.add(packageManager.getApplicationIcon(packageInfo));
+                appListVersion.add(packageInfo.versionName);
+                appListSource.add(packageInfo.applicationInfo.sourceDir);
+                appListData.add(packageInfo.applicationInfo.dataDir);
+                appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
             } else {
                 // System Apps
             }
@@ -144,16 +154,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> sources, List<String> data, List<Drawable> icons) {
+    private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> versions, List<String> sources, List<String> data, List<Drawable> icons) {
         List<AppInfo> res = new ArrayList<AppInfo>();
         for (int i=0; i < apps.size(); i++) {
-            AppInfo appInfo = new AppInfo();
-            appInfo.name = apps.get(i);
-            appInfo.apk = apks.get(i);
-            appInfo.icon = icons.get(i);
-            appInfo.source = sources.get(i);
-            appInfo.data = data.get(i);
-
+            AppInfo appInfo = new AppInfo(apps.get(i), apks.get(i), versions.get(i), sources.get(i), data.get(i), icons.get(i));
             res.add(appInfo);
         }
 

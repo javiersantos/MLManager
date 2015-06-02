@@ -31,8 +31,7 @@ public class AppActivity extends AppCompatActivity {
     AppPreferences appPreferences;
 
     // General variables
-    private String appName, appApk, appSource, appData;
-    private Drawable appIcon;
+    AppInfo appInfo;
 
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
@@ -85,9 +84,9 @@ public class AppActivity extends AppCompatActivity {
         CardView cache = (CardView) findViewById(R.id.cache_card);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        icon.setImageDrawable(appIcon);
-        name.setText(appName);
-        apk.setText(appApk);
+        icon.setImageDrawable(appInfo.icon);
+        name.setText(appInfo.name);
+        apk.setText(appInfo.apk);
 
         // Header
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
@@ -96,13 +95,13 @@ public class AppActivity extends AppCompatActivity {
         googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlay(appApk));
+                startActivity(UtilsApp.goToGooglePlay(appInfo.apk));
             }
         });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage(appApk);
+                Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.apk);
                 startActivity(intent);
             }
         });
@@ -110,8 +109,8 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    File file = UtilsApp.copyFile(appApk, appSource);
-                    UtilsDialog.showSavedDialog(context, appName, appApk).show();
+                    File file = UtilsApp.copyFile(context, appInfo);
+                    UtilsDialog.showSavedDialog(context, appInfo).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -121,7 +120,7 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
-                intent.setData(Uri.parse("package:" + appApk));
+                intent.setData(Uri.parse("package:" + appInfo.apk));
                 intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
                 startActivityForResult(intent, UNINSTALL_REQUEST_CODE);
             }
@@ -142,14 +141,14 @@ public class AppActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = UtilsApp.copyFile(appApk, appSource);
+                File file = UtilsApp.copyFile(context, appInfo);
 
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appName)));
+                startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.name)));
             }
         });
 
@@ -170,12 +169,15 @@ public class AppActivity extends AppCompatActivity {
     }
 
     private void getInitialConfiguration() {
-        appName = getIntent().getStringExtra("app_name");
-        appApk = getIntent().getStringExtra("app_apk");
-        appSource = getIntent().getStringExtra("app_source");
-        appData = getIntent().getStringExtra("app_data");
+        String appName = getIntent().getStringExtra("app_name");
+        String appApk = getIntent().getStringExtra("app_apk");
+        String appVersion = getIntent().getStringExtra("app_version");
+        String appSource = getIntent().getStringExtra("app_source");
+        String appData = getIntent().getStringExtra("app_data");
         Bitmap bitmap = (Bitmap) this.getIntent().getParcelableExtra("app_icon");
-        appIcon = (Drawable) new BitmapDrawable(getResources(), bitmap);
+        Drawable appIcon = (Drawable) new BitmapDrawable(getResources(), bitmap);
+
+        appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon);
     }
 
     @Override
