@@ -8,9 +8,12 @@ Modern, easy and customizable app manager for Android with Material Design.
 
 ![ML Manager](http://i.imgur.com/B1b84BI.png)
 
-### Upcoming features
-* Search apps
-* More Material Design animations
+### Roadmap
+[Changelog](https://github.com/javiersantos/MLManager/blob/master/CHANGELOG.md)
+###### 15 June
+v0.2 Beta 2
+###### 1 August
+v1.0
 
 ### Translations
 [Help translating this app](https://crowdin.com/project/ml-manager)
