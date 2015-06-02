@@ -20,7 +20,9 @@ import android.widget.TextView;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
+import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.melnykov.fab.FloatingActionButton;
+import com.mikepenz.iconics.typeface.FontAwesome;
 
 import java.io.File;
 
@@ -64,7 +66,7 @@ public class AppActivity extends AppCompatActivity {
         });
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(UtilsApp.darker(appPreferences.getPrimaryColorPref(), 0.8));
+            getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
@@ -77,6 +79,7 @@ public class AppActivity extends AppCompatActivity {
         ImageView icon = (ImageView) findViewById(R.id.app_icon);
         TextView name = (TextView) findViewById(R.id.app_name);
         TextView apk = (TextView) findViewById(R.id.app_apk);
+        CardView googleplay = (CardView) findViewById(R.id.id_card);
         CardView start = (CardView) findViewById(R.id.start_card);
         CardView extract = (CardView) findViewById(R.id.extract_card);
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
@@ -91,6 +94,14 @@ public class AppActivity extends AppCompatActivity {
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
 
         // CardView
+        googleplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + appApk));
+                startActivity(intent);
+            }
+        });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
