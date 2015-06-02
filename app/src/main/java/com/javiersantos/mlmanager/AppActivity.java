@@ -22,7 +22,6 @@ import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.melnykov.fab.FloatingActionButton;
-import com.mikepenz.iconics.typeface.FontAwesome;
 
 import java.io.File;
 
@@ -97,9 +96,7 @@ public class AppActivity extends AppCompatActivity {
         googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + appApk));
-                startActivity(intent);
+                startActivity(UtilsApp.goToGooglePlay(appApk));
             }
         });
         start.setOnClickListener(new View.OnClickListener() {

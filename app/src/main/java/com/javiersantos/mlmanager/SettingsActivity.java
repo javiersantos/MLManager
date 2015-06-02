@@ -49,14 +49,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         setInitialConfiguration();
 
-        // prefVersion
-        try {
-            versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        prefVersion.setTitle(getResources().getString(R.string.app_name) + " v" + versionName + " (" + versionCode + ")" + " Beta");
+        versionName = UtilsApp.getAppVersionName(context);
+        versionCode = UtilsApp.getAppVersionCode(context);
+
+        prefVersion.setTitle(getResources().getString(R.string.app_name) + " v" + versionName + " (" + versionCode + ")");
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
