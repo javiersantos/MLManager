@@ -4,15 +4,34 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 
 public class UtilsDialog {
-    private static MaterialDialog materialDialog;
+    private static AppPreferences appPreferences;
 
-    public static MaterialDialog.Builder showSavedDialog(Context context, String name, String apk) {
+    public static MaterialDialog.Builder showSavedDialog(Context context, AppInfo appInfo) {
+        appPreferences = new AppPreferences(context);
+        String filename;
+
+        switch (appPreferences.getCustomFilename()) {
+            case "1":
+                filename = appInfo.apk + "_" + appInfo.version;
+                break;
+            case "2":
+                filename = appInfo.name + "_" + appInfo.version;
+                break;
+            case "4":
+                filename = appInfo.name;
+                break;
+            default:
+                filename = appInfo.apk;
+                break;
+        }
+
         MaterialDialog.Builder materialDialog = new MaterialDialog.Builder(context)
-                .title(String.format(context.getResources().getString(R.string.dialog_saved), name))
-                .content(String.format(context.getResources().getString(R.string.dialog_saved_description), name, apk))
+                .title(String.format(context.getResources().getString(R.string.dialog_saved), appInfo.name))
+                .content(String.format(context.getResources().getString(R.string.dialog_saved_description), appInfo.name, filename))
                 .positiveText(context.getResources().getString(R.string.button_ok))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -41,9 +60,9 @@ public class UtilsDialog {
         return materialBuilder;
     }
 
-    public static MaterialDialog.Builder showIndeterminateProgressDialog(Context context, String name) {
+    public static MaterialDialog.Builder showIndeterminateProgressDialog(Context context, AppInfo appInfo) {
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
-                .title(String.format(context.getResources().getString(R.string.dialog_saving), name))
+                .title(String.format(context.getResources().getString(R.string.dialog_saving), appInfo.name))
                 .content(context.getResources().getString(R.string.dialog_saving_description))
                 .cancelable(false)
                 .progress(true, 0);

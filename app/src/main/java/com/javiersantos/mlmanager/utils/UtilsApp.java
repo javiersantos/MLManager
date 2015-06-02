@@ -6,20 +6,41 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+import com.javiersantos.mlmanager.AppInfo;
+
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 
 public class UtilsApp {
+    // Load Settings
+    private static AppPreferences appPreferences;
 
     public static File getAppFolder() {
         return new File(Environment.getExternalStorageDirectory() + "/MLManager");
     }
 
-    public static File copyFile(String apk, String source) {
-        File initialFile = new File(source);
-        File finalFile = new File(getAppFolder().getPath() + "/" + apk + ".apk");
+    public static File copyFile(Context context, AppInfo appInfo) {
+        appPreferences = new AppPreferences(context);
+
+        File initialFile = new File(appInfo.source);
+        File finalFile;
+
+        switch (appPreferences.getCustomFilename()) {
+            case "1":
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.apk + "_" + appInfo.version + ".apk");
+                break;
+            case "2":
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.name + "_" + appInfo.version + ".apk");
+                break;
+            case "4":
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.name + ".apk");
+                break;
+            default:
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.apk + ".apk");
+                break;
+        }
 
         try {
             FileUtils.copyFile(initialFile, finalFile);

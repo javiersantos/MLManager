@@ -16,6 +16,7 @@ public class AppPreferences {
     public static final String KeyFABColor = "prefFABColor";
     public static final String KeyFABShow = "prefFABShow";
     public static final String KeyNavigationBlack = "prefNavigationBlack";
+    public static final String KeyCustomFilename = "prefCustomFilename";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -60,6 +61,14 @@ public class AppPreferences {
     }
     public void setFABShowPref(Boolean res) {
         editor.putBoolean(KeyFABShow, res);
+        editor.commit();
+    }
+
+    public String getCustomFilename() {
+        return sharedPreferences.getString(KeyCustomFilename, "1");
+    }
+    public void setCustomFilename(String res) {
+        editor.putString(KeyCustomFilename, res);
         editor.commit();
     }
 

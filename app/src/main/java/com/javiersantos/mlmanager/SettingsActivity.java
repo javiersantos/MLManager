@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -25,6 +26,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
     private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
     private CheckBoxPreference prefFABShow;
+    private ListPreference prefCustomFilename;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -46,6 +48,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefDeleteAll = findPreference("prefDeleteAll");
         prefDefaultValues = findPreference("prefDefaultValues");
         prefNavigationBlack = findPreference("prefNavigationBlack");
+        prefCustomFilename = (ListPreference) findPreference("prefCustomFilename");
 
         setInitialConfiguration();
 
@@ -61,6 +64,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 return true;
             }
         });
+
+        // prefCustomFilename
+        setCustomFilenameSummary();
 
         // prefDeleteAll
         prefDeleteAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -109,10 +115,18 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         }
     }
 
+    private void setCustomFilenameSummary() {
+        int filenameValue = new Integer(appPreferences.getCustomFilename())-1;
+        prefCustomFilename.setSummary(getResources().getStringArray(R.array.filenameEntries)[filenameValue]);
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference pref = findPreference(key);
 
+        if (pref == prefCustomFilename) {
+            setCustomFilenameSummary();
+        }
     }
 
     @Override

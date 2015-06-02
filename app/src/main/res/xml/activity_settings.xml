@@ -12,6 +12,12 @@
             android:key="prefDeleteAll"
             android:title="@string/settings_delete_all"
             android:summary="@string/settings_delete_all_description" />
+        <ListPreference
+            android:key="prefCustomFilename"
+            android:title="@string/settings_custom_filename"
+            android:entries="@array/filenameEntries"
+            android:entryValues="@array/filenameValues"
+            android:defaultValue="1" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_customizations">
