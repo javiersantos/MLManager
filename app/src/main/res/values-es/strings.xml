@@ -19,7 +19,7 @@
     <string name="dialog_saving_description">ML Manager está guardando el APK en la carpeta \"MLManager\".</string>
     <string name="dialog_uninstall">Toca para desinstalar</string>
     <string name="dialog_uninstall_description">Desinstalar esta app ahora</string>
-    <string name="send_to">Enviar %s</string>
+    <string name="send_to">Enviar \"%s\"</string>
     <string name="settings_about">Hecho con \u2665 en España</string>
     <string name="settings_customizations">Personalizaciones</string>
     <string name="settings_delete_on_start">Eliminar APKs</string>
