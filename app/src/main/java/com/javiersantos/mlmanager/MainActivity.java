@@ -19,6 +19,7 @@ import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
+import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
     Toolbar toolbar;
+    RecyclerView recyclerView;
     FloatingActionButton fab;
 
     @Override
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setInitialConfiguration();
         setAppDir();
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.appList);
+        recyclerView = (RecyclerView) findViewById(R.id.appList);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -61,19 +63,8 @@ public class MainActivity extends AppCompatActivity {
         getInstalledApps();
         AppAdapter appAdapter = new AppAdapter(createList(appListName, appListApk, appListSource, appListData, appListIcon), this);
         recyclerView.setAdapter(appAdapter);
-        recyclerView.setOnScrollListener(new HidingScrollListener() {
-            @Override
-            public void onHide() {
-//                toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2)).start();
-                fab.hide();
-            }
 
-            @Override
-            public void onShow() {
-//                toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2)).start();
-                fab.show();
-            }
-        });
+        setFAB();
 
     }
 
@@ -83,24 +74,45 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(UtilsApp.darker(appPreferences.getPrimaryColorPref(), 0.8));
+            getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
             }
         }
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
-        fab.setBackgroundColor(appPreferences.getFABColorPref());
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
-            }
-        });
+        UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar);
 
+    }
+
+    private void setFAB() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (appPreferences.getFABShowPref()) {
+            fab.setVisibility(View.VISIBLE);
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
+            fab.setBackgroundColor(appPreferences.getFABColorPref());
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
+                }
+            });
+
+            recyclerView.setOnScrollListener(new HidingScrollListener() {
+                @Override
+                public void onHide() {
+                    fab.hide();
+                }
+
+                @Override
+                public void onShow() {
+                    fab.show();
+                }
+            });
+        } else {
+            fab.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void getInstalledApps() {
