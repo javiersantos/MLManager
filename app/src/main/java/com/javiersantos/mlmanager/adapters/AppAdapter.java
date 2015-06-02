@@ -41,9 +41,9 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
     @Override
     public void onBindViewHolder(AppViewHolder appViewHolder, int i) {
         AppInfo appInfo = appList.get(i);
-        appViewHolder.vName.setText(appInfo.name);
-        appViewHolder.vApk.setText(appInfo.apk);
-        appViewHolder.vIcon.setImageDrawable(appInfo.icon);
+        appViewHolder.vName.setText(appInfo.getName());
+        appViewHolder.vApk.setText(appInfo.getAPK());
+        appViewHolder.vIcon.setImageDrawable(appInfo.getIcon());
 
         setButtonEvents(appViewHolder, appInfo);
 
@@ -75,7 +75,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appInfo.name)));
+                context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
 
@@ -85,12 +85,12 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 Activity activity = (Activity) context;
 
                 Intent intent = new Intent(context, AppActivity.class);
-                intent.putExtra("app_name", appInfo.name);
-                intent.putExtra("app_apk", appInfo.apk);
-                intent.putExtra("app_version", appInfo.version);
-                intent.putExtra("app_source", appInfo.source);
-                intent.putExtra("app_data", appInfo.data);
-                Bitmap bitmap = ((BitmapDrawable)appInfo.icon).getBitmap();
+                intent.putExtra("app_name", appInfo.getName());
+                intent.putExtra("app_apk", appInfo.getAPK());
+                intent.putExtra("app_version", appInfo.getVersion());
+                intent.putExtra("app_source", appInfo.getSource());
+                intent.putExtra("app_data", appInfo.getData());
+                Bitmap bitmap = ((BitmapDrawable)appInfo.getIcon()).getBitmap();
                 intent.putExtra("app_icon", bitmap);
 
                 context.startActivity(intent);

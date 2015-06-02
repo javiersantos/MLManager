@@ -84,9 +84,9 @@ public class AppActivity extends AppCompatActivity {
         CardView cache = (CardView) findViewById(R.id.cache_card);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        icon.setImageDrawable(appInfo.icon);
-        name.setText(appInfo.name);
-        apk.setText(appInfo.apk);
+        icon.setImageDrawable(appInfo.getIcon());
+        name.setText(appInfo.getName());
+        apk.setText(appInfo.getAPK());
 
         // Header
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
@@ -95,13 +95,13 @@ public class AppActivity extends AppCompatActivity {
         googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlay(appInfo.apk));
+                startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
             }
         });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.apk);
+                Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getAPK());
                 startActivity(intent);
             }
         });
@@ -120,7 +120,7 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
-                intent.setData(Uri.parse("package:" + appInfo.apk));
+                intent.setData(Uri.parse("package:" + appInfo.getAPK()));
                 intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
                 startActivityForResult(intent, UNINSTALL_REQUEST_CODE);
             }
@@ -148,7 +148,7 @@ public class AppActivity extends AppCompatActivity {
                 shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                 shareIntent.setType("application/vnd.android.package-archive");
                 shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.name)));
+                startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
 

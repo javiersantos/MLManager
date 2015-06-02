@@ -16,22 +16,22 @@ public class UtilsDialog {
 
         switch (appPreferences.getCustomFilename()) {
             case "1":
-                filename = appInfo.apk + "_" + appInfo.version;
+                filename = appInfo.getAPK() + "_" + appInfo.getVersion();
                 break;
             case "2":
-                filename = appInfo.name + "_" + appInfo.version;
+                filename = appInfo.getName() + "_" + appInfo.getVersion();
                 break;
             case "4":
-                filename = appInfo.name;
+                filename = appInfo.getName();
                 break;
             default:
-                filename = appInfo.apk;
+                filename = appInfo.getAPK();
                 break;
         }
 
         MaterialDialog.Builder materialDialog = new MaterialDialog.Builder(context)
-                .title(String.format(context.getResources().getString(R.string.dialog_saved), appInfo.name))
-                .content(String.format(context.getResources().getString(R.string.dialog_saved_description), appInfo.name, filename))
+                .title(String.format(context.getResources().getString(R.string.dialog_saved), appInfo.getName()))
+                .content(String.format(context.getResources().getString(R.string.dialog_saved_description), appInfo.getName(), filename))
                 .positiveText(context.getResources().getString(R.string.button_ok))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -62,7 +62,7 @@ public class UtilsDialog {
 
     public static MaterialDialog.Builder showIndeterminateProgressDialog(Context context, AppInfo appInfo) {
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
-                .title(String.format(context.getResources().getString(R.string.dialog_saving), appInfo.name))
+                .title(String.format(context.getResources().getString(R.string.dialog_saving), appInfo.getName()))
                 .content(context.getResources().getString(R.string.dialog_saving_description))
                 .cancelable(false)
                 .progress(true, 0);

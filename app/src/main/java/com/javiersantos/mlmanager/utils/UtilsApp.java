@@ -24,21 +24,21 @@ public class UtilsApp {
     public static File copyFile(Context context, AppInfo appInfo) {
         appPreferences = new AppPreferences(context);
 
-        File initialFile = new File(appInfo.source);
+        File initialFile = new File(appInfo.getSource());
         File finalFile;
 
         switch (appPreferences.getCustomFilename()) {
             case "1":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.apk + "_" + appInfo.version + ".apk");
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getAPK() + "_" + appInfo.getVersion() + ".apk");
                 break;
             case "2":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.name + "_" + appInfo.version + ".apk");
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getName() + "_" + appInfo.getVersion() + ".apk");
                 break;
             case "4":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.name + ".apk");
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getName() + ".apk");
                 break;
             default:
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.apk + ".apk");
+                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getAPK() + ".apk");
                 break;
         }
 
