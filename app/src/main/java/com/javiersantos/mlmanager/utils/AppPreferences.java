@@ -14,6 +14,7 @@ public class AppPreferences {
     public static final String KeyStartDelete = "prefStartDelete";
     public static final String KeyPrimaryColor = "prefPrimaryColor";
     public static final String KeyFABColor = "prefFABColor";
+    public static final String KeyFABShow = "prefFABShow";
     public static final String KeyNavigationBlack = "prefNavigationBlack";
 
     public AppPreferences(Context context) {
@@ -51,6 +52,14 @@ public class AppPreferences {
     }
     public void setNavigationBlackPref(Boolean res) {
         editor.putBoolean(KeyNavigationBlack, res);
+        editor.commit();
+    }
+
+    public Boolean getFABShowPref() {
+        return sharedPreferences.getBoolean(KeyFABShow, false);
+    }
+    public void setFABShowPref(Boolean res) {
+        editor.putBoolean(KeyFABShow, res);
         editor.commit();
     }
 

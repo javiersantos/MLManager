@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
-import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
+
+import yuku.ambilwarna.widget.AmbilWarnaPreference;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     // Load Settings
@@ -20,7 +22,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     // Settings variables
     private SharedPreferences prefs;
-    private Preference prefVersion, prefPrimaryColor, prefFABColor, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
+    private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
+    private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
+    private CheckBoxPreference prefFABShow;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -36,8 +40,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         prefVersion = findPreference("prefVersion");
-        prefPrimaryColor = findPreference("prefPrimaryColor");
-        prefFABColor = findPreference("prefFABColor");
+        prefPrimaryColor = (AmbilWarnaPreference) findPreference("prefPrimaryColor");
+        prefFABColor = (AmbilWarnaPreference) findPreference("prefFABColor");
+        prefFABShow = (CheckBoxPreference) findPreference("prefFABShow");
         prefDeleteAll = findPreference("prefDeleteAll");
         prefDefaultValues = findPreference("prefDefaultValues");
         prefNavigationBlack = findPreference("prefNavigationBlack");
@@ -84,6 +89,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             public boolean onPreferenceClick(Preference preference) {
                 appPreferences.setPrimaryColorPref(getResources().getColor(R.color.primary));
                 appPreferences.setFABColorPref(getResources().getColor(R.color.fab));
+                prefFABShow.setChecked(false);
                 return true;
             }
         });
