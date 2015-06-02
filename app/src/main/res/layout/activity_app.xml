@@ -46,7 +46,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/id_card"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="46dp"
             card_view:cardCornerRadius="2dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_margin="5dp">
