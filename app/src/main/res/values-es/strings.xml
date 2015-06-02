@@ -12,9 +12,9 @@
     <string name="dialog_extract">Toca para extraer</string>
     <string name="dialog_extract_description">Extraer esta app en el directorio \"MLManager\"</string>
     <string name="dialog_run">Toca para iniciar</string>
-    <string name="dialog_saved">APK %s guardado</string>
+    <string name="dialog_saved">APK \"%s\" guardado</string>
     <string name="dialog_run_description">Abrir esta app ahora</string>
-    <string name="dialog_saved_description">El APK %1$s ha sido guardado en la carpeta \"MLManager\" con nombre: %2$s</string>
+    <string name="dialog_saved_description">El APK \"%1$s\" ha sido guardado en la carpeta \"MLManager\" con nombre: %2$s</string>
     <string name="dialog_saving">Guardando APK %s...</string>
     <string name="dialog_saving_description">ML Manager está guardando el APK en la carpeta \"MLManager\".</string>
     <string name="dialog_uninstall">Toca para desinstalar</string>
@@ -48,4 +48,5 @@
     <string name="settings_googleplus_description">¿Quieres estar al tanto de las novedades de la aplicación? ¡Únete a nuestra comunidad!</string>
     <string name="settings_fab_show">Mostrar botón flotante principal</string>
     <string name="settings_fab_show_description">No ocultar el butón flotante (FAB) en la pantalla principal. Requiere reiniciar.</string>
+    <string name="settings_custom_filename">Nombre de los archivos APK extraídos</string>
 </resources>

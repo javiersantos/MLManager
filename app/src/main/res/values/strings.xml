@@ -11,8 +11,8 @@
     <string name="deleting_error">Something went wrong removing the files</string>
 
     <!-- Dialogs -->
-    <string name="dialog_saved">%s APK saved</string>
-    <string name="dialog_saved_description">%1$s APK has been saved into \"MLManager\" folder with name: %2$s</string>
+    <string name="dialog_saved">\"%s\" APK saved</string>
+    <string name="dialog_saved_description">\"%1$s\" APK has been saved into \"MLManager\" folder with name: %2$s</string>
     <string name="dialog_saving">Saving %s APK...</string>
     <string name="dialog_saving_description">ML Manager is saving the APK into \"MLManager\" folder.</string>
     <string name="dialog_about">About %s</string>
@@ -37,6 +37,7 @@
     <string name="settings_delete_on_start_description">Remove all the extracted APKs on every app starts</string>
     <string name="settings_delete_all">Delete all extracted APKs</string>
     <string name="settings_delete_all_description">Remove all the extracted APKs stored in the extraction folder</string>
+    <string name="settings_custom_filename">Default filename for extracted APKs</string>
     <string name="settings_customizations">Customizations</string>
     <string name="settings_primary_color">Primary color</string>
     <string name="settings_primary_color_description">Set the primary color for the toolbar and navigation bar. Requires Android 5.0+</string>
