@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.javiersantos.mlmanager.AboutActivity;
-import com.javiersantos.mlmanager.MainActivity;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.SettingsActivity;
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -26,6 +25,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.Calendar;
 
 public class UtilsUI {
+    // Load Settings
+    private static AppPreferences appPreferences;
 
     public static int darker (int color, double factor) {
         int a = Color.alpha(color);
@@ -38,6 +39,8 @@ public class UtilsUI {
 
     public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar) {
         int header;
+        appPreferences = new AppPreferences(context);
+
         if (getDayOrNight() == 1) {
             header = R.drawable.header_day;
         } else {
@@ -53,6 +56,7 @@ public class UtilsUI {
                 .withActivity(activity)
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
+                .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.app_name)).withIcon(ContextCompat.getDrawable(context, R.mipmap.ic_launcher)),
                         new DividerDrawerItem(),
