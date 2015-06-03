@@ -1,5 +1,5 @@
-### Next Update
-###### To be released
+### 0.2 Beta
+###### Released: 3 June, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/a1c078a576e95306d3d60e3761957ce9ee538ed4) Navigation Drawer.
 * [NEW](https://github.com/javiersantos/MLManager/commit/40d59d2f80ec370ce43e68738709d5a8da9727be) Custom filename for extracted APKs.
 * [NEW](https://github.com/javiersantos/MLManager/commit/193e3ef5399686b2322f5d8d02498bd7d784ad8b) Optional Floating Action Button (FAB).
