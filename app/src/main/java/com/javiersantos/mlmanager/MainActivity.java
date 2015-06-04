@@ -35,11 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
     // General variables
     private List<String> appListName = new ArrayList<String>();
-    private List<String> appListApk = new ArrayList<String>();
+    private List<String> appListAPK = new ArrayList<String>();
     private List<String> appListVersion = new ArrayList<String>();
     private List<String> appListSource = new ArrayList<String>();
     private List<String> appListData = new ArrayList<String>();
     private List<Drawable> appListIcon = new ArrayList<Drawable>();
+    private List<String> appSystemListName = new ArrayList<String>();
+    private List<String> appSystemListAPK = new ArrayList<String>();
+    private List<String> appSystemListVersion = new ArrayList<String>();
+    private List<String> appSystemListSource = new ArrayList<String>();
+    private List<String> appSystemListData = new ArrayList<String>();
+    private List<Drawable> appSystemListIcon = new ArrayList<Drawable>();
 
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
@@ -63,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         getInstalledApps();
-        AppAdapter appAdapter = new AppAdapter(createList(appListName, appListApk, appListVersion, appListSource, appListData, appListIcon), this);
+        AppAdapter appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon), this);
+        AppAdapter appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon), this);
+
         recyclerView.setAdapter(appAdapter);
 
-        setNavigationDrawer(appAdapter);
+        setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
         setFAB();
 
     }
@@ -85,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setNavigationDrawer(AppAdapter appAdapter) {
-        UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter);
+    private void setNavigationDrawer(AppAdapter appAdapter, AppAdapter appSystemAdapter, RecyclerView recyclerView) {
+        UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, recyclerView);
     }
 
     private void setFAB() {
@@ -138,13 +146,25 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("App", packageInfo.applicationInfo.sourceDir);
                 Log.i("App", packageInfo.applicationInfo.dataDir);
                 appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                appListApk.add(packageInfo.packageName);
+                appListAPK.add(packageInfo.packageName);
                 appListVersion.add(packageInfo.versionName);
                 appListSource.add(packageInfo.applicationInfo.sourceDir);
                 appListData.add(packageInfo.applicationInfo.dataDir);
                 appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
             } else {
                 // System Apps
+                Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                Log.i("App", packageInfo.packageName);
+                Log.i("App", packageInfo.versionName);
+                Log.i("App", packageInfo.applicationInfo.packageName);
+                Log.i("App", packageInfo.applicationInfo.sourceDir);
+                Log.i("App", packageInfo.applicationInfo.dataDir);
+                appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                appSystemListAPK.add(packageInfo.packageName);
+                appSystemListVersion.add(packageInfo.versionName);
+                appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
+                appSystemListData.add(packageInfo.applicationInfo.dataDir);
+                appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
             }
         }
     }
