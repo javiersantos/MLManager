@@ -31,7 +31,7 @@
             android:textSize="22dp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/app_icon"
+            android:layout_below="@id/app_icon"
             android:layout_centerHorizontal="true" />
         <TextView
             android:id="@+id/app_description"
@@ -43,7 +43,7 @@
             android:textSize="15dp"
             android:textColor="@color/white"
             android:gravity="center_horizontal"
-            android:layout_below="@+id/app_name"
+            android:layout_below="@id/app_name"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
     <ScrollView

@@ -31,7 +31,17 @@
             android:textSize="22dp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true"
+            android:layout_below="@id/app_icon"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/app_version"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/app_name"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
     <RelativeLayout
@@ -51,6 +61,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_margin="5dp">
             <ImageView
+                android:id="@+id/app_googleplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
