@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +11,7 @@ import android.widget.AdapterView;
 import com.javiersantos.mlmanager.AboutActivity;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.SettingsActivity;
+import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -37,7 +37,7 @@ public class UtilsUI {
         return Color.argb(a, Math.max( (int)(r * factor), 0 ), Math.max( (int)(g * factor), 0 ), Math.max( (int)(b * factor), 0 ) );
     }
 
-    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar) {
+    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, AppAdapter appAdapter) {
         int header;
         appPreferences = new AppPreferences(context);
 
@@ -58,7 +58,7 @@ public class UtilsUI {
                 .withAccountHeader(headerResult)
                 .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.app_name)).withIcon(ContextCompat.getDrawable(context, R.mipmap.ic_launcher)),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(Integer.toString(appAdapter.getItemCount())),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info)

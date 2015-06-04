@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         AppAdapter appAdapter = new AppAdapter(createList(appListName, appListApk, appListVersion, appListSource, appListData, appListIcon), this);
         recyclerView.setAdapter(appAdapter);
 
+        setNavigationDrawer(appAdapter);
         setFAB();
 
     }
@@ -82,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
             }
         }
+    }
 
-        UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar);
-
+    private void setNavigationDrawer(AppAdapter appAdapter) {
+        UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter);
     }
 
     private void setFAB() {
