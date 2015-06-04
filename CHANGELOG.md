@@ -1,9 +1,13 @@
 ### 0.3 Beta
-###### To Be Released
+###### Released: 5 June, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/c54aa4590c42ed343a2300a7e7aab0ab153c4848) System apps can be extracted.
 * [NEW](https://github.com/javiersantos/MLManager/commit/2f195498c872cae9e2b764aa3c4f3010187730ba) Loading wheel while apps are loading.
+* [NEW](https://github.com/javiersantos/MLManager/commit/3300d9353d99c35f361bfa50d259768d8b809a5e) App details now display the version of the app.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/951afe1a6b38bee17f842ecbede07bd726bc7be1) Google Play link is now disabled on system apps.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/26df5dd4b008fa875cbec628c29a2f1017c50c20) Buttons have now the primary color.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/1bb8e4d80fec3919d56cd68f3e380c77a99202d1) Loading apps method is now asynchronous.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/4b5e1fb97053461d41882bcc7f24b4b6f1b52498) Navigation Drawer shows the number of installed & system apps.
+* [FIX](https://github.com/javiersantos/MLManager/commit/3df2434b2471d992b07ce0a5731bcfa24a7cd2c0) Fix FC on some CM12 devices.
 
 ### 0.2 Beta
 ###### Released: 3 June, 2015
