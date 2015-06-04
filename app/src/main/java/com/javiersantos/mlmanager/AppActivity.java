@@ -28,10 +28,10 @@ import java.io.File;
 
 public class AppActivity extends AppCompatActivity {
     // Load Settings
-    AppPreferences appPreferences;
+    private AppPreferences appPreferences;
 
     // General variables
-    AppInfo appInfo;
+    private AppInfo appInfo;
 
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
@@ -75,7 +75,9 @@ public class AppActivity extends AppCompatActivity {
     private void setScreenElements() {
         TextView header = (TextView) findViewById(R.id.header);
         ImageView icon = (ImageView) findViewById(R.id.app_icon);
+        ImageView icon_googleplay = (ImageView) findViewById(R.id.app_googleplay);
         TextView name = (TextView) findViewById(R.id.app_name);
+        TextView version = (TextView) findViewById(R.id.app_version);
         TextView apk = (TextView) findViewById(R.id.app_apk);
         CardView googleplay = (CardView) findViewById(R.id.id_card);
         CardView start = (CardView) findViewById(R.id.start_card);
@@ -87,17 +89,24 @@ public class AppActivity extends AppCompatActivity {
         icon.setImageDrawable(appInfo.getIcon());
         name.setText(appInfo.getName());
         apk.setText(appInfo.getAPK());
+        version.setText(appInfo.getVersion());
 
         // Header
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
 
         // CardView
-        googleplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
-            }
-        });
+        if (appInfo.isSystem()) {
+            icon_googleplay.setVisibility(View.GONE);
+            googleplay.setForeground(null);
+        } else {
+            icon_googleplay.setVisibility(View.VISIBLE);
+            googleplay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
+                }
+            });
+        }
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,8 +185,9 @@ public class AppActivity extends AppCompatActivity {
         String appData = getIntent().getStringExtra("app_data");
         Bitmap bitmap = (Bitmap) this.getIntent().getParcelableExtra("app_icon");
         Drawable appIcon = (Drawable) new BitmapDrawable(getResources(), bitmap);
+        Boolean appIsSystem = getIntent().getExtras().getBoolean("app_isSystem");
 
-        appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon);
+        appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon, appIsSystem);
     }
 
     @Override

@@ -9,14 +9,16 @@ public class AppInfo {
     private String source;
     private String data;
     private Drawable icon;
+    private Boolean system;
 
-    public AppInfo(String name, String apk, String version, String source, String data, Drawable icon) {
+    public AppInfo(String name, String apk, String version, String source, String data, Drawable icon, Boolean isSystem) {
         this.name = name;
         this.apk = apk;
         this.version = version;
         this.source = source;
         this.data = data;
         this.icon = icon;
+        this.system = isSystem;
     }
 
     public String getName() {
@@ -41,6 +43,10 @@ public class AppInfo {
 
     public Drawable getIcon() {
         return icon;
+    }
+
+    public Boolean isSystem() {
+        return system;
     }
 
 }

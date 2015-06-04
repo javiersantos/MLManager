@@ -178,8 +178,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon), context);
-            appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon), context);
+            appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon, false), context);
+            appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon, true), context);
 
             recyclerView.setAdapter(appAdapter);
             progressWheel.setVisibility(View.GONE);
@@ -196,10 +196,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> versions, List<String> sources, List<String> data, List<Drawable> icons) {
+    private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> versions, List<String> sources, List<String> data, List<Drawable> icons, Boolean isSystem) {
         List<AppInfo> res = new ArrayList<AppInfo>();
         for (int i=0; i < apps.size(); i++) {
-            AppInfo appInfo = new AppInfo(apps.get(i), apks.get(i), versions.get(i), sources.get(i), data.get(i), icons.get(i));
+            AppInfo appInfo = new AppInfo(apps.get(i), apks.get(i), versions.get(i), sources.get(i), data.get(i), icons.get(i), isSystem);
             res.add(appInfo);
         }
 
