@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <include
@@ -11,6 +12,15 @@
         android:layout_height="fill_parent"
         android:id="@+id/main_content"
         android:layout_below="@id/toolbar">
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            wheel:matProg_barColor="@color/primary"
+            wheel:matProg_progressIndeterminate="true" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/appList"
             android:layout_width="match_parent"
