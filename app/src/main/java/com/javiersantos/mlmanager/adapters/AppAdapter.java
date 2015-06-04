@@ -18,6 +18,7 @@ import com.gc.materialdesign.views.ButtonFlat;
 import com.javiersantos.mlmanager.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
+import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
@@ -25,12 +26,17 @@ import java.io.File;
 import java.util.List;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
+    // Load Settings
+    private AppPreferences appPreferences;
+
+    // AppAdater variables
     private List<AppInfo> appList;
     private Context context;
 
     public AppAdapter(List<AppInfo> appList, Context context) {
         this.appList = appList;
         this.context = context;
+        this.appPreferences = new AppPreferences(context);
     }
 
     @Override
@@ -53,6 +59,9 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
         ButtonFlat appExtract = appViewHolder.vExtract;
         ButtonFlat appShare = appViewHolder.vShare;
         CardView cardView = appViewHolder.vCard;
+
+        appExtract.setBackgroundColor(appPreferences.getPrimaryColorPref());
+        appShare.setBackgroundColor(appPreferences.getPrimaryColorPref());
 
         appExtract.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +101,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 intent.putExtra("app_data", appInfo.getData());
                 Bitmap bitmap = ((BitmapDrawable)appInfo.getIcon()).getBitmap();
                 intent.putExtra("app_icon", bitmap);
+                intent.putExtra("app_isSystem", appInfo.isSystem());
 
                 context.startActivity(intent);
                 activity.overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
