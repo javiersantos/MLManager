@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/javiersantos/MLManager.svg?branch=master)](https://travis-ci.org/javiersantos/MLManager)
 # ML Manager
 Modern, easy and customizable app manager for Android with Material Design.
 
