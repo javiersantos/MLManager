@@ -35,6 +35,7 @@
     <string name="settings_navigation_black_description">No usar un color personalizado para la barra de navegación</string>
     <string name="settings_navigation_black">Mostrar barra de navegación en negro</string>
     <string name="deleting">Eliminando...</string>
+    <string name="loading">Cargando...</string>
     <string name="deleting_done">¡Archivos eliminados!</string>
     <string name="deleting_error">Algo fué mal eliminando los archivos</string>
     <string name="settings_default_customization">Restaurar personalizaciones</string>
