@@ -1,9 +1,11 @@
 package com.javiersantos.mlmanager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +23,7 @@ import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.melnykov.fab.FloatingActionButton;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // Load Settings
-    AppPreferences appPreferences;
+    private AppPreferences appPreferences;
 
     // General variables
     private List<String> appListName = new ArrayList<String>();
@@ -47,35 +50,41 @@ public class MainActivity extends AppCompatActivity {
     private List<String> appSystemListData = new ArrayList<String>();
     private List<Drawable> appSystemListIcon = new ArrayList<Drawable>();
 
+    private AppAdapter appAdapter;
+    private AppAdapter appSystemAdapter;
+
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
-    Toolbar toolbar;
-    RecyclerView recyclerView;
-    FloatingActionButton fab;
+    private Toolbar toolbar;
+    private Context context;
+    private RecyclerView recyclerView;
+    private FloatingActionButton fab;
+    private ProgressWheel progressWheel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.appPreferences = new AppPreferences(getApplicationContext());
+        this.context = this;
 
         setInitialConfiguration();
         setAppDir();
 
         recyclerView = (RecyclerView) findViewById(R.id.appList);
+        progressWheel = (ProgressWheel) findViewById(R.id.progress);
+
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        getInstalledApps();
-        AppAdapter appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon), this);
-        AppAdapter appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon), this);
-
-        recyclerView.setAdapter(appAdapter);
-
         setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
         setFAB();
+
+        progressWheel.setBarColor(appPreferences.getPrimaryColorPref());
+        progressWheel.setVisibility(View.VISIBLE);
+        new getInstalledApps().execute();
 
     }
 
@@ -127,46 +136,70 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getInstalledApps() {
-        final PackageManager packageManager = getPackageManager();
-        List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
-        Collections.sort(packages, new Comparator<PackageInfo>() {
-            @Override
-            public int compare(PackageInfo p1, PackageInfo p2) {
-                return packageManager.getApplicationLabel(p1.applicationInfo).toString().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString());
+    class getInstalledApps extends AsyncTask<Void, PackageInfo, Void> {
+        public getInstalledApps() {}
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            final PackageManager packageManager = getPackageManager();
+            List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
+            Collections.sort(packages, new Comparator<PackageInfo>() {
+                @Override
+                public int compare(PackageInfo p1, PackageInfo p2) {
+                    return packageManager.getApplicationLabel(p1.applicationInfo).toString().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString());
+                }
+            });
+            for(PackageInfo packageInfo : packages) {
+                if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
+                    // Non System Apps
+                    Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                    Log.i("App", packageInfo.packageName);
+                    Log.i("App", packageInfo.versionName);
+                    Log.i("App", packageInfo.applicationInfo.packageName);
+                    Log.i("App", packageInfo.applicationInfo.sourceDir);
+                    Log.i("App", packageInfo.applicationInfo.dataDir);
+                    appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                    appListAPK.add(packageInfo.packageName);
+                    appListVersion.add(packageInfo.versionName);
+                    appListSource.add(packageInfo.applicationInfo.sourceDir);
+                    appListData.add(packageInfo.applicationInfo.dataDir);
+                    appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                } else {
+                    // System Apps
+                    Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                    Log.i("App", packageInfo.packageName);
+                    Log.i("App", packageInfo.versionName);
+                    Log.i("App", packageInfo.applicationInfo.packageName);
+                    Log.i("App", packageInfo.applicationInfo.sourceDir);
+                    Log.i("App", packageInfo.applicationInfo.dataDir);
+                    appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                    appSystemListAPK.add(packageInfo.packageName);
+                    appSystemListVersion.add(packageInfo.versionName);
+                    appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
+                    appSystemListData.add(packageInfo.applicationInfo.dataDir);
+                    appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                }
             }
-        });
-        for(PackageInfo packageInfo : packages) {
-            if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
-                // Non System Apps
-                Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                Log.i("App", packageInfo.packageName);
-                Log.i("App", packageInfo.versionName);
-                Log.i("App", packageInfo.applicationInfo.packageName);
-                Log.i("App", packageInfo.applicationInfo.sourceDir);
-                Log.i("App", packageInfo.applicationInfo.dataDir);
-                appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                appListAPK.add(packageInfo.packageName);
-                appListVersion.add(packageInfo.versionName);
-                appListSource.add(packageInfo.applicationInfo.sourceDir);
-                appListData.add(packageInfo.applicationInfo.dataDir);
-                appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
-            } else {
-                // System Apps
-                Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                Log.i("App", packageInfo.packageName);
-                Log.i("App", packageInfo.versionName);
-                Log.i("App", packageInfo.applicationInfo.packageName);
-                Log.i("App", packageInfo.applicationInfo.sourceDir);
-                Log.i("App", packageInfo.applicationInfo.dataDir);
-                appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                appSystemListAPK.add(packageInfo.packageName);
-                appSystemListVersion.add(packageInfo.versionName);
-                appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
-                appSystemListData.add(packageInfo.applicationInfo.dataDir);
-                appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
-            }
+            return null;
         }
+
+        @Override
+        protected void onProgressUpdate(PackageInfo... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon), context);
+            appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon), context);
+
+            recyclerView.setAdapter(appAdapter);
+            progressWheel.setVisibility(View.GONE);
+
+            setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
+        }
+
     }
 
     private void setAppDir() {

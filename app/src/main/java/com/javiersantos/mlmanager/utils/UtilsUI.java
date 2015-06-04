@@ -35,17 +35,29 @@ public class UtilsUI {
         int g = Color.green( color );
         int b = Color.blue(color);
 
-        return Color.argb(a, Math.max( (int)(r * factor), 0 ), Math.max( (int)(g * factor), 0 ), Math.max( (int)(b * factor), 0 ) );
+        return Color.argb(a, Math.max((int) (r * factor), 0), Math.max((int) (g * factor), 0), Math.max((int) (b * factor), 0));
     }
 
     public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final RecyclerView recyclerView) {
         int header;
         appPreferences = new AppPreferences(context);
+        String apps, systemApps;
 
         if (getDayOrNight() == 1) {
             header = R.drawable.header_day;
         } else {
             header = R.drawable.header_night;
+        }
+
+        if (appAdapter != null) {
+            apps = Integer.toString(appAdapter.getItemCount());
+        } else {
+            apps = context.getResources().getString(R.string.loading);
+        }
+        if (appSystemAdapter != null) {
+            systemApps = Integer.toString(appSystemAdapter.getItemCount());
+        } else {
+            systemApps = context.getResources().getString(R.string.loading);
         }
 
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -59,8 +71,8 @@ public class UtilsUI {
                 .withAccountHeader(headerResult)
                 .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(Integer.toString(appAdapter.getItemCount())),
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(Integer.toString(appSystemAdapter.getItemCount())),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info)
