@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +38,7 @@ public class UtilsUI {
         return Color.argb(a, Math.max( (int)(r * factor), 0 ), Math.max( (int)(g * factor), 0 ), Math.max( (int)(b * factor), 0 ) );
     }
 
-    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, AppAdapter appAdapter) {
+    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final RecyclerView recyclerView) {
         int header;
         appPreferences = new AppPreferences(context);
 
@@ -59,6 +60,7 @@ public class UtilsUI {
                 .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(Integer.toString(appAdapter.getItemCount())),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(Integer.toString(appSystemAdapter.getItemCount())),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info)
@@ -67,10 +69,16 @@ public class UtilsUI {
                     @Override
                     public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         switch (position) {
-                            case 2:
-                                context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                            case 0:
+                                recyclerView.setAdapter(appAdapter);
+                                break;
+                            case 1:
+                                recyclerView.setAdapter(appSystemAdapter);
                                 break;
                             case 3:
+                                context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                break;
+                            case 4:
                                 context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 break;
                             default:
