@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -152,12 +151,6 @@ public class MainActivity extends AppCompatActivity {
             for(PackageInfo packageInfo : packages) {
                 if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
                     // Non System Apps
-                    Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                    Log.i("App", packageInfo.packageName);
-                    Log.i("App", packageInfo.versionName);
-                    Log.i("App", packageInfo.applicationInfo.packageName);
-                    Log.i("App", packageInfo.applicationInfo.sourceDir);
-                    Log.i("App", packageInfo.applicationInfo.dataDir);
                     appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
                     appListAPK.add(packageInfo.packageName);
                     appListVersion.add(packageInfo.versionName);
@@ -166,12 +159,6 @@ public class MainActivity extends AppCompatActivity {
                     appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
                 } else {
                     // System Apps
-                    Log.i("App", packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                    Log.i("App", packageInfo.packageName);
-                    Log.i("App", packageInfo.versionName);
-                    Log.i("App", packageInfo.applicationInfo.packageName);
-                    Log.i("App", packageInfo.applicationInfo.sourceDir);
-                    Log.i("App", packageInfo.applicationInfo.dataDir);
                     appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
                     appSystemListAPK.add(packageInfo.packageName);
                     appSystemListVersion.add(packageInfo.versionName);
