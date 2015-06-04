@@ -49,5 +49,6 @@
     <string name="settings_fab_show">Mostrar botón flotante principal</string>
     <string name="settings_fab_show_description">No ocultar el butón flotante (FAB) en la pantalla principal. Requiere reiniciar.</string>
     <string name="settings_custom_filename">Nombre de los archivos APK extraídos</string>
+    <string name="action_apps">Aplicaciones Instaladas</string>
     <string name="action_system_apps">Aplicaciones del Sistema</string>
 </resources>
