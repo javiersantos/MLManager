@@ -150,21 +150,29 @@ public class MainActivity extends AppCompatActivity {
             });
             for(PackageInfo packageInfo : packages) {
                 if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
-                    // Non System Apps
-                    appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                    appListAPK.add(packageInfo.packageName);
-                    appListVersion.add(packageInfo.versionName);
-                    appListSource.add(packageInfo.applicationInfo.sourceDir);
-                    appListData.add(packageInfo.applicationInfo.dataDir);
-                    appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    try {
+                        // Non System Apps
+                        appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                        appListAPK.add(packageInfo.packageName);
+                        appListVersion.add(packageInfo.versionName);
+                        appListSource.add(packageInfo.applicationInfo.sourceDir);
+                        appListData.add(packageInfo.applicationInfo.dataDir);
+                        appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
-                    // System Apps
-                    appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                    appSystemListAPK.add(packageInfo.packageName);
-                    appSystemListVersion.add(packageInfo.versionName);
-                    appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
-                    appSystemListData.add(packageInfo.applicationInfo.dataDir);
-                    appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    try {
+                        // System Apps
+                        appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                        appSystemListAPK.add(packageInfo.packageName);
+                        appSystemListVersion.add(packageInfo.versionName);
+                        appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
+                        appSystemListData.add(packageInfo.applicationInfo.dataDir);
+                        appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             return null;
