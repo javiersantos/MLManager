@@ -15,7 +15,7 @@ Modern, easy and customizable app manager for Android with Material Design.
 * [Download on GitHub](https://github.com/javiersantos/MLManager/releases)
 * [Download on F-Droid](https://f-droid.org/repository/browse/?fdid=com.javiersantos.mlmanager)
 
-![ML Manager](http://i.imgur.com/B1b84BI.png)
+![ML Manager](http://i.imgur.com/gpBV7FC.png)
 
 ### Translations
 [Help translating this app](https://crowdin.com/project/ml-manager)
