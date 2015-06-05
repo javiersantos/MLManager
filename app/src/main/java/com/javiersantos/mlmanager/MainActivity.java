@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             Collections.sort(packages, new Comparator<PackageInfo>() {
                 @Override
                 public int compare(PackageInfo p1, PackageInfo p2) {
-                    return packageManager.getApplicationLabel(p1.applicationInfo).toString().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString());
+                    return packageManager.getApplicationLabel(p1.applicationInfo).toString().toLowerCase().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString().toLowerCase());
                 }
             });
             for(PackageInfo packageInfo : packages) {
