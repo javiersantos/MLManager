@@ -1,4 +1,10 @@
-### 0.3 Beta
+### 0.3.1 Beta
+###### Released: 5 June, 2015
+* [FIX](https://github.com/javiersantos/MLManager/commit/1f2abd5aaf322e05cd256bfde9fe4246ae5086e9) Shorten app name when it is too long.
+* [FIX](https://github.com/javiersantos/MLManager/commit/b015098c9584ab15a906857c96462e46860fc0a4) Comparator sorts uppercase and lowercase properly.
+* [FIX](https://github.com/javiersantos/MLManager/commit/972ea4cc7970456b4b8ac0db6aa980b645c918ae) Fixed FC on some CM12 devices. 
+
+### 0.3 Beta
 ###### Released: 5 June, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/c54aa4590c42ed343a2300a7e7aab0ab153c4848) System apps can be extracted.
 * [NEW](https://github.com/javiersantos/MLManager/commit/2f195498c872cae9e2b764aa3c4f3010187730ba) Loading wheel while apps are loading.
