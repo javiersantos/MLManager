@@ -21,3 +21,11 @@ Modern, easy and customizable app manager for Android with Material Design.
 [Help translating this app](https://crowdin.com/project/ml-manager)
 * English
 * Spanish
+
+### Third Party Libraries
+* [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
+* [Floating Action Button](https://github.com/makovkastar/FloatingActionButton)
+* [Material Dialogs](https://github.com/afollestad/material-dialogs)
+* [Ambil Warna](https://github.com/yukuku/ambilwarna)
+* [Materialish Progress](https://github.com/pnikosis/materialish-progress)
+* [Material Drawer](https://github.com/mikepenz/MaterialDrawer)
