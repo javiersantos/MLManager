@@ -17,15 +17,32 @@ Modern, easy and customizable app manager for Android with Material Design.
 
 ![ML Manager](http://i.imgur.com/gpBV7FC.png)
 
-### Translations
+## Translations
 [Help translating this app](https://crowdin.com/project/ml-manager)
 * English
 * Spanish
 
-### Third Party Libraries
+## Third Party Libraries
 * [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
 * [Floating Action Button](https://github.com/makovkastar/FloatingActionButton)
 * [Material Dialogs](https://github.com/afollestad/material-dialogs)
 * [Ambil Warna](https://github.com/yukuku/ambilwarna)
 * [Materialish Progress](https://github.com/pnikosis/materialish-progress)
 * [Material Drawer](https://github.com/mikepenz/MaterialDrawer)
+
+## License
+
+    Copyright 2015 Javier Santos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
