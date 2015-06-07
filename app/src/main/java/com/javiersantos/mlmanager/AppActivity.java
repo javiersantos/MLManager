@@ -97,23 +97,38 @@ public class AppActivity extends AppCompatActivity {
         // CardView
         if (appInfo.isSystem()) {
             icon_googleplay.setVisibility(View.GONE);
+            start.setVisibility(View.GONE);
+            uninstall.setVisibility(View.GONE);
+
             googleplay.setForeground(null);
+            start.setForeground(null);
+            uninstall.setForeground(null);
         } else {
-            icon_googleplay.setVisibility(View.VISIBLE);
             googleplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
                 }
             });
+
+            start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getAPK());
+                    startActivity(intent);
+                }
+            });
+
+            uninstall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
+                    intent.setData(Uri.parse("package:" + appInfo.getAPK()));
+                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+                    startActivityForResult(intent, UNINSTALL_REQUEST_CODE);
+                }
+            });
         }
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getAPK());
-                startActivity(intent);
-            }
-        });
         extract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,15 +138,6 @@ public class AppActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        });
-        uninstall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
-                intent.setData(Uri.parse("package:" + appInfo.getAPK()));
-                intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
-                startActivityForResult(intent, UNINSTALL_REQUEST_CODE);
             }
         });
 
@@ -151,12 +157,7 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 File file = UtilsApp.copyFile(context, appInfo);
-
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                shareIntent.setType("application/vnd.android.package-archive");
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent shareIntent = UtilsApp.getShareIntent(file);
                 startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
