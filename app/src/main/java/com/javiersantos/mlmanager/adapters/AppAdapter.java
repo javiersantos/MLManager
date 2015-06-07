@@ -78,12 +78,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
             @Override
             public void onClick(View view) {
                 File file = UtilsApp.copyFile(context, appInfo);
-
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
-                shareIntent.setType("application/vnd.android.package-archive");
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent shareIntent = UtilsApp.getShareIntent(file);
                 context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
