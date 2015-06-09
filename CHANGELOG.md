@@ -1,6 +1,7 @@
 ### 0.3.2 Beta
 ###### To Be Released
 * [FIX](https://github.com/javiersantos/MLManager/commit/a585cfb40aa49e992a7030c4eb92d6d72f231cee) Hide start and uninstall cards on System Apps.
+* [FIX](https://github.com/javiersantos/MLManager/commit/2054330fef10c49bf8287f8fc04ac4b1d537bdf3) Workaround to avoid OutOfMemoryError on some devices.
 
 ### 0.3.1 Beta
 ###### Released: 5 June, 2015
