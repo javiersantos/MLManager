@@ -2,6 +2,7 @@ package com.javiersantos.mlmanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -142,12 +143,47 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             final PackageManager packageManager = getPackageManager();
             List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
-            Collections.sort(packages, new Comparator<PackageInfo>() {
-                @Override
-                public int compare(PackageInfo p1, PackageInfo p2) {
-                    return packageManager.getApplicationLabel(p1.applicationInfo).toString().toLowerCase().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString().toLowerCase());
-                }
-            });
+            // Get Sort Mode
+            switch (appPreferences.getSortMode()) {
+                default:
+                    // Comparator by Name (default)
+                    Collections.sort(packages, new Comparator<PackageInfo>() {
+                        @Override
+                        public int compare(PackageInfo p1, PackageInfo p2) {
+                            return packageManager.getApplicationLabel(p1.applicationInfo).toString().toLowerCase().compareTo(packageManager.getApplicationLabel(p2.applicationInfo).toString().toLowerCase());
+                        }
+                    });
+                    break;
+                case "2":
+                    // Comparator by Size
+                    Collections.sort(packages, new Comparator<PackageInfo>() {
+                        @Override
+                        public int compare(PackageInfo p1, PackageInfo p2) {
+                            String size1 = String.valueOf(new File(p1.applicationInfo.packageName).length());
+                            String size2 = String.valueOf(new File(p2.applicationInfo.packageName).length());
+                            return size1.compareTo(size2);
+                        }
+                    });
+                    break;
+                case "3":
+                    // Comparator by Installation Date (default)
+                    Collections.sort(packages, new Comparator<PackageInfo>() {
+                        @Override
+                        public int compare(PackageInfo p1, PackageInfo p2) {
+                            return Long.toString(p1.firstInstallTime).compareTo(Long.toString(p2.firstInstallTime));
+                        }
+                    });
+                    break;
+                case "4":
+                    // Comparator by Last Update Date (default)
+                    Collections.sort(packages, new Comparator<PackageInfo>() {
+                        @Override
+                        public int compare(PackageInfo p1, PackageInfo p2) {
+                            return Long.toString(p1.lastUpdateTime).compareTo(Long.toString(p2.lastUpdateTime));
+                        }
+                    });
+                    break;
+            }
             for(PackageInfo packageInfo : packages) {
                 if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
                     try {

@@ -18,6 +18,12 @@
             android:entries="@array/filenameEntries"
             android:entryValues="@array/filenameValues"
             android:defaultValue="1" />
+        <ListPreference
+            android:key="prefSortMode"
+            android:title="@string/settings_sort_mode"
+            android:entries="@array/sortEntries"
+            android:entryValues="@array/sortValues"
+            android:defaultValue="1" />
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_customizations">

@@ -26,7 +26,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
     private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
     private CheckBoxPreference prefFABShow;
-    private ListPreference prefCustomFilename;
+    private ListPreference prefCustomFilename, prefSortMode;
     private String versionName;
     private int versionCode;
     private Context context;
@@ -49,6 +49,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefDefaultValues = findPreference("prefDefaultValues");
         prefNavigationBlack = findPreference("prefNavigationBlack");
         prefCustomFilename = (ListPreference) findPreference("prefCustomFilename");
+        prefSortMode = (ListPreference) findPreference("prefSortMode");
 
         setInitialConfiguration();
 
@@ -67,6 +68,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         // prefCustomFilename
         setCustomFilenameSummary();
+
+        // prefSortMode
+        setSortModeSummary();
 
         // prefDeleteAll
         prefDeleteAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -120,12 +124,19 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefCustomFilename.setSummary(getResources().getStringArray(R.array.filenameEntries)[filenameValue]);
     }
 
+    private void setSortModeSummary() {
+        int sortValue = new Integer(appPreferences.getSortMode())-1;
+        prefSortMode.setSummary(getResources().getStringArray(R.array.sortEntries)[sortValue]);
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference pref = findPreference(key);
 
         if (pref == prefCustomFilename) {
             setCustomFilenameSummary();
+        } else if (pref == prefSortMode) {
+            setSortModeSummary();
         }
     }
 
