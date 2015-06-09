@@ -184,8 +184,8 @@ public class AppActivity extends AppCompatActivity {
         String appVersion = getIntent().getStringExtra("app_version");
         String appSource = getIntent().getStringExtra("app_source");
         String appData = getIntent().getStringExtra("app_data");
-        Bitmap bitmap = (Bitmap) this.getIntent().getParcelableExtra("app_icon");
-        Drawable appIcon = (Drawable) new BitmapDrawable(getResources(), bitmap);
+        Bitmap bitmap = getIntent().getParcelableExtra("app_icon");
+        Drawable appIcon = new BitmapDrawable(getResources(), bitmap);
         Boolean appIsSystem = getIntent().getExtras().getBoolean("app_isSystem");
 
         appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon, appIsSystem);
