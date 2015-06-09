@@ -42,6 +42,7 @@
     <string name="settings_delete_all">Delete all extracted APKs</string>
     <string name="settings_delete_all_description">Remove all the extracted APKs stored in the extraction folder</string>
     <string name="settings_custom_filename">Default filename for extracted APKs</string>
+    <string name="settings_sort_mode">Sort apps by</string>
     <string name="settings_customizations">Customizations</string>
     <string name="settings_primary_color">Primary color</string>
     <string name="settings_primary_color_description">Set the primary color for the toolbar and navigation bar. Requires Android 5.0+</string>
