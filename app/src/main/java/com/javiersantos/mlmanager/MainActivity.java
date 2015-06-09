@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
                         appListSource.add(packageInfo.applicationInfo.sourceDir);
                         appListData.add(packageInfo.applicationInfo.dataDir);
                         appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    } catch (OutOfMemoryError e) {
+                        //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
+                        appListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -170,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
                         appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
                         appSystemListData.add(packageInfo.applicationInfo.dataDir);
                         appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                    } catch (OutOfMemoryError e) {
+                        //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
+                        appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
