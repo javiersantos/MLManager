@@ -21,6 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
+            android:adjustViewBounds="true"
+            android:maxWidth="50dp"
+            android:maxHeight="50dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
         <TextView
