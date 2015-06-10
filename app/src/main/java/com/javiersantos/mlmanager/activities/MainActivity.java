@@ -33,6 +33,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
+
 
 public class MainActivity extends AppCompatActivity {
     // Load Settings
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Context context;
     private RecyclerView recyclerView;
+    private VerticalRecyclerViewFastScroller fastScroller;
     private FloatingActionButton fab;
     private ProgressWheel progressWheel;
 
@@ -74,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
         setAppDir();
 
         recyclerView = (RecyclerView) findViewById(R.id.appList);
+        fastScroller = (VerticalRecyclerViewFastScroller) findViewById(R.id.fast_scroller);
         progressWheel = (ProgressWheel) findViewById(R.id.progress);
+
+        fastScroller.setRecyclerView(recyclerView);
+        fastScroller.setBarColor(getResources().getColor(R.color.transparent));
+        fastScroller.setHandleBackground(getResources().getDrawable(R.drawable.fast_scroller_handle_rounded));
+        recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
