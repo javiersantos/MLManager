@@ -1,4 +1,4 @@
-package com.javiersantos.mlmanager;
+package com.javiersantos.mlmanager.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.javiersantos.mlmanager.utils.AppPreferences;
@@ -92,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.app_name);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {

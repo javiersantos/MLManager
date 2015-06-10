@@ -9,9 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.javiersantos.mlmanager.AboutActivity;
+import com.javiersantos.mlmanager.activities.AboutActivity;
 import com.javiersantos.mlmanager.R;
-import com.javiersantos.mlmanager.SettingsActivity;
+import com.javiersantos.mlmanager.activities.SettingsActivity;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;

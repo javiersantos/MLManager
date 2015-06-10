@@ -1,4 +1,4 @@
-package com.javiersantos.mlmanager;
+package com.javiersantos.mlmanager.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,9 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.WindowManager;
 
+import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
@@ -100,7 +102,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     private void setInitialConfiguration() {
         // Android 5.0+ devices
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
@@ -108,7 +111,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         }
 
         // Pre-Lollipop devices
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             prefPrimaryColor.setEnabled(false);
             prefNavigationBlack.setEnabled(false);
             prefNavigationBlack.setDefaultValue(true);

@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/MLManager" >
         <activity
-            android:name="com.javiersantos.mlmanager.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.javiersantos.mlmanager.AppActivity">
+            android:name=".activities.AppActivity">
         </activity>
         <activity
-            android:name="com.javiersantos.mlmanager.SettingsActivity">
+            android:name=".activities.SettingsActivity">
         </activity>
         <activity
-            android:name="com.javiersantos.mlmanager.AboutActivity">
+            android:name=".activities.AboutActivity">
         </activity>
     </application>
 

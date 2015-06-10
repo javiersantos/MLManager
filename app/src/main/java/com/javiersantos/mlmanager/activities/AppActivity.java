@@ -1,4 +1,4 @@
-package com.javiersantos.mlmanager;
+package com.javiersantos.mlmanager.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
@@ -63,7 +66,8 @@ public class AppActivity extends AppCompatActivity {
             }
         });
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
             toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {

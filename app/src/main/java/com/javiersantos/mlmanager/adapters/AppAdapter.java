@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFlat;
-import com.javiersantos.mlmanager.AppActivity;
+import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
