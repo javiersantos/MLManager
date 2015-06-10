@@ -17,6 +17,7 @@ public class AppPreferences {
     public static final String KeyFABShow = "prefFABShow";
     public static final String KeyNavigationBlack = "prefNavigationBlack";
     public static final String KeyCustomFilename = "prefCustomFilename";
+    public static final String KeySortMode = "prefSortMode";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -69,6 +70,14 @@ public class AppPreferences {
     }
     public void setCustomFilename(String res) {
         editor.putString(KeyCustomFilename, res);
+        editor.commit();
+    }
+
+    public String getSortMode() {
+        return sharedPreferences.getString(KeySortMode, "1");
+    }
+    public void setSortMode(String res) {
+        editor.putString(KeySortMode, res);
         editor.commit();
     }
 
