@@ -44,7 +44,7 @@
             android:maxWidth="50dp"
             android:maxHeight="50dp"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="14dp"
             android:layout_marginEnd="20dp"
             android:layout_alignTop="@+id/txtName"
             android:layout_alignParentRight="true"
