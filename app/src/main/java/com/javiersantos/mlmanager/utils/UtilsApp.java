@@ -60,24 +60,6 @@ public class UtilsApp {
         }
     }
 
-    public static Boolean removeCacheFolder(String data) {
-
-        return false;
-    }
-
-    public static long getCacheFolderSize(String data) {
-        long size = 0;
-        File f = new File(data + "/cache");
-        Log.i("App", f.toString());
-        File[] files = f.listFiles();
-        for (File file : files) {
-            size += file.length();
-        }
-
-        Log.i("App", Long.toString(size));
-        return size;
-    }
-
     public static Boolean deleteAppFiles() {
         Boolean res = false;
         File f = getAppFolder();
@@ -96,6 +78,13 @@ public class UtilsApp {
     public static Intent goToGooglePlay(String id) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + id));
+
+        return intent;
+    }
+
+    public static Intent goToGooglePlus(String id) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("https://plus.google.com/" + id));
 
         return intent;
     }

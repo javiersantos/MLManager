@@ -61,25 +61,32 @@ public class AboutActivity extends AppCompatActivity {
         CardView about_1 = (CardView) findViewById(R.id.about_1);
         CardView about_2 = (CardView) findViewById(R.id.about_2);
         CardView about_googleplay = (CardView) findViewById(R.id.about_googleplay);
+        CardView about_googleplus = (CardView) findViewById(R.id.about_googleplus);
 
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
         appNameVersion.setText(getResources().getString(R.string.app_name) + " Beta v" + UtilsApp.getAppVersionName(getApplicationContext()));
         about_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/+JavierSantos/")));
+                startActivity(UtilsApp.goToGooglePlus("+JavierSantos"));
             }
         });
         about_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/+javitoro95/")));
+                startActivity(UtilsApp.goToGooglePlus("+javitoro95"));
             }
         });
         about_googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanager"));
+            }
+        });
+        about_googleplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(UtilsApp.goToGooglePlus("communities/111960842500303983487"));
             }
         });
     }
