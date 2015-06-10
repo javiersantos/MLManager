@@ -2,7 +2,6 @@ package com.javiersantos.mlmanager.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -163,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
                     Collections.sort(packages, new Comparator<PackageInfo>() {
                         @Override
                         public int compare(PackageInfo p1, PackageInfo p2) {
-                            String size1 = String.valueOf(new File(p1.applicationInfo.packageName).length());
-                            String size2 = String.valueOf(new File(p2.applicationInfo.packageName).length());
-                            return size1.compareTo(size2);
+                            Long size1 = new File(p1.applicationInfo.sourceDir).length();
+                            Long size2 = new File(p2.applicationInfo.sourceDir).length();
+                            return size2.compareTo(size1);
                         }
                     });
                     break;
@@ -174,16 +173,16 @@ public class MainActivity extends AppCompatActivity {
                     Collections.sort(packages, new Comparator<PackageInfo>() {
                         @Override
                         public int compare(PackageInfo p1, PackageInfo p2) {
-                            return Long.toString(p1.firstInstallTime).compareTo(Long.toString(p2.firstInstallTime));
+                            return Long.toString(p2.firstInstallTime).compareTo(Long.toString(p1.firstInstallTime));
                         }
                     });
                     break;
                 case "4":
-                    // Comparator by Last Update Date (default)
+                    // Comparator by Last Update
                     Collections.sort(packages, new Comparator<PackageInfo>() {
                         @Override
                         public int compare(PackageInfo p1, PackageInfo p2) {
-                            return Long.toString(p1.lastUpdateTime).compareTo(Long.toString(p2.lastUpdateTime));
+                            return Long.toString(p2.lastUpdateTime).compareTo(Long.toString(p1.lastUpdateTime));
                         }
                     });
                     break;
