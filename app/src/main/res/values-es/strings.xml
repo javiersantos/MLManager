@@ -47,8 +47,6 @@
     <string name="app_description">Moderno, sencillo y personalizable gestor de aplicaciones para Android</string>
     <string name="settings_googleplus">Únete a la comunidad en Google+</string>
     <string name="settings_googleplus_description">¿Quieres estar al tanto de las novedades de la aplicación? ¡Únete a nuestra comunidad!</string>
-    <string name="settings_fab_show">Mostrar botón flotante principal</string>
-    <string name="settings_fab_show_description">No ocultar el butón flotante (FAB) en la pantalla principal. Requiere reiniciar.</string>
     <string name="settings_custom_filename">Nombre de los archivos APK extraídos</string>
     <string name="settings_sort_mode">Ordenar aplicaciones por</string>
     <string name="action_apps">Aplicaciones Instaladas</string>

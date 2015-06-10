@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:wheel="http://schemas.android.com/apk/res-auto"
-    xmlns:recyclerviewfastscroller="http://schemas.android.com/tools"
+    xmlns:recyclerviewfastscroller="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include
@@ -16,32 +16,28 @@
             android:id="@+id/progress"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="200dp"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
             android:visibility="gone"
             wheel:matProg_barColor="@color/primary"
             wheel:matProg_progressIndeterminate="true" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/appList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="30dp" />
+            android:layout_height="match_parent" />
         <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
             android:id="@+id/fast_scroller"
+            android:visibility="gone"
             android:layout_width="24dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:paddingRight="@dimen/margin_small"
-            android:paddingEnd="@dimen/margin_small" />
+            android:paddingEnd="@dimen/margin_small"
+
+            recyclerviewfastscroller:rfs_barColor="@color/transparent"
+            recyclerviewfastscroller:rfs_handleBackground="@drawable/fastscroller_rounded"/>
 
     </RelativeLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/fab"
-            layout="@layout/fab" />
-    </FrameLayout>
 
 </RelativeLayout>

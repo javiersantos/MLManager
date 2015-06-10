@@ -1,7 +1,6 @@
 package com.javiersantos.mlmanager.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -24,7 +23,6 @@ import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
-import com.melnykov.fab.FloatingActionButton;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.io.File;
@@ -63,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private RecyclerView recyclerView;
     private VerticalRecyclerViewFastScroller fastScroller;
-    private FloatingActionButton fab;
     private ProgressWheel progressWheel;
 
     @Override
@@ -81,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         progressWheel = (ProgressWheel) findViewById(R.id.progress);
 
         fastScroller.setRecyclerView(recyclerView);
-        fastScroller.setBarColor(getResources().getColor(R.color.transparent));
-        fastScroller.setHandleBackground(getResources().getDrawable(R.drawable.fast_scroller_handle_rounded));
         recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
         recyclerView.setHasFixedSize(true);
@@ -91,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
-        setFAB();
 
         progressWheel.setBarColor(appPreferences.getPrimaryColorPref());
         progressWheel.setVisibility(View.VISIBLE);
@@ -116,36 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setNavigationDrawer(AppAdapter appAdapter, AppAdapter appSystemAdapter, RecyclerView recyclerView) {
         UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, recyclerView);
-    }
-
-    private void setFAB() {
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        if (appPreferences.getFABShowPref()) {
-            fab.setVisibility(View.VISIBLE);
-            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
-            fab.setBackgroundColor(appPreferences.getFABColorPref());
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
-                }
-            });
-
-            recyclerView.setOnScrollListener(new HidingScrollListener() {
-                @Override
-                public void onHide() {
-                    fab.hide();
-                }
-
-                @Override
-                public void onShow() {
-                    fab.show();
-                }
-            });
-        } else {
-            fab.setVisibility(View.INVISIBLE);
-        }
     }
 
     class getInstalledApps extends AsyncTask<Void, PackageInfo, Void> {
@@ -243,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
             appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon, false), context);
             appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon, true), context);
 
+            fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
             progressWheel.setVisibility(View.GONE);
 
