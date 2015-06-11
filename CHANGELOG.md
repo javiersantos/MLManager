@@ -1,5 +1,6 @@
-### 0.3.2 Beta
+### 0.X.X Beta
 ###### To Be Released
+* [NEW](https://github.com/javiersantos/MLManager/commit/b842ad44f8ec7b171d34eb69899b0b2bc1311a5d) Sorting options are here! You can now sort apps by: name, size, installation & update date.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/a585cfb40aa49e992a7030c4eb92d6d72f231cee) Hide start and uninstall cards on System Apps.
 * [FIX](https://github.com/javiersantos/MLManager/commit/2054330fef10c49bf8287f8fc04ac4b1d537bdf3) Workaround to avoid OutOfMemoryError on some devices.
 * [FIX](https://github.com/javiersantos/MLManager/commit/6389260c14b932e82993bfc087c2b86439fa4bef) Some icon packs were displaying an higher icon resolution on app details.
