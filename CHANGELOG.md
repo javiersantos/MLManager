@@ -1,5 +1,6 @@
-### 0.X.X Beta
-###### To Be Released
+### 0.4 Beta
+###### Released: 11 June, 2015
+* [NEW](https://github.com/javiersantos/MLManager/commit/ec6071d9d7a3af19dd599c246ed8d96cbed68429) Scrollbar with thumb has been added to the list of apps.
 * [NEW](https://github.com/javiersantos/MLManager/commit/b842ad44f8ec7b171d34eb69899b0b2bc1311a5d) Sorting options are here! You can now sort apps by: name, size, installation & update date.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/a585cfb40aa49e992a7030c4eb92d6d72f231cee) Hide start and uninstall cards on System Apps.
 * [FIX](https://github.com/javiersantos/MLManager/commit/2054330fef10c49bf8287f8fc04ac4b1d537bdf3) Workaround to avoid OutOfMemoryError on some devices.
