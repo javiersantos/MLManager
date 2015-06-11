@@ -48,8 +48,6 @@
     <string name="settings_primary_color_description">Set the primary color for the toolbar and navigation bar. Requires Android 5.0+</string>
     <string name="settings_fab_color">Floating button color</string>
     <string name="settings_fab_color_description">Set the color for the Floating Action Button (FAB)</string>
-    <string name="settings_fab_show">Show floating button on main screen</string>
-    <string name="settings_fab_show_description">Don\'t hide the Floating Action Button (FAB) on the main screen. Restart required.</string>
     <string name="settings_navigation_black">Show navigation bar in black</string>
     <string name="settings_navigation_black_description">Don\'t use a custom color for the navigation bar.</string>
     <string name="settings_default_customization">Restore customizations</string>

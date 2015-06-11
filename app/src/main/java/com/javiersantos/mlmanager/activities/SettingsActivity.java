@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -27,7 +26,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     private SharedPreferences prefs;
     private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
     private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
-    private CheckBoxPreference prefFABShow;
     private ListPreference prefCustomFilename, prefSortMode;
     private String versionName;
     private int versionCode;
@@ -46,7 +44,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefVersion = findPreference("prefVersion");
         prefPrimaryColor = (AmbilWarnaPreference) findPreference("prefPrimaryColor");
         prefFABColor = (AmbilWarnaPreference) findPreference("prefFABColor");
-        prefFABShow = (CheckBoxPreference) findPreference("prefFABShow");
         prefDeleteAll = findPreference("prefDeleteAll");
         prefDefaultValues = findPreference("prefDefaultValues");
         prefNavigationBlack = findPreference("prefNavigationBlack");
@@ -97,7 +94,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             public boolean onPreferenceClick(Preference preference) {
                 appPreferences.setPrimaryColorPref(getResources().getColor(R.color.primary));
                 appPreferences.setFABColorPref(getResources().getColor(R.color.fab));
-                prefFABShow.setChecked(false);
                 return true;
             }
         });

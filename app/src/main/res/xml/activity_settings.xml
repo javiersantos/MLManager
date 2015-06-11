@@ -38,11 +38,6 @@
             android:title="@string/settings_fab_color"
             android:summary="@string/settings_fab_color_description"/>
         <CheckBoxPreference
-            android:key="prefFABShow"
-            android:title="@string/settings_fab_show"
-            android:summary="@string/settings_fab_show_description"
-            android:defaultValue="false" />
-        <CheckBoxPreference
             android:key="prefNavigationBlack"
             android:title="@string/settings_navigation_black"
             android:summary="@string/settings_navigation_black_description"
