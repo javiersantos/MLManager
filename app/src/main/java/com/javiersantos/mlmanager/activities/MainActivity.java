@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
-import com.javiersantos.mlmanager.listeners.HidingScrollListener;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
