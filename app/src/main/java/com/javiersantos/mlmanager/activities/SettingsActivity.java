@@ -9,7 +9,12 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
@@ -20,7 +25,8 @@ import yuku.ambilwarna.widget.AmbilWarnaPreference;
 
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     // Load Settings
-    AppPreferences appPreferences;
+    private AppPreferences appPreferences;
+    private Toolbar toolbar;
 
     // Settings variables
     private SharedPreferences prefs;
@@ -34,7 +40,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.activity_settings);
+        addPreferencesFromResource(R.xml.settings);
         this.context = this;
         this.appPreferences = new AppPreferences(getApplicationContext());
 
@@ -100,11 +106,33 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     }
 
+    @Override
+    public void setContentView(int layoutResID) {
+        ViewGroup contentView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.activity_settings, new LinearLayout(this), false);
+        toolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
+        //TODO Toolbar should load the default style in XML (white title and back arrow), but doesn't happen
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        ViewGroup contentWrapper = (ViewGroup) contentView.findViewById(R.id.content_wrapper);
+        LayoutInflater.from(this).inflate(layoutResID, contentWrapper, true);
+        getWindow().setContentView(contentView);
+
+    }
+
     private void setInitialConfiguration() {
+        toolbar.setTitle(getResources().getString(R.string.action_settings));
+
         // Android 5.0+ devices
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8));
+            toolbar.setBackgroundColor(appPreferences.getPrimaryColorPref());
             if (!appPreferences.getNavigationBlackPref()) {
                 getWindow().setNavigationBarColor(appPreferences.getPrimaryColorPref());
             }
