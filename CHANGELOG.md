@@ -1,3 +1,8 @@
+### 0.X.X Beta
+###### To Be Released
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/4d9899c1fad47f5021df368821687e6787f02f7a) Settings activity now displays the Toolbar. 
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/6de90364bbef110f36df9a9167013d6e59ab92ef) Navigation Drawer is now hidden when back key is pressed. 
+
 ### 0.4 Beta
 ###### Released: 11 June, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/ec6071d9d7a3af19dd599c246ed8d96cbed68429) Scrollbar with thumb has been added to the list of apps.
