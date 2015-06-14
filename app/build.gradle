@@ -8,8 +8,8 @@ android {
         applicationId "com.javiersantos.mlmanager"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 10
-        versionName "0.4.0"
+        versionCode 11
+        versionName "0.5"
     }
     buildTypes {
         release {
@@ -28,11 +28,11 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.melnykov:floatingactionbutton:1.3.0'
-    compile 'com.afollestad:material-dialogs:0.7.5.5'
+    compile 'com.afollestad:material-dialogs:0.7.6.0'
     compile 'com.github.yukuku:ambilwarna:2.0'
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
-    compile('com.mikepenz:materialdrawer:3.0.6@aar') {
+    compile('com.mikepenz:materialdrawer:3.0.7@aar') {
         transitive = true
     }
 
