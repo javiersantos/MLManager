@@ -1,12 +1,13 @@
-### 0.X.X Beta
+### 0.5 Beta
 ###### To Be Released
+* [ADD](https://github.com/javiersantos/MLManager/pull/13) Search apps by name!
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/4d9899c1fad47f5021df368821687e6787f02f7a) Settings activity now displays the Toolbar. 
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/6de90364bbef110f36df9a9167013d6e59ab92ef) Navigation Drawer is now hidden when back key is pressed. 
 
 ### 0.4 Beta
 ###### Released: 11 June, 2015
-* [NEW](https://github.com/javiersantos/MLManager/commit/ec6071d9d7a3af19dd599c246ed8d96cbed68429) Scrollbar with thumb has been added to the list of apps.
-* [NEW](https://github.com/javiersantos/MLManager/commit/b842ad44f8ec7b171d34eb69899b0b2bc1311a5d) Sorting options are here! You can now sort apps by: name, size, installation & update date.
+* [NEW](https://github.com/javiersantos/MLManager/pull/11) Scrollbar with thumb has been added to the list of apps.
+* [NEW](https://github.com/javiersantos/MLManager/pull/9) Sorting options are here! You can now sort apps by: name, size, installation & update date.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/a585cfb40aa49e992a7030c4eb92d6d72f231cee) Hide start and uninstall cards on System Apps.
 * [FIX](https://github.com/javiersantos/MLManager/commit/2054330fef10c49bf8287f8fc04ac4b1d537bdf3) Workaround to avoid OutOfMemoryError on some devices.
 * [FIX](https://github.com/javiersantos/MLManager/commit/6389260c14b932e82993bfc087c2b86439fa4bef) Some icon packs were displaying an higher icon resolution on app details.
@@ -19,7 +20,7 @@
 
 ### 0.3 Beta
 ###### Released: 5 June, 2015
-* [NEW](https://github.com/javiersantos/MLManager/commit/c54aa4590c42ed343a2300a7e7aab0ab153c4848) System apps can be extracted.
+* [NEW](https://github.com/javiersantos/MLManager/pull/5) System apps can be extracted.
 * [NEW](https://github.com/javiersantos/MLManager/commit/2f195498c872cae9e2b764aa3c4f3010187730ba) Loading wheel while apps are loading.
 * [NEW](https://github.com/javiersantos/MLManager/commit/3300d9353d99c35f361bfa50d259768d8b809a5e) App details now display the version of the app.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/951afe1a6b38bee17f842ecbede07bd726bc7be1) Google Play link is now disabled on system apps.
