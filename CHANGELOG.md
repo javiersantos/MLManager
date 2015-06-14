@@ -2,7 +2,8 @@
 ###### To Be Released
 * [NEW](https://github.com/javiersantos/MLManager/pull/13) Search apps by name directly from the Toolbar.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/4d9899c1fad47f5021df368821687e6787f02f7a) Settings activity now displays the Toolbar. 
-* [IMPROVE](https://github.com/javiersantos/MLManager/commit/6de90364bbef110f36df9a9167013d6e59ab92ef) Navigation Drawer is now hidden when back key is pressed. 
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/6de90364bbef110f36df9a9167013d6e59ab92ef) Navigation Drawer is now hidden when back key is pressed.
+* [FIX](https://github.com/javiersantos/MLManager/commit/d059d609747d25c358b63417aa8654219f183ffa) Apps without name or apk source are not displayed now.
 
 ### 0.4 Beta
 ###### Released: 11 June, 2015
