@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private Toolbar toolbar;
     private Context context;
     private RecyclerView recyclerView;
-    private VerticalRecyclerViewFastScroller fastScroller;
     private ProgressWheel progressWheel;
     private Drawer drawer;
     private MenuItem searchItem;
     private SearchView searchView;
+    private static VerticalRecyclerViewFastScroller fastScroller;
     private static LinearLayout noResults;
 
     @Override
@@ -261,8 +261,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public static void setResultsMessage(Boolean result) {
         if (result) {
             noResults.setVisibility(View.VISIBLE);
+            fastScroller.setVisibility(View.GONE);
         } else {
             noResults.setVisibility(View.GONE);
+            fastScroller.setVisibility(View.VISIBLE);
         }
     }
 
