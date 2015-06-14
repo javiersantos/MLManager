@@ -8,12 +8,18 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.javiersantos.mlmanager.AppInfo;
@@ -34,23 +40,23 @@ import java.util.List;
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     // Load Settings
     private AppPreferences appPreferences;
 
     // General variables
-    private List<String> appListName = new ArrayList<String>();
-    private List<String> appListAPK = new ArrayList<String>();
-    private List<String> appListVersion = new ArrayList<String>();
-    private List<String> appListSource = new ArrayList<String>();
-    private List<String> appListData = new ArrayList<String>();
-    private List<Drawable> appListIcon = new ArrayList<Drawable>();
-    private List<String> appSystemListName = new ArrayList<String>();
-    private List<String> appSystemListAPK = new ArrayList<String>();
-    private List<String> appSystemListVersion = new ArrayList<String>();
-    private List<String> appSystemListSource = new ArrayList<String>();
-    private List<String> appSystemListData = new ArrayList<String>();
-    private List<Drawable> appSystemListIcon = new ArrayList<Drawable>();
+    private List<String> appListName = new ArrayList<>();
+    private List<String> appListAPK = new ArrayList<>();
+    private List<String> appListVersion = new ArrayList<>();
+    private List<String> appListSource = new ArrayList<>();
+    private List<String> appListData = new ArrayList<>();
+    private List<Drawable> appListIcon = new ArrayList<>();
+    private List<String> appSystemListName = new ArrayList<>();
+    private List<String> appSystemListAPK = new ArrayList<>();
+    private List<String> appSystemListVersion = new ArrayList<>();
+    private List<String> appSystemListSource = new ArrayList<>();
+    private List<String> appSystemListData = new ArrayList<>();
+    private List<Drawable> appSystemListIcon = new ArrayList<>();
 
     private AppAdapter appAdapter;
     private AppAdapter appSystemAdapter;
@@ -60,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Context context;
     private RecyclerView recyclerView;
-    private VerticalRecyclerViewFastScroller fastScroller;
     private ProgressWheel progressWheel;
     private Drawer drawer;
+    private MenuItem searchItem;
+    private SearchView searchView;
+    private static VerticalRecyclerViewFastScroller fastScroller;
+    private static LinearLayout noResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.appList);
         fastScroller = (VerticalRecyclerViewFastScroller) findViewById(R.id.fast_scroller);
         progressWheel = (ProgressWheel) findViewById(R.id.progress);
+        noResults = (LinearLayout) findViewById(R.id.noResults);
 
         fastScroller.setRecyclerView(recyclerView);
         recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
@@ -97,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
     private void setInitialConfiguration() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -211,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
             fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
             progressWheel.setVisibility(View.GONE);
+            searchItem.setVisible(true);
 
             setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
         }
@@ -235,9 +248,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onQueryTextChange(String search) {
+        if (search.isEmpty()) {
+            ((AppAdapter) recyclerView.getAdapter()).getFilter().filter("");
+        } else {
+            ((AppAdapter) recyclerView.getAdapter()).getFilter().filter(search);
+        }
+
+        return false;
+    }
+
+    public static void setResultsMessage(Boolean result) {
+        if (result) {
+            noResults.setVisibility(View.VISIBLE);
+            fastScroller.setVisibility(View.GONE);
+        } else {
+            noResults.setVisibility(View.GONE);
+            fastScroller.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen()) {
             drawer.closeDrawer();
+        } else if (searchItem.isVisible() && !searchView.isIconified()) {
+            searchView.onActionViewCollapsed();
         } else {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();

@@ -52,4 +52,7 @@
     <string name="action_apps">Aplicaciones Instaladas</string>
     <string name="action_system_apps">Aplicaciones del Sistema</string>
     <string name="action_share">Compartir</string>
+    <string name="search">Buscar</string>
+    <string name="search_hint">Buscar por nombre...</string>
+    <string name="search_noresults">No se encontraron resultados para esa búsqueda</string>
 </resources>
