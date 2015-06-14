@@ -13,6 +13,9 @@
     <string name="loading">Loading...</string>
     <string name="deleting_done">Files deleted!</string>
     <string name="deleting_error">Something went wrong removing the files</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search by name...</string>
+    <string name="search_noresults">No results were found for your search</string>
 
     <!-- Dialogs -->
     <string name="dialog_saved">\"%s\" APK saved</string>

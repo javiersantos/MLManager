@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,19 +19,22 @@ import com.gc.materialdesign.views.ButtonFlat;
 import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
+import com.javiersantos.mlmanager.activities.MainActivity;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
+public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> implements Filterable {
     // Load Settings
     private AppPreferences appPreferences;
 
-    // AppAdater variables
+    // AppAdapter variables
     private List<AppInfo> appList;
+    private List<AppInfo> appListSearch;
     private Context context;
 
     public AppAdapter(List<AppInfo> appList, Context context) {
@@ -66,7 +71,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
             @Override
             public void onClick(View view) {
                 try {
-                    File file = UtilsApp.copyFile(context, appInfo);
+                    UtilsApp.copyFile(context, appInfo);
                     UtilsDialog.showSavedDialog(context, appInfo).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -93,7 +98,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
                 intent.putExtra("app_version", appInfo.getVersion());
                 intent.putExtra("app_source", appInfo.getSource());
                 intent.putExtra("app_data", appInfo.getData());
-                Bitmap bitmap = ((BitmapDrawable)appInfo.getIcon()).getBitmap();
+                Bitmap bitmap = ((BitmapDrawable) appInfo.getIcon()).getBitmap();
                 intent.putExtra("app_icon", bitmap);
                 intent.putExtra("app_isSystem", appInfo.isSystem());
 
@@ -104,10 +109,46 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
     }
 
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                final FilterResults oReturn = new FilterResults();
+                final List<AppInfo> results = new ArrayList<>();
+                if (appListSearch == null) {
+                    appListSearch = appList;
+                }
+                if (charSequence != null) {
+                    if (appListSearch != null && appListSearch.size() > 0) {
+                        for (final AppInfo appInfo : appListSearch) {
+                            if (appInfo.getName().toLowerCase().contains(charSequence.toString())) {
+                                results.add(appInfo);
+                            }
+                        }
+                    }
+                    oReturn.values = results;
+                    oReturn.count = results.size();
+                }
+                return oReturn;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                if (filterResults.count > 0) {
+                    MainActivity.setResultsMessage(false);
+                } else {
+                    MainActivity.setResultsMessage(true);
+                }
+                appList = (ArrayList<AppInfo>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     @Override
     public AppViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.app_layout, viewGroup, false);
-        return new AppViewHolder(itemView);
+        View appAdapterView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.app_layout, viewGroup, false);
+        return new AppViewHolder(appAdapterView);
     }
 
     public static class AppViewHolder extends RecyclerView.ViewHolder {
