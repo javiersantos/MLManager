@@ -173,36 +173,38 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     });
                     break;
             }
-            for(PackageInfo packageInfo : packages) {
-                if(packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
-                    try {
-                        // Non System Apps
-                        appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                        appListAPK.add(packageInfo.packageName);
-                        appListVersion.add(packageInfo.versionName);
-                        appListSource.add(packageInfo.applicationInfo.sourceDir);
-                        appListData.add(packageInfo.applicationInfo.dataDir);
-                        appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
-                    } catch (OutOfMemoryError e) {
-                        //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                        appListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        // System Apps
-                        appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                        appSystemListAPK.add(packageInfo.packageName);
-                        appSystemListVersion.add(packageInfo.versionName);
-                        appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
-                        appSystemListData.add(packageInfo.applicationInfo.dataDir);
-                        appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
-                    } catch (OutOfMemoryError e) {
-                        //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                        appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            for (PackageInfo packageInfo : packages) {
+                if (!(packageManager.getApplicationLabel(packageInfo.applicationInfo).equals("") || packageInfo.packageName.equals(""))) {
+                    if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
+                        try {
+                            // Non System Apps
+                            appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                            appListAPK.add(packageInfo.packageName);
+                            appListVersion.add(packageInfo.versionName);
+                            appListSource.add(packageInfo.applicationInfo.sourceDir);
+                            appListData.add(packageInfo.applicationInfo.dataDir);
+                            appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                        } catch (OutOfMemoryError e) {
+                            //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
+                            appListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            // System Apps
+                            appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
+                            appSystemListAPK.add(packageInfo.packageName);
+                            appSystemListVersion.add(packageInfo.versionName);
+                            appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
+                            appSystemListData.add(packageInfo.applicationInfo.dataDir);
+                            appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                        } catch (OutOfMemoryError e) {
+                            //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
+                            appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
