@@ -75,7 +75,7 @@ public class UtilsUI {
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog),
-                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info)
+                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
