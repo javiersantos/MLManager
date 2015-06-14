@@ -29,6 +29,7 @@ Modern, easy and customizable app manager for Android with Material Design.
 * [Ambil Warna](https://github.com/yukuku/ambilwarna)
 * [Materialish Progress](https://github.com/pnikosis/materialish-progress)
 * [Material Drawer](https://github.com/mikepenz/MaterialDrawer)
+* [RecyclerViewFastScroller](https://github.com/danoz73/RecyclerViewFastScroller)
 
 ## License
 
