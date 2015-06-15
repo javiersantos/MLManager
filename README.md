@@ -22,6 +22,7 @@ Modern, easy and customizable app manager for Android with Material Design.
 * English
 * Spanish
 * Japanese
+* Portuguese
 
 ## Third Party Libraries
 * [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)

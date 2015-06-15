@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filenameEntries">
+        <item>Código + Versão</item>
+        <item>Nome + Versão</item>
+        <item>Código</item>
+        <item>Nome</item>
+    </string-array>
+    <string-array name="sortEntries">
+        <item>Nome</item>
+        <item>Tamanho</item>
+        <item>Data de instalação</item>
+        <item>Data de atualização</item>
+    </string-array>
+</resources>
