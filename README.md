@@ -21,6 +21,7 @@ Modern, easy and customizable app manager for Android with Material Design.
 [Help translating this app](https://crowdin.com/project/ml-manager)
 * English
 * Spanish
+* Japanese
 
 ## Third Party Libraries
 * [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)

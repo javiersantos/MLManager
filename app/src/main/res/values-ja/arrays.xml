@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filenameEntries">
+        <item>ソース + バージョン</item>
+        <item>名前 + バージョン</item>
+        <item>ソース</item>
+        <item>名前</item>
+    </string-array>
+    <string-array name="sortEntries">
+        <item>名前</item>
+        <item>サイズ</item>
+        <item>インストール日</item>
+        <item>更新日</item>
+    </string-array>
+</resources>
