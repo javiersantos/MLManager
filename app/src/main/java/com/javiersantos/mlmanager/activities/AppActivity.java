@@ -18,13 +18,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
-import com.melnykov.fab.FloatingActionButton;
 
 import java.io.File;
 
@@ -139,7 +139,7 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    File file = UtilsApp.copyFile(context, appInfo);
+                    UtilsApp.copyFile(context, appInfo);
                     UtilsDialog.showSavedDialog(context, appInfo).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -157,8 +157,9 @@ public class AppActivity extends AppCompatActivity {
         cache.setVisibility(View.GONE);
 
         // FAB
-        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_share));
-        fab.setBackgroundColor(appPreferences.getFABColorPref());
+        fab.setIcon(R.drawable.ic_send_white);
+        fab.setColorNormal(appPreferences.getFABColorPref());
+        fab.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

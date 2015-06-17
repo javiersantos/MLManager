@@ -26,7 +26,7 @@ Modern, easy and customizable app manager for Android with Material Design.
 
 ## Third Party Libraries
 * [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
-* [Floating Action Button](https://github.com/makovkastar/FloatingActionButton)
+* [Android Floating Action Button](https://github.com/futuresimple/android-floating-action-button)
 * [Material Dialogs](https://github.com/afollestad/material-dialogs)
 * [Ambil Warna](https://github.com/yukuku/ambilwarna)
 * [Materialish Progress](https://github.com/pnikosis/materialish-progress)

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.melnykov.fab.FloatingActionButton
+<com.getbase.floatingactionbutton.FloatingActionButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|right"
-    android:layout_margin="16dp"
-    fab:fab_colorNormal="@color/fab"
-    fab:fab_colorPressed="@color/fabDark"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/tools" />
+    android:layout_margin="@dimen/fab_margin"
+    app:fab_colorNormal="@color/fab" />
