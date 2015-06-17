@@ -1,3 +1,14 @@
+### 0.X.X Beta
+###### To Be Released
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/de1b35209835f25e8ed354c521c88295e0d4fd0b) Initial progress wheel changes with the current progress.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/d234fdb93566df85442a4b1275f87406bdb9c66c) Some UI changes to "About" layout.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/3b0732807d47bf4f6ce8313bbb0c33983668b5fb) FAB: new library and drawable for app details.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/80ecb9815c27651bb4d08d2a51fa2ed0ba996d46) A modern icon has been added for apps without icon.
+* [FIX](https://github.com/javiersantos/MLManager/commit/6e996eafe6fc5333c8953588717778ee947d1783) Navigation Drawer uses the correct position for "Settings" and "About".
+* [FIX](https://github.com/javiersantos/MLManager/commit/3b0732807d47bf4f6ce8313bbb0c33983668b5fb) FAB was showing as a square for some Android 4+ devices.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/3a7a1cc2a790c07454610576d6fe3eec55c3ba70) Portuguese.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/403ffcaad45567320e54f5fcbfa41355f0dc4f37) Japanese.
+
 ### 0.5 Beta
 ###### Released: 14 June, 2015
 * [NEW](https://github.com/javiersantos/MLManager/pull/13) Search apps by name directly from the Toolbar.
