@@ -74,8 +74,8 @@ public class UtilsUI {
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog),
-                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle)
+                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
+                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
