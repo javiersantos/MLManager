@@ -10,4 +10,9 @@
     <color name="white">#FFFFFF</color>
     <color name="divider">#E0E0E0</color>
     <color name="transparent">#00000000</color>
+
+    <color name="card_blue">#00BED4</color>
+    <color name="card_green">#8CC24A</color>
+    <color name="card_red">#DE6262</color>
+    <color name="card_orange">#FFA175</color>
 </resources>
