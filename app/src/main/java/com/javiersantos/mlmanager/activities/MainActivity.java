@@ -125,13 +125,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         drawer = UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, recyclerView);
     }
 
-    class getInstalledApps extends AsyncTask<Void, PackageInfo, Void> {
-        public getInstalledApps() {}
+    class getInstalledApps extends AsyncTask<Void, String, Void> {
+        private Integer totalApps;
+        private Integer actualApps;
+
+        public getInstalledApps() {
+            actualApps = 0;
+        }
 
         @Override
         protected Void doInBackground(Void... params) {
             final PackageManager packageManager = getPackageManager();
             List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
+            totalApps = packages.size();
             // Get Sort Mode
             switch (appPreferences.getSortMode()) {
                 default:
@@ -207,13 +213,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         }
                     }
                 }
+
+                actualApps++;
+                publishProgress(Double.toString((actualApps * 100) / totalApps));
             }
             return null;
         }
 
         @Override
-        protected void onProgressUpdate(PackageInfo... values) {
-            super.onProgressUpdate(values);
+        protected void onProgressUpdate(String... progress) {
+            super.onProgressUpdate(progress);
+            progressWheel.setProgress(Float.parseFloat(progress[0]));
         }
 
         @Override
