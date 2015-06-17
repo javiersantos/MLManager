@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            appListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
+                            appListIcon.add(getResources().getDrawable(R.drawable.ic_android));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                             appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_launcher));
+                            appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_android));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
