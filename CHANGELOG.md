@@ -1,5 +1,5 @@
-### 0.X.X Beta
-###### To Be Released
+### 0.5.1 Beta
+###### Released: 18 June, 2015
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/de1b35209835f25e8ed354c521c88295e0d4fd0b) Initial progress wheel changes with the current progress.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/d234fdb93566df85442a4b1275f87406bdb9c66c) Some UI changes to "About" layout.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/3b0732807d47bf4f6ce8313bbb0c33983668b5fb) FAB: new library and drawable for app details.
