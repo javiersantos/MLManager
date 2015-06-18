@@ -40,8 +40,6 @@
     <string name="settings_primary_color_description">ツールバー、ナビゲーション バーのプライマリ色を設定します。Android 5.0 以降が必要です</string>
     <string name="settings_fab_color">フローティング ボタンの色</string>
     <string name="settings_fab_color_description">フローティング アクション ボタン (FAB) の色を設定します</string>
-    <string name="settings_fab_show">メイン画面にフローティング ボタンを表示</string>
-    <string name="settings_fab_show_description">メイン画面のフローティング アクション ボタン (FAB) を非表示にしません。再起動が必要です。</string>
     <string name="settings_navigation_black">ナビゲーション バーを黒で表示</string>
     <string name="settings_navigation_black_description">ナビゲーション バーにユーザー設定の色を使用しません。</string>
     <string name="settings_default_customization">カスタマイズを復元</string>

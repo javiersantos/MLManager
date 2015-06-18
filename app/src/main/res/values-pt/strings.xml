@@ -40,8 +40,6 @@
     <string name="settings_primary_color_description">Define a cor primária da barra de navegação e da barra de ferramentas. Apenas Android 5.0+</string>
     <string name="settings_fab_color">Cor do botão flutuante</string>
     <string name="settings_fab_color_description">Define a cor do botão flutuante (FAB)</string>
-    <string name="settings_fab_show">Mostrar botão flutuante no ecrã principal</string>
-    <string name="settings_fab_show_description">Mostrar botão flutuante (FAB) no ecrã principal. Tem que reiniciar a aplicação.</string>
     <string name="settings_navigation_black">Mostrar barra de navegação a preto</string>
     <string name="settings_navigation_black_description">Não utilizar cor personalizada na barra de nagevação</string>
     <string name="settings_default_customization">Restaurar personalizações</string>
