@@ -11,6 +11,9 @@
     <string name="loading">読み込み中です...</string>
     <string name="deleting_done">ファイルを削除しました!</string>
     <string name="deleting_error">ファイルの削除中に問題が発生しました</string>
+    <string name="search">検索</string>
+    <string name="search_hint">名前で検索...</string>
+    <string name="search_noresults">検索条件に一致する結果が見つかりませんでした</string>
     <string name="dialog_saved">\"%s\" APK を保存しました</string>
     <string name="dialog_saved_description">\"%1$s\" APK は \"MLManager\" フォルダーに次の名前で保存されました: %2$s</string>
     <string name="dialog_saving">%s APK を保存しています...</string>
