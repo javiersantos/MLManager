@@ -11,6 +11,9 @@
     <string name="loading">A carregar...</string>
     <string name="deleting_done">Ficheiros eliminados!</string>
     <string name="deleting_error">Ocorreu um erro  ao remover os ficheiros</string>
+    <string name="search">Pesquisar</string>
+    <string name="search_hint">Pesquisar por nome...</string>
+    <string name="search_noresults">Não foram encontrados resultados.</string>
     <string name="dialog_saved">\"%s\" APK guardada</string>
     <string name="dialog_saved_description">A APK \"%1$s\" foi guardana no diretório \"ML Manager\" com o nome: %2$s</string>
     <string name="dialog_saving">A guardar %s APK...</string>
