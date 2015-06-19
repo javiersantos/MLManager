@@ -1,4 +1,4 @@
-# ML Manager [![Build Status](https://travis-ci.org/javiersantos/MLManager.svg?branch=master)](https://travis-ci.org/javiersantos/MLManager)
+# ML Manager [![Build Status](https://travis-ci.org/javiersantos/MLManager.svg?branch=master)](https://travis-ci.org/javiersantos/MLManager) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg?style=flat)](http://android-arsenal.com/details/3/2003)
 Modern, easy and customizable app manager for Android with Material Design.
 
 ### Features
