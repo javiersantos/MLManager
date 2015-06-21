@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFlat;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
@@ -40,7 +41,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
     public AppAdapter(List<AppInfo> appList, Context context) {
         this.appList = appList;
         this.context = context;
-        this.appPreferences = new AppPreferences(context);
+        this.appPreferences = MLManagerApplication.getAppPreferences();
     }
 
     @Override

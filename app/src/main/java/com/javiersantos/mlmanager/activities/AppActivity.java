@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +19,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
+import com.javiersantos.mlmanager.utils.RootUtils;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
@@ -45,7 +49,7 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         this.context = this;
-        this.appPreferences = new AppPreferences(getApplicationContext());
+        this.appPreferences = MLManagerApplication.getAppPreferences();
 
         getInitialConfiguration();
         setInitialConfiguration();
@@ -90,6 +94,7 @@ public class AppActivity extends AppCompatActivity {
         CardView extract = (CardView) findViewById(R.id.extract_card);
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
         CardView cache = (CardView) findViewById(R.id.cache_card);
+        CardView clearData = (CardView) findViewById(R.id.clear_data_card);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         icon.setImageDrawable(appInfo.getIcon());
@@ -147,14 +152,32 @@ public class AppActivity extends AppCompatActivity {
             }
         });
 
-        /*if (UtilsApp.existCacheFolder(appData)) {
+        if(RootUtils.isRooted()) {
             cache.setVisibility(View.VISIBLE);
-            TextView cache_description = (TextView) findViewById(R.id.cache_description);
-            cache_description.setText(String.format(getString(R.string.dialog_cache_description), UtilsApp.getCacheFolderSize(appData)));
-        } else {
-            cache.setVisibility(View.GONE);
-        }*/
-        cache.setVisibility(View.GONE);
+            cache.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
+                            , getResources().getString(R.string.dialog_cache_deleting_title)
+                            , getResources().getString(R.string.dialog_cache_deleting_description));
+                    new DeleteDataInBackground(dialog, appInfo.getData() + "/cache/**"
+                            , getResources().getString(R.string.dialog_cache_success_title)
+                            , getResources().getString(R.string.dialog_cache_success_description, appInfo.getName())).execute();
+                }
+            });
+            clearData.setVisibility(View.VISIBLE);
+            clearData.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
+                            , getResources().getString(R.string.dialog_clear_data_deleting_title)
+                            , getResources().getString(R.string.dialog_clear_data_deleting_description));
+                    new DeleteDataInBackground(dialog, appInfo.getData() + "/**"
+                            , getResources().getString(R.string.dialog_clear_data_success_title)
+                            , getResources().getString(R.string.dialog_clear_data_success_description, appInfo.getName())).execute();
+                }
+            });
+        }
 
         // FAB
         fab.setIcon(R.drawable.ic_send_white);
@@ -215,4 +238,34 @@ public class AppActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
+        private MaterialDialog dialog;
+        private String directory;
+        private String successTitle;
+        private String successDescription;
+
+        public DeleteDataInBackground(MaterialDialog dialog, String directory, String successTitle, String successDescription) {
+            this.dialog = dialog;
+            this.directory = directory;
+            this.successTitle = successTitle;
+            this.successDescription = successDescription;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            boolean status = RootUtils.removeWithRootPermission(directory);
+            return status;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean status) {
+            super.onPostExecute(status);
+            dialog.dismiss();
+            if (status) {
+                UtilsDialog.showTitleContent(context, successTitle, successDescription);
+            } else {
+                UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_cache_and_data_error_title), context.getResources().getString(R.string.dialog_cache_and_data_error_description));
+            }
+        }
+    }
 }

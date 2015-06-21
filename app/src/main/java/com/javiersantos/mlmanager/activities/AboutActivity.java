@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
@@ -22,7 +23,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        this.appPreferences = new AppPreferences(getApplicationContext());
+        this.appPreferences = MLManagerApplication.getAppPreferences();
 
         setInitialConfiguration();
         setScreenElements();

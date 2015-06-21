@@ -5,13 +5,14 @@ import android.support.v4.content.ContextCompat;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 
 public class UtilsDialog {
     private static AppPreferences appPreferences;
 
     public static MaterialDialog.Builder showSavedDialog(Context context, AppInfo appInfo) {
-        appPreferences = new AppPreferences(context);
+        appPreferences = MLManagerApplication.getAppPreferences();
         String filename;
 
         switch (appPreferences.getCustomFilename()) {
@@ -68,6 +69,27 @@ public class UtilsDialog {
                 .progress(true, 0);
 
         return materialBuilder;
+    }
+
+    public static MaterialDialog showTitleContent(Context context, String title, String content) {
+        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+                .title(title)
+                .content(content).positiveText(context.getResources().getString(R.string.button_ok)).cancelable(true).callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        dialog.dismiss();
+                    }
+                });
+        return materialBuilder.show();
+    }
+
+    public static MaterialDialog showTitleContentWithProgress(Context context, String title, String content) {
+        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+                .title(title)
+                .content(content)
+                .cancelable(false)
+                .progress(true, 0);
+        return materialBuilder.show();
     }
 
 }

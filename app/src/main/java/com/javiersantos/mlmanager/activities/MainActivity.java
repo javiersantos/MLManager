@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.utils.AppPreferences;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.appPreferences = new AppPreferences(getApplicationContext());
+        this.appPreferences = MLManagerApplication.getAppPreferences();
         this.context = this;
 
         setInitialConfiguration();

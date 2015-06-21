@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
@@ -42,7 +43,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
         this.context = this;
-        this.appPreferences = new AppPreferences(getApplicationContext());
+        this.appPreferences = MLManagerApplication.getAppPreferences();
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);

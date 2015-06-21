@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Environment;
 
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 
 import org.apache.commons.io.FileUtils;
 
@@ -21,7 +22,7 @@ public class UtilsApp {
     }
 
     public static File copyFile(Context context, AppInfo appInfo) {
-        appPreferences = new AppPreferences(context);
+        appPreferences = MLManagerApplication.getAppPreferences();
 
         File initialFile = new File(appInfo.getSource());
         File finalFile;
