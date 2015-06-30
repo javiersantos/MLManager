@@ -1,12 +1,12 @@
 package com.javiersantos.mlmanager.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,14 +24,13 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
+import com.javiersantos.mlmanager.async.DeleteDataInBackground;
+import com.javiersantos.mlmanager.async.ExtractFileInBackground;
 import com.javiersantos.mlmanager.utils.AppPreferences;
-import com.javiersantos.mlmanager.utils.RootUtils;
+import com.javiersantos.mlmanager.utils.UtilsRoot;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
-
-import java.io.File;
-
 
 public class AppActivity extends AppCompatActivity {
     // Load Settings
@@ -93,7 +92,7 @@ public class AppActivity extends AppCompatActivity {
         CardView start = (CardView) findViewById(R.id.start_card);
         CardView extract = (CardView) findViewById(R.id.extract_card);
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
-        CardView cache = (CardView) findViewById(R.id.cache_card);
+        final CardView cache = (CardView) findViewById(R.id.cache_card);
         CardView clearData = (CardView) findViewById(R.id.clear_data_card);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -143,25 +142,23 @@ public class AppActivity extends AppCompatActivity {
         extract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    UtilsApp.copyFile(context, appInfo);
-                    UtilsDialog.showSavedDialog(context, appInfo).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
+                        , String.format(getResources().getString(R.string.dialog_saving), appInfo.getName())
+                        , getResources().getString(R.string.dialog_saving_description));
+                new ExtractFileInBackground((Activity) context, context, dialog, appInfo).execute();
             }
         });
 
-        if(RootUtils.isRooted()) {
+        if(UtilsRoot.isRooted()) {
             cache.setVisibility(View.VISIBLE);
             cache.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
-                            , getResources().getString(R.string.dialog_cache_deleting_title)
+                            , getResources().getString(R.string.dialog_cache_deleting)
                             , getResources().getString(R.string.dialog_cache_deleting_description));
-                    new DeleteDataInBackground(dialog, appInfo.getData() + "/cache/**"
-                            , getResources().getString(R.string.dialog_cache_success_title)
+                    new DeleteDataInBackground(context, dialog, appInfo.getData() + "/cache/**"
+                            , getResources().getString(R.string.dialog_cache_success)
                             , getResources().getString(R.string.dialog_cache_success_description, appInfo.getName())).execute();
                 }
             });
@@ -170,10 +167,10 @@ public class AppActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
-                            , getResources().getString(R.string.dialog_clear_data_deleting_title)
+                            , getResources().getString(R.string.dialog_clear_data_deleting)
                             , getResources().getString(R.string.dialog_clear_data_deleting_description));
-                    new DeleteDataInBackground(dialog, appInfo.getData() + "/**"
-                            , getResources().getString(R.string.dialog_clear_data_success_title)
+                    new DeleteDataInBackground(context, dialog, appInfo.getData() + "/**"
+                            , getResources().getString(R.string.dialog_clear_data_success)
                             , getResources().getString(R.string.dialog_clear_data_success_description, appInfo.getName())).execute();
                 }
             });
@@ -186,8 +183,8 @@ public class AppActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = UtilsApp.copyFile(context, appInfo);
-                Intent shareIntent = UtilsApp.getShareIntent(file);
+                UtilsApp.copyFile(appInfo);
+                Intent shareIntent = UtilsApp.getShareIntent(UtilsApp.getOutputFilename(appInfo));
                 startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
@@ -238,34 +235,4 @@ public class AppActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
-        private MaterialDialog dialog;
-        private String directory;
-        private String successTitle;
-        private String successDescription;
-
-        public DeleteDataInBackground(MaterialDialog dialog, String directory, String successTitle, String successDescription) {
-            this.dialog = dialog;
-            this.directory = directory;
-            this.successTitle = successTitle;
-            this.successDescription = successDescription;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            boolean status = RootUtils.removeWithRootPermission(directory);
-            return status;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean status) {
-            super.onPostExecute(status);
-            dialog.dismiss();
-            if (status) {
-                UtilsDialog.showTitleContent(context, successTitle, successDescription);
-            } else {
-                UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_cache_and_data_error_title), context.getResources().getString(R.string.dialog_cache_and_data_error_description));
-            }
-        }
-    }
 }

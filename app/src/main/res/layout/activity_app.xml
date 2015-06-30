@@ -105,7 +105,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -134,7 +134,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -163,7 +163,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -193,7 +193,7 @@
                 android:layout_margin="5dp"
                 android:visibility="gone">
                 <TextView
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -202,7 +202,6 @@
                     android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
-                    android:id="@+id/cache_description"
                     android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -224,7 +223,7 @@
                 android:layout_margin="5dp"
                 android:visibility="gone">
                 <TextView
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="sans-serif-thin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

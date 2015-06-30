@@ -19,7 +19,6 @@ public class AppPreferences {
     public static final String KeyCustomFilename = "prefCustomFilename";
     public static final String KeySortMode = "prefSortMode";
     public static final String KeyIsRooted = "prefIsRooted";
-    public static final String KeyIsRootedCheckDone = "prefIsRootedCheckDone";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -32,7 +31,7 @@ public class AppPreferences {
     }
 
     public void setRootStatus(int rootStatus) {
-        editor.putInt(KeyStartDelete, rootStatus);
+        editor.putInt(KeyIsRooted, rootStatus);
         editor.commit();
     }
 

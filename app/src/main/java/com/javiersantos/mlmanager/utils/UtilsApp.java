@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
@@ -21,43 +22,48 @@ public class UtilsApp {
         return new File(Environment.getExternalStorageDirectory() + "/MLManager");
     }
 
-    public static File copyFile(Context context, AppInfo appInfo) {
-        appPreferences = MLManagerApplication.getAppPreferences();
+    public static Boolean copyFile(AppInfo appInfo) {
+        Boolean res = false;
 
         File initialFile = new File(appInfo.getSource());
-        File finalFile;
-
-        switch (appPreferences.getCustomFilename()) {
-            case "1":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getAPK() + "_" + appInfo.getVersion() + ".apk");
-                break;
-            case "2":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getName() + "_" + appInfo.getVersion() + ".apk");
-                break;
-            case "4":
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getName() + ".apk");
-                break;
-            default:
-                finalFile = new File(getAppFolder().getPath() + "/" + appInfo.getAPK() + ".apk");
-                break;
-        }
+        File finalFile = getOutputFilename(appInfo);
+        Log.i("Initial: ", initialFile.toString());
+        Log.i("Source: ", finalFile.toString());
 
         try {
             FileUtils.copyFile(initialFile, finalFile);
+            res = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return finalFile;
+        return res;
     }
 
-    public static Boolean existCacheFolder(String data) {
-        File f = new File(data + "/cache");
-        if (f.exists() && f.isDirectory()) {
-            return true;
-        } else {
-            return false;
+    public static String getAPKFilename(AppInfo appInfo) {
+        appPreferences = MLManagerApplication.getAppPreferences();
+        String res;
+
+        switch (appPreferences.getCustomFilename()) {
+            case "1":
+                res = appInfo.getAPK() + "_" + appInfo.getVersion();
+                break;
+            case "2":
+                res = appInfo.getName() + "_" + appInfo.getVersion();
+                break;
+            case "4":
+                res = appInfo.getName();
+                break;
+            default:
+                res = appInfo.getAPK();
+                break;
         }
+
+        return res;
+    }
+
+    public static File getOutputFilename(AppInfo appInfo) {
+        return new File(getAppFolder().getPath() + "/" + getAPKFilename(appInfo) + ".apk");
     }
 
     public static Boolean deleteAppFiles() {

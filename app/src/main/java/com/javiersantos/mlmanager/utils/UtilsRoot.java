@@ -9,13 +9,13 @@ import java.io.File;
 /**
  * Created by vijay.rawat01 on 6/21/15.
  */
-public class RootUtils {
+public class UtilsRoot {
 
     private static final int ROOT_STATUS_NOT_CHECKED = 0;
     private static final int ROOT_STATUS_ROOTED = 1;
     private static final int ROOT_STATUS_NOT_ROOTED = 2;
 
-    private RootUtils() {
+    private UtilsRoot() {
     }
 
     public static boolean isRooted() {
@@ -63,8 +63,24 @@ public class RootUtils {
                 status = true;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return status;
+    }
+
+    public static long getFolderSizeInMB(String directory) {
+        File f = new File(directory);
+        long size = 0;
+        if (f.isDirectory()) {
+            for (File file : f.listFiles()) {
+                size += getFolderSizeInMB(file.getAbsolutePath());
+            }
+        } else {
+            size = f.length()/1024/2024;
+        }
+
+        return size;
     }
 
     private static boolean canExecuteCommand(String command) {

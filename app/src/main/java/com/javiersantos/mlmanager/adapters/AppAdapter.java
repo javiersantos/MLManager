@@ -15,17 +15,18 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.gc.materialdesign.views.ButtonFlat;
 import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.activities.MainActivity;
+import com.javiersantos.mlmanager.async.ExtractFileInBackground;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,19 +72,17 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
         appExtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    UtilsApp.copyFile(context, appInfo);
-                    UtilsDialog.showSavedDialog(context, appInfo).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
+                        , String.format(context.getResources().getString(R.string.dialog_saving), appInfo.getName())
+                        , context.getResources().getString(R.string.dialog_saving_description));
+                new ExtractFileInBackground((Activity) context, context, dialog, appInfo).execute();
             }
         });
         appShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = UtilsApp.copyFile(context, appInfo);
-                Intent shareIntent = UtilsApp.getShareIntent(file);
+                UtilsApp.copyFile(appInfo);
+                Intent shareIntent = UtilsApp.getShareIntent(UtilsApp.getOutputFilename(appInfo));
                 context.startActivity(Intent.createChooser(shareIntent, String.format(context.getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
