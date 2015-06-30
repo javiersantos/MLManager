@@ -24,32 +24,35 @@
     <string name="dialog_saving_description">ML Manager is saving the APK into \"MLManager\" folder.</string>
     <string name="dialog_about">About %s</string>
     <string name="dialog_about_description">Developed by Javier Santos.\n\nOpen Source under GPLv3 license.</string>
-    <string name="dialog_run">Tap to open</string>
+    <string name="dialog_run">Open</string>
     <string name="dialog_run_description">Run this app now</string>
-    <string name="dialog_extract">Tap to extract</string>
+    <string name="dialog_extract">Extract</string>
     <string name="dialog_extract_description">Extract this app under \"MLManager\" directory</string>
-    <string name="dialog_uninstall">Tap to uninstall</string>
+    <string name="dialog_extract_fail">Extract failed</string>
+    <string name="dialog_extract_fail_description">Unable to extract this APK. Please, try to restart your device.</string>
+    <string name="dialog_uninstall">Uninstall</string>
     <string name="dialog_uninstall_description">Uninstall this app right now</string>
-    <string name="dialog_cache">Tap to remove cache</string>
+    <string name="dialog_cache">Remove cache</string>
     <string name="dialog_cache_description">Remove the cache for this app</string>
-    <string name="dialog_cache_success_title">Cache deleted!!</string>
+    <string name="dialog_cache_success">Cache deleted</string>
     <string name="dialog_cache_success_description">Cache for %1$s is removed.</string>
-    <string name="dialog_cache_deleting_title">Deleting cache files!!</string>
+    <string name="dialog_cache_deleting">Deleting cache files...</string>
     <string name="dialog_cache_deleting_description">Please wait while cache files are being deleted.</string>
-    <string name="dialog_clear_data">Tap to clear data</string>
+    <string name="dialog_clear_data">Clear data</string>
     <string name="dialog_clear_data_description">Remove all application data for this app</string>
-    <string name="dialog_clear_data_deleting_title">Deleting all files!!</string>
+    <string name="dialog_clear_data_deleting">Deleting all files...</string>
     <string name="dialog_clear_data_deleting_description">Please wait while all files are being deleted.</string>
-    <string name="dialog_clear_data_success_title">Data deleted!!</string>
+    <string name="dialog_clear_data_success">Data deleted</string>
     <string name="dialog_clear_data_success_description">All data for %1$s is removed.</string>
+    <string name="dialog_cache_and_data_error">Root required</string>
     <string name="dialog_cache_and_data_error_description">To delete data your phone must be rooted and root permission should be given. If you have denied access once. Go to SuperUser app to give access to MLManager.</string>
-    <string name="dialog_cache_and_data_error_title">Root required!!</string>
 
     <!-- Buttons -->
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
     <string name="button_extract">Extract</string>
     <string name="button_share">Share APK</string>
+    <string name="button_undo">Undo</string>
 
     <!-- Settings -->
     <string name="settings_delete_on_start">Delete APKs</string>
