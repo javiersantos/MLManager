@@ -190,7 +190,8 @@
                 android:layout_height="85dp"
                 card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:visibility="gone">
                 <TextView
                     android:fontFamily="sans-serif-light"
                     android:layout_width="match_parent"
@@ -208,6 +209,38 @@
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="50dp"
                     android:textColor="@android:color/black"
+                    android:text="@string/dialog_cache_description"
+                    android:textSize="14dp" />
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_below="@id/cache_card"
+                android:id="@+id/clear_data_card"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                card_view:cardCornerRadius="2dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_margin="5dp"
+                android:visibility="gone">
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/dialog_clear_data"
+                    android:textColor="@android:color/black"
+                    android:textSize="25dp" />
+                <TextView
+                    android:id="@+id/clear_data_description"
+                    android:fontFamily="sans-serif-thin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="50dp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/dialog_clear_data_description"
                     android:textSize="14dp" />
             </android.support.v7.widget.CardView>
         </RelativeLayout>

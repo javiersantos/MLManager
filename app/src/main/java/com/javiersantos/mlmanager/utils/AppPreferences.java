@@ -18,11 +18,22 @@ public class AppPreferences {
     public static final String KeyNavigationBlack = "prefNavigationBlack";
     public static final String KeyCustomFilename = "prefCustomFilename";
     public static final String KeySortMode = "prefSortMode";
+    public static final String KeyIsRooted = "prefIsRooted";
+    public static final String KeyIsRootedCheckDone = "prefIsRootedCheckDone";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.editor = sharedPreferences.edit();
         this.context = context;
+    }
+
+    public int getRootStatus() {
+        return sharedPreferences.getInt(KeyIsRooted, 0);
+    }
+
+    public void setRootStatus(int rootStatus) {
+        editor.putInt(KeyStartDelete, rootStatus);
+        editor.commit();
     }
 
     public Boolean getStartDeletePref() {

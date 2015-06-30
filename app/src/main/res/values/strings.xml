@@ -31,7 +31,19 @@
     <string name="dialog_uninstall">Tap to uninstall</string>
     <string name="dialog_uninstall_description">Uninstall this app right now</string>
     <string name="dialog_cache">Tap to remove cache</string>
-    <string name="dialog_cache_description">Remove the cache for this app: %.2f MB</string>
+    <string name="dialog_cache_description">Remove the cache for this app</string>
+    <string name="dialog_cache_success_title">Cache deleted!!</string>
+    <string name="dialog_cache_success_description">Cache for %1$s is removed.</string>
+    <string name="dialog_cache_deleting_title">Deleting cache files!!</string>
+    <string name="dialog_cache_deleting_description">Please wait while cache files are being deleted.</string>
+    <string name="dialog_clear_data">Tap to clear data</string>
+    <string name="dialog_clear_data_description">Remove all application data for this app</string>
+    <string name="dialog_clear_data_deleting_title">Deleting all files!!</string>
+    <string name="dialog_clear_data_deleting_description">Please wait while all files are being deleted.</string>
+    <string name="dialog_clear_data_success_title">Data deleted!!</string>
+    <string name="dialog_clear_data_success_description">All data for %1$s is removed.</string>
+    <string name="dialog_cache_and_data_error_description">To delete data your phone must be rooted and root permission should be given. If you have denied access once. Go to SuperUser app to give access to MLManager.</string>
+    <string name="dialog_cache_and_data_error_title">Root required!!</string>
 
     <!-- Buttons -->
     <string name="button_cancel">Cancel</string>

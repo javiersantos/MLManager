@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.activities.AboutActivity;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.activities.SettingsActivity;
@@ -40,7 +41,7 @@ public class UtilsUI {
 
     public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final RecyclerView recyclerView) {
         int header;
-        appPreferences = new AppPreferences(context);
+        appPreferences = MLManagerApplication.getAppPreferences();
         String apps, systemApps;
 
         if (getDayOrNight() == 1) {
