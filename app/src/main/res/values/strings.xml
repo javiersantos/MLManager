@@ -8,6 +8,7 @@
     <string name="action_share">Share</string>
     <string name="action_apps">Installed Apps</string>
     <string name="action_system_apps">System Apps</string>
+    <string name="action_favorites">Favorites</string>
     <string name="send_to">Send \"%s\" using</string>
     <string name="deleting">Deleting...</string>
     <string name="loading">Loading...</string>

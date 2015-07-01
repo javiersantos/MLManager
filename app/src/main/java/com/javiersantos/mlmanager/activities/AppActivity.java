@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,16 +32,20 @@ import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 
+import java.util.Set;
+
 public class AppActivity extends AppCompatActivity {
     // Load Settings
     private AppPreferences appPreferences;
 
     // General variables
     private AppInfo appInfo;
+    private Set<String> appFavorites;
 
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
     private Context context;
+    private MenuItem item_favorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +96,7 @@ public class AppActivity extends AppCompatActivity {
         CardView start = (CardView) findViewById(R.id.start_card);
         CardView extract = (CardView) findViewById(R.id.extract_card);
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
-        final CardView cache = (CardView) findViewById(R.id.cache_card);
+        CardView cache = (CardView) findViewById(R.id.cache_card);
         CardView clearData = (CardView) findViewById(R.id.clear_data_card);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -213,6 +218,8 @@ public class AppActivity extends AppCompatActivity {
         Boolean appIsSystem = getIntent().getExtras().getBoolean("app_isSystem");
 
         appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon, appIsSystem);
+        appFavorites = appPreferences.getFavoriteApps();
+
     }
 
     @Override
@@ -222,10 +229,33 @@ public class AppActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_app, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        item_favorite = menu.findItem(R.id.action_favorite);
+        UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites));
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
                 finish();
+                return true;
+            case R.id.action_favorite:
+                if (UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites)) {
+                    appFavorites.remove(appInfo.getAPK());
+                    appPreferences.setFavoriteApps(appFavorites);
+                } else {
+                    appFavorites.add(appInfo.getAPK());
+                    appPreferences.setFavoriteApps(appFavorites);
+                }
+                UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites));
                 return true;
         }
 

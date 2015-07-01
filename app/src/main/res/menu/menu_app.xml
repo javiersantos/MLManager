@@ -2,5 +2,5 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".AppActivity">
-    <item android:id="@+id/action_share" android:title="@string/action_share" app:showAsAction="ifRoom" app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
+    <item android:id="@+id/action_favorite" android:title="@string/action_favorites" app:showAsAction="ifRoom" />
 </menu>

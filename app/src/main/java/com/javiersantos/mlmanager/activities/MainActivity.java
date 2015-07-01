@@ -46,12 +46,16 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private AppPreferences appPreferences;
 
     // General variables
+    private List<AppInfo> appList = new ArrayList<>();
+    private List<AppInfo> appSystemList = new ArrayList<>();
+
     private List<String> appListName = new ArrayList<>();
     private List<String> appListAPK = new ArrayList<>();
     private List<String> appListVersion = new ArrayList<>();
     private List<String> appListSource = new ArrayList<>();
     private List<String> appListData = new ArrayList<>();
     private List<Drawable> appListIcon = new ArrayList<>();
+
     private List<String> appSystemListName = new ArrayList<>();
     private List<String> appSystemListAPK = new ArrayList<>();
     private List<String> appSystemListVersion = new ArrayList<>();
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private AppAdapter appAdapter;
     private AppAdapter appSystemAdapter;
+    private AppAdapter appFavoriteAdapter;
 
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
@@ -97,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
+        setNavigationDrawer(appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
 
         progressWheel.setBarColor(appPreferences.getPrimaryColorPref());
         progressWheel.setVisibility(View.VISIBLE);
@@ -122,8 +127,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
     }
 
-    private void setNavigationDrawer(AppAdapter appAdapter, AppAdapter appSystemAdapter, RecyclerView recyclerView) {
-        drawer = UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, recyclerView);
+    private void setNavigationDrawer(AppAdapter appAdapter, AppAdapter appSystemAdapter, AppAdapter appFavoriteAdapter, RecyclerView recyclerView) {
+        drawer = UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
     }
 
     class getInstalledApps extends AsyncTask<Void, String, Void> {
@@ -180,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     });
                     break;
             }
+
             for (PackageInfo packageInfo : packages) {
                 if (!(packageManager.getApplicationLabel(packageInfo.applicationInfo).equals("") || packageInfo.packageName.equals(""))) {
                     if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
@@ -230,15 +236,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            appAdapter = new AppAdapter(createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon, false), context);
-            appSystemAdapter = new AppAdapter(createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon, true), context);
+
+            appList = createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon, false);
+            appAdapter = new AppAdapter(appList, context);
+            appSystemList = createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon, true);
+            appSystemAdapter = new AppAdapter(appSystemList, context);
+            appFavoriteAdapter = new AppAdapter(getFavoriteList(appList, appSystemList), context);
 
             fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
             progressWheel.setVisibility(View.GONE);
             searchItem.setVisible(true);
 
-            setNavigationDrawer(appAdapter, appSystemAdapter, recyclerView);
+            setNavigationDrawer(appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
         }
 
     }
@@ -251,10 +261,27 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> versions, List<String> sources, List<String> data, List<Drawable> icons, Boolean isSystem) {
-        List<AppInfo> res = new ArrayList<AppInfo>();
-        for (int i=0; i < apps.size(); i++) {
+        List<AppInfo> res = new ArrayList<>();
+        for (int i = 0; i < apps.size(); i++) {
             AppInfo appInfo = new AppInfo(apps.get(i), apks.get(i), versions.get(i), sources.get(i), data.get(i), icons.get(i), isSystem);
             res.add(appInfo);
+        }
+
+        return res;
+    }
+
+    private List<AppInfo> getFavoriteList(List<AppInfo> appList, List<AppInfo> appSystemList) {
+        List<AppInfo> res = new ArrayList<>();
+
+        for (AppInfo app : appList) {
+            if (UtilsApp.isAppFavorite(app.getAPK(), appPreferences.getFavoriteApps())) {
+                res.add(app);
+            }
+        }
+        for (AppInfo app : appSystemList) {
+            if (UtilsApp.isAppFavorite(app.getAPK(), appPreferences.getFavoriteApps())) {
+                res.add(app);
+            }
         }
 
         return res;

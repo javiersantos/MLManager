@@ -6,6 +6,9 @@ import android.preference.PreferenceManager;
 
 import com.javiersantos.mlmanager.R;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class AppPreferences {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -19,6 +22,7 @@ public class AppPreferences {
     public static final String KeyCustomFilename = "prefCustomFilename";
     public static final String KeySortMode = "prefSortMode";
     public static final String KeyIsRooted = "prefIsRooted";
+    public static final String KeyFavoriteApps = "prefFavoriteApps";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -88,6 +92,17 @@ public class AppPreferences {
     }
     public void setSortMode(String res) {
         editor.putString(KeySortMode, res);
+        editor.commit();
+    }
+
+    public Set<String> getFavoriteApps() {
+        return sharedPreferences.getStringSet(KeyFavoriteApps, new HashSet<String>());
+    }
+
+    public void setFavoriteApps(Set<String> favoriteApps) {
+        editor.remove(KeyFavoriteApps);
+        editor.commit();
+        editor.putStringSet(KeyFavoriteApps, favoriteApps);
         editor.commit();
     }
 

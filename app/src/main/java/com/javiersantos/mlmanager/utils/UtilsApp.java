@@ -4,15 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
+import android.view.MenuItem;
 
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
+import com.javiersantos.mlmanager.R;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 public class UtilsApp {
     // Load Settings
@@ -27,8 +29,6 @@ public class UtilsApp {
 
         File initialFile = new File(appInfo.getSource());
         File finalFile = getOutputFilename(appInfo);
-        Log.i("Initial: ", initialFile.toString());
-        Log.i("Source: ", finalFile.toString());
 
         try {
             FileUtils.copyFile(initialFile, finalFile);
@@ -125,6 +125,23 @@ public class UtilsApp {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         return intent;
+    }
+
+    public static Boolean isAppFavorite(String apk, Set<String> appFavorites) {
+        Boolean res = false;
+        if (appFavorites.contains(apk)) {
+           res = true;
+        }
+
+        return res;
+    }
+
+    public static void setAppFavorite(Context context, MenuItem menuItem, Boolean isFavorite) {
+        if (isFavorite) {
+            menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_white));
+        } else {
+            menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_border_white));
+        }
     }
 
 }

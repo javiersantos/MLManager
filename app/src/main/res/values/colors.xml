@@ -7,9 +7,11 @@
     <color name="text_primary">#212121</color>
     <color name="bkg_card">#8C9EFF</color>
     <color name="background">#E3E3E3</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#FAFAFA</color>
+    <color name="white_pressed">#F1F1F1</color>
     <color name="divider">#E0E0E0</color>
     <color name="transparent">#00000000</color>
+    <color name="black_semi_transparent">#B2000000</color>
 
     <color name="card_blue">#00BED4</color>
     <color name="card_green">#8CC24A</color>

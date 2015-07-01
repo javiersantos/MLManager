@@ -249,7 +249,7 @@
         android:layout_height="match_parent">
         <include
             android:id="@+id/fab"
-            layout="@layout/fab" />
+            layout="@layout/fab_single" />
     </FrameLayout>
 
 </RelativeLayout>

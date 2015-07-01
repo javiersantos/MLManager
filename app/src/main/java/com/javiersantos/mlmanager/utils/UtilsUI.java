@@ -39,10 +39,10 @@ public class UtilsUI {
         return Color.argb(a, Math.max((int) (r * factor), 0), Math.max((int) (g * factor), 0), Math.max((int) (b * factor), 0));
     }
 
-    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final RecyclerView recyclerView) {
+    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final AppAdapter appFavoriteAdapter, final RecyclerView recyclerView) {
         int header;
         appPreferences = MLManagerApplication.getAppPreferences();
-        String apps, systemApps;
+        String apps, systemApps, favorites;
 
         if (getDayOrNight() == 1) {
             header = R.drawable.header_day;
@@ -60,6 +60,11 @@ public class UtilsUI {
         } else {
             systemApps = context.getResources().getString(R.string.loading);
         }
+        if (appFavoriteAdapter != null) {
+            favorites = Integer.toString(appFavoriteAdapter.getItemCount());
+        } else {
+            favorites = context.getResources().getString(R.string.loading);
+        }
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(activity)
@@ -75,6 +80,8 @@ public class UtilsUI {
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
                         new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favorites),
+                        new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
                 )
@@ -89,9 +96,12 @@ public class UtilsUI {
                                 recyclerView.setAdapter(appSystemAdapter);
                                 break;
                             case 3:
+                                recyclerView.setAdapter(appFavoriteAdapter);
+                                break;
+                            case 5:
                                 context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 break;
-                            case 4:
+                            case 6:
                                 context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 break;
                             default:
