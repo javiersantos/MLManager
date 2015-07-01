@@ -39,11 +39,16 @@
                 android:lines="2"
                 android:gravity="center" />
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/appList"
+        <com.yalantis.phoenix.PullToRefreshView
+            android:id="@+id/pull_to_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="25dp" />
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/appList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="25dp" />
+        </com.yalantis.phoenix.PullToRefreshView>
         <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
             android:id="@+id/fast_scroller"
             android:visibility="gone"
@@ -53,7 +58,6 @@
             android:layout_alignParentEnd="true"
             android:paddingRight="@dimen/margin_small"
             android:paddingEnd="@dimen/margin_small"
-
             recyclerviewfastscroller:rfs_barColor="@color/transparent"
             recyclerviewfastscroller:rfs_handleBackground="@drawable/fastscroller_rounded"/>
     </RelativeLayout>

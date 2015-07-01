@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -31,6 +32,7 @@ import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.mikepenz.materialdrawer.Drawer;
 import com.pnikosis.materialishprogress.ProgressWheel;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,22 +48,22 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private AppPreferences appPreferences;
 
     // General variables
-    private List<AppInfo> appList = new ArrayList<>();
-    private List<AppInfo> appSystemList = new ArrayList<>();
+    private List<AppInfo> appList;
+    private List<AppInfo> appSystemList;
 
-    private List<String> appListName = new ArrayList<>();
-    private List<String> appListAPK = new ArrayList<>();
-    private List<String> appListVersion = new ArrayList<>();
-    private List<String> appListSource = new ArrayList<>();
-    private List<String> appListData = new ArrayList<>();
-    private List<Drawable> appListIcon = new ArrayList<>();
+    private List<String> appListName;
+    private List<String> appListAPK;
+    private List<String> appListVersion;
+    private List<String> appListSource;
+    private List<String> appListData;
+    private List<Drawable> appListIcon;
 
-    private List<String> appSystemListName = new ArrayList<>();
-    private List<String> appSystemListAPK = new ArrayList<>();
-    private List<String> appSystemListVersion = new ArrayList<>();
-    private List<String> appSystemListSource = new ArrayList<>();
-    private List<String> appSystemListData = new ArrayList<>();
-    private List<Drawable> appSystemListIcon = new ArrayList<>();
+    private List<String> appSystemListName;
+    private List<String> appSystemListAPK;
+    private List<String> appSystemListVersion;
+    private List<String> appSystemListSource;
+    private List<String> appSystemListData;
+    private List<Drawable> appSystemListIcon;
 
     private AppAdapter appAdapter;
     private AppAdapter appSystemAdapter;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private Toolbar toolbar;
     private Context context;
     private RecyclerView recyclerView;
+    private PullToRefreshView pullToRefreshView;
     private ProgressWheel progressWheel;
     private Drawer drawer;
     private MenuItem searchItem;
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setAppDir();
 
         recyclerView = (RecyclerView) findViewById(R.id.appList);
+        pullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         fastScroller = (VerticalRecyclerViewFastScroller) findViewById(R.id.fast_scroller);
         progressWheel = (ProgressWheel) findViewById(R.id.progress);
         noResults = (LinearLayout) findViewById(R.id.noResults);
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        setNavigationDrawer(appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
+        UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
 
         progressWheel.setBarColor(appPreferences.getPrimaryColorPref());
         progressWheel.setVisibility(View.VISIBLE);
@@ -127,16 +131,29 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
     }
 
-    private void setNavigationDrawer(AppAdapter appAdapter, AppAdapter appSystemAdapter, AppAdapter appFavoriteAdapter, RecyclerView recyclerView) {
-        drawer = UtilsUI.setNavigationDrawer(this, getApplicationContext(), toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
-    }
-
     class getInstalledApps extends AsyncTask<Void, String, Void> {
         private Integer totalApps;
         private Integer actualApps;
 
         public getInstalledApps() {
             actualApps = 0;
+
+            appList = new ArrayList<>();
+            appSystemList = new ArrayList<>();
+
+            appListName = new ArrayList<>();
+            appListAPK = new ArrayList<>();
+            appListVersion = new ArrayList<>();
+            appListSource = new ArrayList<>();
+            appListData = new ArrayList<>();
+            appListIcon = new ArrayList<>();
+
+            appSystemListName = new ArrayList<>();
+            appSystemListAPK = new ArrayList<>();
+            appSystemListVersion = new ArrayList<>();
+            appSystemListSource = new ArrayList<>();
+            appSystemListData = new ArrayList<>();
+            appSystemListIcon = new ArrayList<>();
         }
 
         @Override
@@ -248,9 +265,30 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             progressWheel.setVisibility(View.GONE);
             searchItem.setVisible(true);
 
-            setNavigationDrawer(appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
+            setPullToRefreshView(pullToRefreshView);
+            drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
         }
 
+    }
+
+    private void setPullToRefreshView(final PullToRefreshView pullToRefreshView) {
+        pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                appAdapter.clear();
+                appSystemAdapter.clear();
+                appFavoriteAdapter.clear();
+                recyclerView.setAdapter(null);
+                new getInstalledApps().execute();
+
+                pullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pullToRefreshView.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
     }
 
     private void setAppDir() {

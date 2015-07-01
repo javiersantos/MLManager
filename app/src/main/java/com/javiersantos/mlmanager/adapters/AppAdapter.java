@@ -50,6 +50,11 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
         return appList.size();
     }
 
+    public void clear() {
+        appList.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(AppViewHolder appViewHolder, int i) {
         AppInfo appInfo = appList.get(i);
