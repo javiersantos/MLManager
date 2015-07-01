@@ -16,8 +16,8 @@ public class ExtractFileInBackground extends AsyncTask<Void, String, Boolean> {
     private MaterialDialog dialog;
     private AppInfo appInfo;
 
-    public ExtractFileInBackground(Activity activity, Context context, MaterialDialog dialog, AppInfo appInfo) {
-        this.activity = activity;
+    public ExtractFileInBackground(Context context, MaterialDialog dialog, AppInfo appInfo) {
+        this.activity = (Activity) context;
         this.context = context;
         this.dialog = dialog;
         this.appInfo = appInfo;
@@ -34,7 +34,7 @@ public class ExtractFileInBackground extends AsyncTask<Void, String, Boolean> {
         super.onPostExecute(status);
         dialog.dismiss();
         if (status) {
-            UtilsDialog.showExtractedSnackbar(activity, String.format(context.getResources().getString(R.string.dialog_saved_description), appInfo.getName(), UtilsApp.getAPKFilename(appInfo)), context.getResources().getString(R.string.button_undo), UtilsApp.getOutputFilename(appInfo)).show();
+            UtilsDialog.showSnackbar(activity, String.format(context.getResources().getString(R.string.dialog_saved_description), appInfo.getName(), UtilsApp.getAPKFilename(appInfo)), context.getResources().getString(R.string.button_undo), UtilsApp.getOutputFilename(appInfo)).show();
         } else {
             UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_extract_fail), context.getResources().getString(R.string.dialog_extract_fail_description));
         }

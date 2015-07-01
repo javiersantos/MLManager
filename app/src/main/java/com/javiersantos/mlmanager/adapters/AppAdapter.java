@@ -75,7 +75,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
                 MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
                         , String.format(context.getResources().getString(R.string.dialog_saving), appInfo.getName())
                         , context.getResources().getString(R.string.dialog_saving_description));
-                new ExtractFileInBackground((Activity) context, context, dialog, appInfo).execute();
+                new ExtractFileInBackground(context, dialog, appInfo).execute();
             }
         });
         appShare.setOnClickListener(new View.OnClickListener() {

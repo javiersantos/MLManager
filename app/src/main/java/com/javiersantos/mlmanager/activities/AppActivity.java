@@ -1,6 +1,5 @@
 package com.javiersantos.mlmanager.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -145,7 +144,7 @@ public class AppActivity extends AppCompatActivity {
                 MaterialDialog dialog = UtilsDialog.showTitleContentWithProgress(context
                         , String.format(getResources().getString(R.string.dialog_saving), appInfo.getName())
                         , getResources().getString(R.string.dialog_saving_description));
-                new ExtractFileInBackground((Activity) context, context, dialog, appInfo).execute();
+                new ExtractFileInBackground(context, dialog, appInfo).execute();
             }
         });
 
@@ -158,7 +157,6 @@ public class AppActivity extends AppCompatActivity {
                             , getResources().getString(R.string.dialog_cache_deleting)
                             , getResources().getString(R.string.dialog_cache_deleting_description));
                     new DeleteDataInBackground(context, dialog, appInfo.getData() + "/cache/**"
-                            , getResources().getString(R.string.dialog_cache_success)
                             , getResources().getString(R.string.dialog_cache_success_description, appInfo.getName())).execute();
                 }
             });
@@ -170,7 +168,6 @@ public class AppActivity extends AppCompatActivity {
                             , getResources().getString(R.string.dialog_clear_data_deleting)
                             , getResources().getString(R.string.dialog_clear_data_deleting_description));
                     new DeleteDataInBackground(context, dialog, appInfo.getData() + "/**"
-                            , getResources().getString(R.string.dialog_clear_data_success)
                             , getResources().getString(R.string.dialog_clear_data_success_description, appInfo.getName())).execute();
                 }
             });

@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager.async;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -10,16 +11,16 @@ import com.javiersantos.mlmanager.utils.UtilsRoot;
 
 public class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
     private Context context;
+    private Activity activity;
     private MaterialDialog dialog;
     private String directory;
-    private String successTitle;
     private String successDescription;
 
-    public DeleteDataInBackground(Context context, MaterialDialog dialog, String directory, String successTitle, String successDescription) {
+    public DeleteDataInBackground(Context context, MaterialDialog dialog, String directory, String successDescription) {
         this.context = context;
+        this.activity = (Activity) context;
         this.dialog = dialog;
         this.directory = directory;
-        this.successTitle = successTitle;
         this.successDescription = successDescription;
     }
 
@@ -34,7 +35,7 @@ public class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
         super.onPostExecute(status);
         dialog.dismiss();
         if (status) {
-            UtilsDialog.showTitleContent(context, successTitle, successDescription);
+            UtilsDialog.showSnackbar(activity, successDescription, null, null).show();
         } else {
             UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_cache_and_data_error), context.getResources().getString(R.string.dialog_cache_and_data_error_description));
         }

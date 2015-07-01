@@ -33,8 +33,8 @@ public class UtilsDialog {
         return materialBuilder.show();
     }
 
-    public static SnackBar showExtractedSnackbar(Activity activity, String text, String buttonText, final File file) {
-        SnackBar snackBar;
+    public static SnackBar showSnackbar(Activity activity, String text, String buttonText, final File file) {
+        final SnackBar snackBar;
 
         if (file == null) {
             snackBar = new SnackBar(activity, text, null, null);

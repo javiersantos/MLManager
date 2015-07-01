@@ -35,7 +35,7 @@
     <string name="dialog_cache">Remove cache</string>
     <string name="dialog_cache_description">Remove the cache for this app</string>
     <string name="dialog_cache_success">Cache deleted</string>
-    <string name="dialog_cache_success_description">Cache for %1$s is removed.</string>
+    <string name="dialog_cache_success_description">Cache for %1$s has been removed</string>
     <string name="dialog_cache_deleting">Deleting cache files...</string>
     <string name="dialog_cache_deleting_description">Please wait while cache files are being deleted.</string>
     <string name="dialog_clear_data">Clear data</string>
@@ -43,7 +43,7 @@
     <string name="dialog_clear_data_deleting">Deleting all files...</string>
     <string name="dialog_clear_data_deleting_description">Please wait while all files are being deleted.</string>
     <string name="dialog_clear_data_success">Data deleted</string>
-    <string name="dialog_clear_data_success_description">All data for %1$s is removed.</string>
+    <string name="dialog_clear_data_success_description">All data for %1$s has been removed</string>
     <string name="dialog_cache_and_data_error">Root required</string>
     <string name="dialog_cache_and_data_error_description">To delete data your phone must be rooted and root permission should be given. If you have denied access once. Go to SuperUser app to give access to MLManager.</string>
 
