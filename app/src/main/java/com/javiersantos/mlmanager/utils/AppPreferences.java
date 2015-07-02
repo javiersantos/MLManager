@@ -39,14 +39,6 @@ public class AppPreferences {
         editor.commit();
     }
 
-    public Boolean getStartDeletePref() {
-        return sharedPreferences.getBoolean(KeyStartDelete, false);
-    }
-    public void setStartDeletePref(Boolean res) {
-        editor.putBoolean(KeyStartDelete, res);
-        editor.commit();
-    }
-
     public int getPrimaryColorPref() {
         return sharedPreferences.getInt(KeyPrimaryColor, context.getResources().getColor(R.color.primary));
     }

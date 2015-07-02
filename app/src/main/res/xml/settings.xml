@@ -3,11 +3,6 @@
     android:orientation="vertical">
     <PreferenceCategory
         android:title="@string/action_settings">
-        <CheckBoxPreference
-            android:key="prefStartDelete"
-            android:title="@string/settings_delete_on_start"
-            android:summary="@string/settings_delete_on_start_description"
-            android:defaultValue="false" />
         <Preference
             android:key="prefDeleteAll"
             android:title="@string/settings_delete_all"

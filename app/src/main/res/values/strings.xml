@@ -56,8 +56,6 @@
     <string name="button_undo">Undo</string>
 
     <!-- Settings -->
-    <string name="settings_delete_on_start">Delete APKs</string>
-    <string name="settings_delete_on_start_description">Remove all the extracted APKs on every app starts</string>
     <string name="settings_delete_all">Delete all extracted APKs</string>
     <string name="settings_delete_all_description">Remove all the extracted APKs stored in the extraction folder</string>
     <string name="settings_custom_filename">Default filename for extracted APKs</string>
