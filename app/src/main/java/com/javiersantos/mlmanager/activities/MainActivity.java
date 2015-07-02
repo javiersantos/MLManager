@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         fastScroller.setRecyclerView(recyclerView);
         recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
+        pullToRefreshView.setEnabled(false);
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -262,6 +263,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
+            pullToRefreshView.setEnabled(true);
             progressWheel.setVisibility(View.GONE);
             searchItem.setVisible(true);
 
