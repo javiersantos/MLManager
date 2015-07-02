@@ -14,7 +14,6 @@ public class AppPreferences {
     private SharedPreferences.Editor editor;
     private Context context;
 
-    public static final String KeyStartDelete = "prefStartDelete";
     public static final String KeyPrimaryColor = "prefPrimaryColor";
     public static final String KeyFABColor = "prefFABColor";
     public static final String KeyFABShow = "prefFABShow";
@@ -23,6 +22,7 @@ public class AppPreferences {
     public static final String KeySortMode = "prefSortMode";
     public static final String KeyIsRooted = "prefIsRooted";
     public static final String KeyFavoriteApps = "prefFavoriteApps";
+    public static final String KeyHiddenApps = "prefHiddenApps";
 
     public AppPreferences(Context context) {
         this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -95,6 +95,17 @@ public class AppPreferences {
         editor.remove(KeyFavoriteApps);
         editor.commit();
         editor.putStringSet(KeyFavoriteApps, favoriteApps);
+        editor.commit();
+    }
+
+    public Set<String> getHiddenApps() {
+        return sharedPreferences.getStringSet(KeyHiddenApps, new HashSet<String>());
+    }
+
+    public void setHiddenApps(Set<String> hiddenApps) {
+        editor.remove(KeyHiddenApps);
+        editor.commit();
+        editor.putStringSet(KeyHiddenApps, hiddenApps);
         editor.commit();
     }
 

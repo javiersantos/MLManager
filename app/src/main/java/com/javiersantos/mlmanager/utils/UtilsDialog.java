@@ -33,18 +33,35 @@ public class UtilsDialog {
         return materialBuilder.show();
     }
 
-    public static SnackBar showSnackbar(Activity activity, String text, String buttonText, final File file) {
-        final SnackBar snackBar;
+    // 1: APK Extracted
+    // 2: Cache deleted
+    // 3: App unhide
+    public static SnackBar showSnackbar(Activity activity, String text, String buttonText, final File file, Integer style) {
+        SnackBar snackBar;
 
-        if (file == null) {
-            snackBar = new SnackBar(activity, text, null, null);
-        } else {
-            snackBar = new SnackBar(activity, text, buttonText, new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    file.delete();
-                }
-            });
+        switch (style) {
+            case 1:
+                snackBar = new SnackBar(activity, text, buttonText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        file.delete();
+                    }
+                });
+                break;
+            case 2:
+                snackBar = new SnackBar(activity, text, null, null);
+                break;
+            case 3:
+                snackBar = new SnackBar(activity, text, buttonText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        UtilsRoot.rebootSystem();
+                    }
+                });
+                break;
+            default:
+                snackBar = new SnackBar(activity, text, null, null);
+                break;
         }
 
         return snackBar;

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.view.MenuItem;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
@@ -141,6 +142,25 @@ public class UtilsApp {
             menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_white));
         } else {
             menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_border_white));
+        }
+    }
+
+    public static Boolean isAppHidden(String apk, Set<String> appHidden) {
+        Boolean res = false;
+        if (appHidden.contains(apk)) {
+            res = true;
+        }
+
+        return res;
+    }
+
+    public static void setAppHidden(Context context, FloatingActionButton fabHide, Boolean isHidden) {
+        if (isHidden) {
+            fabHide.setTitle(context.getResources().getString(R.string.action_unhide));
+            fabHide.setIcon(R.drawable.ic_visibility_white);
+        } else {
+            fabHide.setTitle(context.getResources().getString(R.string.action_hide));
+            fabHide.setIcon(R.drawable.ic_visibility_off_white);
         }
     }
 

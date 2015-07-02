@@ -35,7 +35,7 @@ public class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
         super.onPostExecute(status);
         dialog.dismiss();
         if (status) {
-            UtilsDialog.showSnackbar(activity, successDescription, null, null).show();
+            UtilsDialog.showSnackbar(activity, successDescription, null, null, 2).show();
         } else {
             UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_cache_and_data_error), context.getResources().getString(R.string.dialog_cache_and_data_error_description));
         }

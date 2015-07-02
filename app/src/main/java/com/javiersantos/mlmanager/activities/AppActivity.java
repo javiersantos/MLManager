@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
@@ -40,7 +42,8 @@ public class AppActivity extends AppCompatActivity {
 
     // General variables
     private AppInfo appInfo;
-    private Set<String> appFavorites;
+    private Set<String> appsFavorite;
+    private Set<String> appsHidden;
 
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
@@ -98,7 +101,9 @@ public class AppActivity extends AppCompatActivity {
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
         CardView cache = (CardView) findViewById(R.id.cache_card);
         CardView clearData = (CardView) findViewById(R.id.clear_data_card);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionsMenu fab = (FloatingActionsMenu) findViewById(R.id.fab);
+        FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.fab_a);
+        final FloatingActionButton fab_hide = (FloatingActionButton) findViewById(R.id.fab_b);
 
         icon.setImageDrawable(appInfo.getIcon());
         name.setText(appInfo.getName());
@@ -178,11 +183,10 @@ public class AppActivity extends AppCompatActivity {
             });
         }
 
-        // FAB
-        fab.setIcon(R.drawable.ic_send_white);
-        fab.setColorNormal(appPreferences.getFABColorPref());
-        fab.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
-        fab.setOnClickListener(new View.OnClickListener() {
+        // FAB (Share)
+        fab_share.setColorNormal(appPreferences.getFABColorPref());
+        fab_share.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
+        fab_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UtilsApp.copyFile(appInfo);
@@ -190,6 +194,32 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(shareIntent, String.format(getResources().getString(R.string.send_to), appInfo.getName())));
             }
         });
+
+        // FAB (Hide)
+        if(UtilsRoot.isRooted()) {
+            UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden));
+            fab_hide.setVisibility(View.VISIBLE);
+            fab_hide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden)) {
+                        Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), true);
+                        if (hidden) {
+                            appsHidden.remove(appInfo.getAPK());
+                            appPreferences.setHiddenApps(appsHidden);
+                            UtilsDialog.showSnackbar((Activity) context, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
+                        }
+                    } else {
+                        Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), false);
+                        if (hidden) {
+                            appsHidden.add(appInfo.getAPK());
+                            appPreferences.setHiddenApps(appsHidden);
+                        }
+                    }
+                    UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden));
+                }
+            });
+        }
 
     }
 
@@ -218,7 +248,8 @@ public class AppActivity extends AppCompatActivity {
         Boolean appIsSystem = getIntent().getExtras().getBoolean("app_isSystem");
 
         appInfo = new AppInfo(appName, appApk, appVersion, appSource, appData, appIcon, appIsSystem);
-        appFavorites = appPreferences.getFavoriteApps();
+        appsFavorite = appPreferences.getFavoriteApps();
+        appsHidden = appPreferences.getHiddenApps();
 
     }
 
@@ -237,7 +268,7 @@ public class AppActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         item_favorite = menu.findItem(R.id.action_favorite);
-        UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites));
+        UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appsFavorite));
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -248,14 +279,14 @@ public class AppActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.action_favorite:
-                if (UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites)) {
-                    appFavorites.remove(appInfo.getAPK());
-                    appPreferences.setFavoriteApps(appFavorites);
+                if (UtilsApp.isAppFavorite(appInfo.getAPK(), appsFavorite)) {
+                    appsFavorite.remove(appInfo.getAPK());
+                    appPreferences.setFavoriteApps(appsFavorite);
                 } else {
-                    appFavorites.add(appInfo.getAPK());
-                    appPreferences.setFavoriteApps(appFavorites);
+                    appsFavorite.add(appInfo.getAPK());
+                    appPreferences.setFavoriteApps(appsFavorite);
                 }
-                UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appFavorites));
+                UtilsApp.setAppFavorite(context, item_favorite, UtilsApp.isAppFavorite(appInfo.getAPK(), appsFavorite));
                 return true;
         }
 
