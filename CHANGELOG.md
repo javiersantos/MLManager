@@ -1,3 +1,13 @@
+### 1.0
+###### Code name: Dialogo
+###### To Be Released
+* [NEW](https://github.com/javiersantos/MLManager/commit/9aaa6baf6b1295e1d01e9665d3be36225903c17c) Root feature: hide apps.
+* [NEW](https://github.com/javiersantos/MLManager/commit/e6e176c739a7491b98dd513046672e624d888e03) Root feature: clear cache and clear data for every app.
+* [NEW](https://github.com/javiersantos/MLManager/commit/09a9453ff17cad95a18298e331ca12195ed66760) Mark apps as favorite.
+* [NEW](https://github.com/javiersantos/MLManager/commit/8f35dddfd5a2c07b83480960e35cf4428c7347ba) Animated PullToRefresh.
+* [NEW](https://github.com/javiersantos/MLManager/commit/c5d433cb4317c86a2035c9c1be69bdcfb6e469ce) Add Snackbars and asynchronous functions.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/0f147f80b9708ce484938ce33657a0471915852e) Delete unused setting ("Delete APKs on every app starts").
+
 ### 0.5.1 Beta
 ###### Released: 18 June, 2015
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/de1b35209835f25e8ed354c521c88295e0d4fd0b) Initial progress wheel changes with the current progress.
