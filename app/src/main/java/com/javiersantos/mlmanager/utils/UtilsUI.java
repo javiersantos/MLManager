@@ -39,10 +39,11 @@ public class UtilsUI {
         return Color.argb(a, Math.max((int) (r * factor), 0), Math.max((int) (g * factor), 0), Math.max((int) (b * factor), 0));
     }
 
-    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final AppAdapter appFavoriteAdapter, final RecyclerView recyclerView) {
+    public static Drawer setNavigationDrawer (Activity activity, final Context context, Toolbar toolbar, final AppAdapter appAdapter, final AppAdapter appSystemAdapter, final AppAdapter appFavoriteAdapter, final AppAdapter appHiddenAdapter, final RecyclerView recyclerView) {
+        final String loadingLabel = context.getResources().getString(R.string.loading);
         int header;
         appPreferences = MLManagerApplication.getAppPreferences();
-        String apps, systemApps, favorites;
+        String apps, systemApps, favoriteApps, hiddenApps;
 
         if (getDayOrNight() == 1) {
             header = R.drawable.header_day;
@@ -53,17 +54,22 @@ public class UtilsUI {
         if (appAdapter != null) {
             apps = Integer.toString(appAdapter.getItemCount());
         } else {
-            apps = context.getResources().getString(R.string.loading);
+            apps = loadingLabel;
         }
         if (appSystemAdapter != null) {
             systemApps = Integer.toString(appSystemAdapter.getItemCount());
         } else {
-            systemApps = context.getResources().getString(R.string.loading);
+            systemApps = loadingLabel;
         }
         if (appFavoriteAdapter != null) {
-            favorites = Integer.toString(appFavoriteAdapter.getItemCount());
+            favoriteApps = Integer.toString(appFavoriteAdapter.getItemCount());
         } else {
-            favorites = context.getResources().getString(R.string.loading);
+            favoriteApps = loadingLabel;
+        }
+        if (appHiddenAdapter != null) {
+            hiddenApps = Integer.toString(appHiddenAdapter.getItemCount());
+        } else {
+            hiddenApps = loadingLabel;
         }
 
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -80,7 +86,9 @@ public class UtilsUI {
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
                         new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favorites),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps),
+                        new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_hidden_apps)).withIcon(FontAwesome.Icon.faw_eye_slash).withBadge(hiddenApps),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
                         new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
@@ -99,9 +107,12 @@ public class UtilsUI {
                                 recyclerView.setAdapter(appFavoriteAdapter);
                                 break;
                             case 5:
+                                recyclerView.setAdapter(appHiddenAdapter);
+                                break;
+                            case 7:
                                 context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 break;
-                            case 6:
+                            case 8:
                                 context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 break;
                             default:

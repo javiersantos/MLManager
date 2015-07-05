@@ -133,8 +133,13 @@ public class AppActivity extends AppCompatActivity {
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getAPK());
-                    startActivity(intent);
+                    try {
+                        Intent intent = getPackageManager().getLaunchIntentForPackage(appInfo.getAPK());
+                        startActivity(intent);
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                        UtilsDialog.showSnackbar((Activity) context, String.format(getResources().getString(R.string.dialog_cannot_open), appInfo.getName()), null, null, 2).show();
+                    }
                 }
             });
 
@@ -197,26 +202,28 @@ public class AppActivity extends AppCompatActivity {
 
         // FAB (Hide)
         if(UtilsRoot.isRooted()) {
-            UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden));
+            UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
             fab_hide.setVisibility(View.VISIBLE);
             fab_hide.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden)) {
+                    if (UtilsApp.isAppHidden(appInfo, appsHidden)) {
                         Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), true);
                         if (hidden) {
-                            appsHidden.remove(appInfo.getAPK());
+                            UtilsApp.removeIconFromCache(context, appInfo);
+                            appsHidden.remove(appInfo.toString());
                             appPreferences.setHiddenApps(appsHidden);
                             UtilsDialog.showSnackbar((Activity) context, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
                         }
                     } else {
+                        UtilsApp.saveIconToCache(context, appInfo);
                         Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), false);
                         if (hidden) {
-                            appsHidden.add(appInfo.getAPK());
+                            appsHidden.add(appInfo.toString());
                             appPreferences.setHiddenApps(appsHidden);
                         }
                     }
-                    UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo.getAPK(), appsHidden));
+                    UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
                 }
             });
         }

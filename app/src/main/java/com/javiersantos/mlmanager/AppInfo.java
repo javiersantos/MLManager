@@ -2,7 +2,9 @@ package com.javiersantos.mlmanager;
 
 import android.graphics.drawable.Drawable;
 
-public class AppInfo {
+import java.io.Serializable;
+
+public class AppInfo implements Serializable {
     private String name;
     private String apk;
     private String version;
@@ -19,6 +21,18 @@ public class AppInfo {
         this.data = data;
         this.icon = icon;
         this.system = isSystem;
+    }
+
+    public AppInfo(String string) {
+        String[] split = string.split("##");
+        if (split.length == 6) {
+            this.name = split[0];
+            this.apk = split[1];
+            this.version = split[2];
+            this.source = split[3];
+            this.data = split[4];
+            this.system = Boolean.getBoolean(split[5]);
+        }
     }
 
     public String getName() {
@@ -45,8 +59,16 @@ public class AppInfo {
         return icon;
     }
 
+    public void setIcon(Drawable icon) {
+        this.icon = icon;
+    }
+
     public Boolean isSystem() {
         return system;
+    }
+
+    public String toString() {
+        return getName() + "##" + getAPK() + "##" + getVersion() + "##" + getSource() + "##" + getData() + "##" + isSystem();
     }
 
 }

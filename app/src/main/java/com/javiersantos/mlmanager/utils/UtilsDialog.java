@@ -34,7 +34,7 @@ public class UtilsDialog {
     }
 
     // 1: APK Extracted
-    // 2: Cache deleted
+    // 2: Snackbar without Button
     // 3: App unhide
     public static SnackBar showSnackbar(Activity activity, String text, String buttonText, final File file, Integer style) {
         SnackBar snackBar;

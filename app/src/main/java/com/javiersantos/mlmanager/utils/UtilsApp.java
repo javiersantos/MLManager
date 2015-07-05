@@ -2,6 +2,12 @@ package com.javiersantos.mlmanager.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.view.MenuItem;
@@ -14,6 +20,8 @@ import com.javiersantos.mlmanager.R;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Set;
 
@@ -145,9 +153,9 @@ public class UtilsApp {
         }
     }
 
-    public static Boolean isAppHidden(String apk, Set<String> appHidden) {
+    public static Boolean isAppHidden(AppInfo appInfo, Set<String> appHidden) {
         Boolean res = false;
-        if (appHidden.contains(apk)) {
+        if (appHidden.contains(appInfo.toString())) {
             res = true;
         }
 
@@ -162,6 +170,46 @@ public class UtilsApp {
             fabHide.setTitle(context.getResources().getString(R.string.action_hide));
             fabHide.setIcon(R.drawable.ic_visibility_off_white);
         }
+    }
+
+    public static Boolean saveIconToCache(Context context, AppInfo appInfo) {
+        Boolean res = false;
+
+        try {
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(appInfo.getAPK(), 0);
+            File fileUri = new File(context.getCacheDir(), appInfo.getAPK());
+            FileOutputStream out = new FileOutputStream(fileUri);
+            Drawable icon = context.getPackageManager().getApplicationIcon(applicationInfo);
+            BitmapDrawable iconBitmap = (BitmapDrawable) icon;
+            iconBitmap.getBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+            res = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public static Boolean removeIconFromCache(Context context, AppInfo appInfo) {
+        File file = new File(context.getCacheDir(), appInfo.getAPK());
+        return file.delete();
+    }
+
+    public static Drawable getIconFromCache(Context context, AppInfo appInfo) {
+        Drawable res;
+
+        try {
+            File fileUri = new File(context.getCacheDir(), appInfo.getAPK());
+            Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath());
+            res = new BitmapDrawable(context.getResources(), bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = context.getResources().getDrawable(R.drawable.ic_android);
+        }
+
+        return res;
     }
 
 }
