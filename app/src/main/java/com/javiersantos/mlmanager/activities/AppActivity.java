@@ -104,14 +104,21 @@ public class AppActivity extends AppCompatActivity {
         FloatingActionsMenu fab = (FloatingActionsMenu) findViewById(R.id.fab);
         FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.fab_a);
         final FloatingActionButton fab_hide = (FloatingActionButton) findViewById(R.id.fab_b);
+        FloatingActionButton fab_buy = (FloatingActionButton) findViewById(R.id.fab_buy);
 
         icon.setImageDrawable(appInfo.getIcon());
         name.setText(appInfo.getName());
         apk.setText(appInfo.getAPK());
         version.setText(appInfo.getVersion());
 
-        // Header
+        // Configure Colors
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
+        fab_share.setColorNormal(appPreferences.getFABColorPref());
+        fab_share.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
+        fab_hide.setColorNormal(appPreferences.getFABColorPref());
+        fab_hide.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
+        fab_buy.setColorNormal(appPreferences.getFABColorPref());
+        fab_buy.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
 
         // CardView
         if (appInfo.isSystem()) {
@@ -163,7 +170,7 @@ public class AppActivity extends AppCompatActivity {
             }
         });
 
-        if(UtilsRoot.isRooted()) {
+        if(UtilsRoot.isRooted() && MLManagerApplication.isPro()) {
             cache.setVisibility(View.VISIBLE);
             cache.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,8 +196,6 @@ public class AppActivity extends AppCompatActivity {
         }
 
         // FAB (Share)
-        fab_share.setColorNormal(appPreferences.getFABColorPref());
-        fab_share.setColorPressed(UtilsUI.darker(appPreferences.getFABColorPref(), 0.8));
         fab_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,29 +206,41 @@ public class AppActivity extends AppCompatActivity {
         });
 
         // FAB (Hide)
-        if(UtilsRoot.isRooted()) {
-            UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
-            fab_hide.setVisibility(View.VISIBLE);
-            fab_hide.setOnClickListener(new View.OnClickListener() {
+        if (MLManagerApplication.isPro()) {
+            fab_buy.setVisibility(View.GONE);
+            if (UtilsRoot.isRooted()) {
+                UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
+                fab_hide.setVisibility(View.VISIBLE);
+                fab_hide.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (UtilsApp.isAppHidden(appInfo, appsHidden)) {
+                            Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), true);
+                            if (hidden) {
+                                UtilsApp.removeIconFromCache(context, appInfo);
+                                appsHidden.remove(appInfo.toString());
+                                appPreferences.setHiddenApps(appsHidden);
+                                UtilsDialog.showSnackbar((Activity) context, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
+                            }
+                        } else {
+                            UtilsApp.saveIconToCache(context, appInfo);
+                            Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), false);
+                            if (hidden) {
+                                appsHidden.add(appInfo.toString());
+                                appPreferences.setHiddenApps(appsHidden);
+                            }
+                        }
+                        UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
+                    }
+                });
+            }
+        } else {
+            fab_buy.setVisibility(View.VISIBLE);
+            fab_buy.setTitle(context.getResources().getString(R.string.action_buy) + " (" + context.getResources().getString(R.string.action_buy_description) + ")");
+            fab_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (UtilsApp.isAppHidden(appInfo, appsHidden)) {
-                        Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), true);
-                        if (hidden) {
-                            UtilsApp.removeIconFromCache(context, appInfo);
-                            appsHidden.remove(appInfo.toString());
-                            appPreferences.setHiddenApps(appsHidden);
-                            UtilsDialog.showSnackbar((Activity) context, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
-                        }
-                    } else {
-                        UtilsApp.saveIconToCache(context, appInfo);
-                        Boolean hidden = UtilsRoot.hideWithRootPermission(appInfo.getAPK(), false);
-                        if (hidden) {
-                            appsHidden.add(appInfo.toString());
-                            appPreferences.setHiddenApps(appsHidden);
-                        }
-                    }
-                    UtilsApp.setAppHidden(context, fab_hide, UtilsApp.isAppHidden(appInfo, appsHidden));
+                    startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanagerpro"));
                 }
             });
         }

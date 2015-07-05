@@ -11,6 +11,13 @@
     app:fab_addButtonColorNormal="@color/primary"
     app:fab_addButtonColorPressed="@color/primary_dark">
     <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_icon="@drawable/ic_local_grocery_store_white"
+        app:fab_colorNormal="@color/fab"
+        app:fab_title="@string/action_buy" />
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

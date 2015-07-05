@@ -84,7 +84,7 @@ public class UtilsApp {
                 file.delete();
             }
             if (f.listFiles().length == 0) {
-                return true;
+                res = true;
             }
         }
         return res;

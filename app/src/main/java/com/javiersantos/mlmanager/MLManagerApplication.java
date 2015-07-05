@@ -4,9 +4,6 @@ import android.app.Application;
 
 import com.javiersantos.mlmanager.utils.AppPreferences;
 
-/**
- * Created by vijay.rawat01 on 6/21/15.
- */
 public class MLManagerApplication extends Application {
 
     private static AppPreferences sAppPreferences;
@@ -19,5 +16,11 @@ public class MLManagerApplication extends Application {
 
     public static AppPreferences getAppPreferences() {
         return sAppPreferences;
+    }
+
+    // TRUE: ML Manager Pro
+    // FALSE: ML Manager
+    public static Boolean isPro() {
+        return false;
     }
 }

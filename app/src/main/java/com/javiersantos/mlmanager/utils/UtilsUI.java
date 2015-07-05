@@ -76,52 +76,98 @@ public class UtilsUI {
                 .withActivity(activity)
                 .withHeaderBackground(header)
                 .build();
+        if (MLManagerApplication.isPro()) {
+            return new DrawerBuilder()
+                    .withActivity(activity)
+                    .withToolbar(toolbar)
+                    .withAccountHeader(headerResult)
+                    .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
+                    .addDrawerItems(
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
+                            new DividerDrawerItem(),
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps),
+                            new DividerDrawerItem(),
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_hidden_apps)).withIcon(FontAwesome.Icon.faw_eye_slash).withBadge(hiddenApps),
+                            new DividerDrawerItem(),
+                            new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
+                            new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
+                    )
+                    .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                            switch (position) {
+                                case 0:
+                                    recyclerView.setAdapter(appAdapter);
+                                    break;
+                                case 1:
+                                    recyclerView.setAdapter(appSystemAdapter);
+                                    break;
+                                case 3:
+                                    recyclerView.setAdapter(appFavoriteAdapter);
+                                    break;
+                                case 5:
+                                    recyclerView.setAdapter(appHiddenAdapter);
+                                    break;
+                                case 7:
+                                    context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    break;
+                                case 8:
+                                    context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    break;
+                                default:
+                                    break;
+                            }
 
-        return new DrawerBuilder()
-                .withActivity(activity)
-                .withToolbar(toolbar)
-                .withAccountHeader(headerResult)
-                .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
-                .addDrawerItems(
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps),
-                        new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_hidden_apps)).withIcon(FontAwesome.Icon.faw_eye_slash).withBadge(hiddenApps),
-                        new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
-                        new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
-                )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                        switch (position) {
-                            case 0:
-                                recyclerView.setAdapter(appAdapter);
-                                break;
-                            case 1:
-                                recyclerView.setAdapter(appSystemAdapter);
-                                break;
-                            case 3:
-                                recyclerView.setAdapter(appFavoriteAdapter);
-                                break;
-                            case 5:
-                                recyclerView.setAdapter(appHiddenAdapter);
-                                break;
-                            case 7:
-                                context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                break;
-                            case 8:
-                                context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                break;
-                            default:
-                                break;
+                            return false;
                         }
+                    }).build();
+        } else {
+            return new DrawerBuilder()
+                    .withActivity(activity)
+                    .withToolbar(toolbar)
+                    .withAccountHeader(headerResult)
+                    .withStatusBarColor(UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8))
+                    .addDrawerItems(
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps),
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps),
+                            new DividerDrawerItem(),
+                            new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps),
+                            new DividerDrawerItem(),
+                            new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_buy)).withIcon(FontAwesome.Icon.faw_shopping_cart).withBadge(context.getResources().getString(R.string.action_buy_description)).withCheckable(false),
+                            new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withCheckable(false),
+                            new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withCheckable(false)
+                    )
+                    .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                            switch (position) {
+                                case 0:
+                                    recyclerView.setAdapter(appAdapter);
+                                    break;
+                                case 1:
+                                    recyclerView.setAdapter(appSystemAdapter);
+                                    break;
+                                case 3:
+                                    recyclerView.setAdapter(appFavoriteAdapter);
+                                    break;
+                                case 5:
+                                    context.startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanagerpro"));
+                                    break;
+                                case 6:
+                                    context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    break;
+                                case 7:
+                                    context.startActivity(new Intent(context, AboutActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    break;
+                                default:
+                                    break;
+                            }
 
-                        return false;
-                    }
-                }).build();
+                            return false;
+                        }
+                    }).build();
+        }
 
     }
 
