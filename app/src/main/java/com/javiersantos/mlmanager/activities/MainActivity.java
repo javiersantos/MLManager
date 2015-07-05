@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
@@ -50,24 +51,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // General variables
     private List<AppInfo> appList;
     private List<AppInfo> appSystemList;
-
-    private List<String> appListName;
-    private List<String> appListAPK;
-    private List<String> appListVersion;
-    private List<String> appListSource;
-    private List<String> appListData;
-    private List<Drawable> appListIcon;
-
-    private List<String> appSystemListName;
-    private List<String> appSystemListAPK;
-    private List<String> appSystemListVersion;
-    private List<String> appSystemListSource;
-    private List<String> appSystemListData;
-    private List<Drawable> appSystemListIcon;
+    private List<AppInfo> appHiddenList;
 
     private AppAdapter appAdapter;
     private AppAdapter appSystemAdapter;
     private AppAdapter appFavoriteAdapter;
+    private AppAdapter appHiddenAdapter;
 
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
@@ -107,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
+        drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
 
         progressWheel.setBarColor(appPreferences.getPrimaryColorPref());
         progressWheel.setVisibility(View.VISIBLE);
@@ -141,27 +130,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             appList = new ArrayList<>();
             appSystemList = new ArrayList<>();
-
-            appListName = new ArrayList<>();
-            appListAPK = new ArrayList<>();
-            appListVersion = new ArrayList<>();
-            appListSource = new ArrayList<>();
-            appListData = new ArrayList<>();
-            appListIcon = new ArrayList<>();
-
-            appSystemListName = new ArrayList<>();
-            appSystemListAPK = new ArrayList<>();
-            appSystemListVersion = new ArrayList<>();
-            appSystemListSource = new ArrayList<>();
-            appSystemListData = new ArrayList<>();
-            appSystemListIcon = new ArrayList<>();
+            appHiddenList = new ArrayList<>();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             final PackageManager packageManager = getPackageManager();
             List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
-            totalApps = packages.size();
+            Set<String> hiddenApps = appPreferences.getHiddenApps();
+            totalApps = packages.size() + hiddenApps.size();
             // Get Sort Mode
             switch (appPreferences.getSortMode()) {
                 default:
@@ -204,35 +181,30 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     break;
             }
 
+            // Installed & System Apps
             for (PackageInfo packageInfo : packages) {
                 if (!(packageManager.getApplicationLabel(packageInfo.applicationInfo).equals("") || packageInfo.packageName.equals(""))) {
                     if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
                         try {
                             // Non System Apps
-                            appListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                            appListAPK.add(packageInfo.packageName);
-                            appListVersion.add(packageInfo.versionName);
-                            appListSource.add(packageInfo.applicationInfo.sourceDir);
-                            appListData.add(packageInfo.applicationInfo.dataDir);
-                            appListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, packageManager.getApplicationIcon(packageInfo.applicationInfo), false);
+                            appList.add(tempApp);
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            appListIcon.add(getResources().getDrawable(R.drawable.ic_android));
+                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, getResources().getDrawable(R.drawable.ic_android), false);
+                            appList.add(tempApp);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     } else {
                         try {
                             // System Apps
-                            appSystemListName.add(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString());
-                            appSystemListAPK.add(packageInfo.packageName);
-                            appSystemListVersion.add(packageInfo.versionName);
-                            appSystemListSource.add(packageInfo.applicationInfo.sourceDir);
-                            appSystemListData.add(packageInfo.applicationInfo.dataDir);
-                            appSystemListIcon.add(packageManager.getApplicationIcon(packageInfo.applicationInfo));
+                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, packageManager.getApplicationIcon(packageInfo.applicationInfo), true);
+                            appSystemList.add(tempApp);
                         } catch (OutOfMemoryError e) {
                             //TODO Workaround to avoid FC on some devices (OutOfMemoryError). Drawable should be cached before.
-                            appSystemListIcon.add(getResources().getDrawable(R.drawable.ic_android));
+                            AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, getResources().getDrawable(R.drawable.ic_android), false);
+                            appSystemList.add(tempApp);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -242,6 +214,18 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 actualApps++;
                 publishProgress(Double.toString((actualApps * 100) / totalApps));
             }
+
+            // Hidden Apps
+            for (String app : hiddenApps) {
+                AppInfo tempApp = new AppInfo(app);
+                Drawable tempAppIcon = UtilsApp.getIconFromCache(context, tempApp);
+                tempApp.setIcon(tempAppIcon);
+                appHiddenList.add(tempApp);
+
+                actualApps++;
+                publishProgress(Double.toString((actualApps * 100) / totalApps));
+            }
+
             return null;
         }
 
@@ -255,11 +239,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            appList = createList(appListName, appListAPK, appListVersion, appListSource, appListData, appListIcon, false);
             appAdapter = new AppAdapter(appList, context);
-            appSystemList = createList(appSystemListName, appSystemListAPK, appSystemListVersion, appSystemListSource, appSystemListData, appSystemListIcon, true);
             appSystemAdapter = new AppAdapter(appSystemList, context);
             appFavoriteAdapter = new AppAdapter(getFavoriteList(appList, appSystemList), context);
+            appHiddenAdapter = new AppAdapter(appHiddenList, context);
 
             fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
@@ -268,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             searchItem.setVisible(true);
 
             setPullToRefreshView(pullToRefreshView);
-            drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, recyclerView);
+            drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
         }
 
     }
@@ -298,16 +281,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if(!appDir.exists()) {
             appDir.mkdir();
         }
-    }
-
-    private List<AppInfo> createList(List<String> apps, List<String> apks, List<String> versions, List<String> sources, List<String> data, List<Drawable> icons, Boolean isSystem) {
-        List<AppInfo> res = new ArrayList<>();
-        for (int i = 0; i < apps.size(); i++) {
-            AppInfo appInfo = new AppInfo(apps.get(i), apks.get(i), versions.get(i), sources.get(i), data.get(i), icons.get(i), isSystem);
-            res.add(appInfo);
-        }
-
-        return res;
     }
 
     private List<AppInfo> getFavoriteList(List<AppInfo> appList, List<AppInfo> appSystemList) {
