@@ -8,8 +8,8 @@ android {
         applicationId "com.javiersantos.mlmanager"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 12
-        versionName "0.5.1"
+        versionCode 13
+        versionName "1.0"
     }
     buildTypes {
         release {

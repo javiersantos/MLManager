@@ -1,5 +1,5 @@
 ### 1.0
-###### Code name: Dialogo
+###### Code name: Diagolo
 ###### To Be Released
 * [NEW](https://github.com/javiersantos/MLManager/commit/9aaa6baf6b1295e1d01e9665d3be36225903c17c) Root feature: hide apps.
 * [NEW](https://github.com/javiersantos/MLManager/commit/e6e176c739a7491b98dd513046672e624d888e03) Root feature: clear cache and clear data for every app.

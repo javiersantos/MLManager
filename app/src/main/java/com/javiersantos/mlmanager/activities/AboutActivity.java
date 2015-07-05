@@ -61,7 +61,7 @@ public class AboutActivity extends AppCompatActivity {
         CardView about_googleplus = (CardView) findViewById(R.id.about_googleplus);
 
         header.setBackgroundColor(appPreferences.getPrimaryColorPref());
-        appNameVersion.setText(getResources().getString(R.string.app_name) + " Beta v" + UtilsApp.getAppVersionName(getApplicationContext()));
+        appNameVersion.setText(getResources().getString(R.string.app_name) + " " + UtilsApp.getAppVersionName(getApplicationContext()) + " \"" + getResources().getString(R.string.app_codename) + "\"");
         about_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
