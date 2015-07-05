@@ -49,7 +49,7 @@
     <string name="dialog_clear_data_success">Data deleted</string>
     <string name="dialog_clear_data_success_description">All data for %s has been removed</string>
     <string name="dialog_cache_and_data_error">Root required</string>
-    <string name="dialog_cache_and_data_error_description">To delete data your phone must be rooted and root permission should be given. If you have denied access once. Go to SuperUser app to give access to MLManager.</string>
+    <string name="dialog_cache_and_data_error_description">To delete data your device must be rooted with root permission given. If you have denied access once: Go to SuperUser app to give access to ML Manager.</string>
     <string name="dialog_reboot">Reboot is necessary to display the changes. Do you want to reboot now?</string>
     <string name="dialog_cannot_open">%s can\'t be opened because it\'s hidden. Try to unhide before opening this app.</string>
 
