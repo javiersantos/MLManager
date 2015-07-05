@@ -7,6 +7,8 @@
 * [NEW](https://github.com/javiersantos/MLManager/commit/8f35dddfd5a2c07b83480960e35cf4428c7347ba) Animated PullToRefresh.
 * [NEW](https://github.com/javiersantos/MLManager/commit/c5d433cb4317c86a2035c9c1be69bdcfb6e469ce) Add Snackbars and asynchronous functions.
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/0f147f80b9708ce484938ce33657a0471915852e) Delete unused setting ("Delete APKs on every app starts").
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/e11c7b81b003f75b08a5ca1d429167cd541f98c6) "Hidden Apps" has been added to the side menu.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/40a3094556c04794c9db02ba8f02c3d8f30497d3) App starts is now faster.
 
 ### 0.5.1 Beta
 ###### Released: 18 June, 2015
