@@ -2,16 +2,22 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg?style=flat)](http://android-arsenal.com/details/3/2003)
 
-Modern, easy and customizable app manager for Android with Material Design.
+Modern, easy and customizable app manager for Android with root features and Material Design.
 
 ### Features
-* Extract installed & system apps.
-* Share APK with friends using Dropbox, Telegram, email, etc.
+* Extract installed & system apps and save locally as APK.
+* Organize your applications marking them as favorite.
 * Uninstall apps easily.
 * Customization options available in Settings.
 * No root required.
 * Material Design.
 * Really easy to use.
+
+#### Root features
+* Hide apps from launcher.
+* Easily access your hidden apps from the side panel.
+* Remove cache per app.
+* Clean data per app.
 
 ## APK Download
 * [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager) - Recommended -
