@@ -39,7 +39,7 @@
     <string name="dialog_cache">Remove cache</string>
     <string name="dialog_cache_description">Remove the cache for this app</string>
     <string name="dialog_cache_success">Cache deleted</string>
-    <string name="dialog_cache_success_description">Cache for %1$s has been removed</string>
+    <string name="dialog_cache_success_description">Cache for %s has been removed</string>
     <string name="dialog_cache_deleting">Deleting cache files&#8230;</string>
     <string name="dialog_cache_deleting_description">Please wait while cache files are being deleted.</string>
     <string name="dialog_clear_data">Clear data</string>
