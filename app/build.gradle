@@ -8,7 +8,7 @@ android {
         applicationId "com.javiersantos.mlmanager"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 14
+        versionCode 15
         versionName "1.0"
         // Steps before doing a release //
         // 1. Update versionCode and versionName
