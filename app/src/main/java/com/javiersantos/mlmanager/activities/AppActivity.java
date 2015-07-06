@@ -243,7 +243,7 @@ public class AppActivity extends AppCompatActivity {
             fab_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanagerpro"));
+                    startActivity(UtilsApp.goToGooglePlay(MLManagerApplication.getProPackage()));
                 }
             });
         }

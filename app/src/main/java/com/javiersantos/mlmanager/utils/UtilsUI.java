@@ -152,7 +152,7 @@ public class UtilsUI {
                                     recyclerView.setAdapter(appFavoriteAdapter);
                                     break;
                                 case 5:
-                                    context.startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanagerpro"));
+                                    context.startActivity(UtilsApp.goToGooglePlay(MLManagerApplication.getProPackage()));
                                     break;
                                 case 6:
                                     context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));

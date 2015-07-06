@@ -23,4 +23,8 @@ public class MLManagerApplication extends Application {
     public static Boolean isPro() {
         return false;
     }
+
+    public static String getProPackage() {
+        return "com.javiersantos.mlmanagerpro";
+    }
 }
