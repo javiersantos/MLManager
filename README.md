@@ -20,11 +20,15 @@ Modern, easy and customizable app manager for Android with root features and Mat
 * Clean data per app.
 
 ## APK Download
+### ML Manager
 * [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager) - Recommended -
 * [Download on GitHub](https://github.com/javiersantos/MLManager/releases)
 * [Download on F-Droid](https://f-droid.org/repository/browse/?fdid=com.javiersantos.mlmanager)
 
-![ML Manager](http://i.imgur.com/gpBV7FC.png)
+### ML Manager Pro
+* [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanagerpro) - 1.43 $ -
+
+![ML Manager](https://raw.githubusercontent.com/javiersantos/MLManager/master/Screenshots/header-basic.png)
 
 ## Translations
 [Help translating this app](https://crowdin.com/project/ml-manager)
