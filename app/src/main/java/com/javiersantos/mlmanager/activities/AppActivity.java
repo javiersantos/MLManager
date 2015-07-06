@@ -50,6 +50,9 @@ public class AppActivity extends AppCompatActivity {
     private Context context;
     private MenuItem item_favorite;
 
+    // UI variables
+    private FloatingActionsMenu fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +104,7 @@ public class AppActivity extends AppCompatActivity {
         CardView uninstall = (CardView) findViewById(R.id.uninstall_card);
         CardView cache = (CardView) findViewById(R.id.cache_card);
         CardView clearData = (CardView) findViewById(R.id.clear_data_card);
-        FloatingActionsMenu fab = (FloatingActionsMenu) findViewById(R.id.fab);
+        fab = (FloatingActionsMenu) findViewById(R.id.fab);
         FloatingActionButton fab_share = (FloatingActionButton) findViewById(R.id.fab_a);
         final FloatingActionButton fab_hide = (FloatingActionButton) findViewById(R.id.fab_b);
         FloatingActionButton fab_buy = (FloatingActionButton) findViewById(R.id.fab_buy);
@@ -279,8 +282,12 @@ public class AppActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.fade_forward, R.anim.slide_out_right);
+        if (fab.isExpanded()) {
+            fab.collapse();
+        } else {
+            super.onBackPressed();
+            overridePendingTransition(R.anim.fade_forward, R.anim.slide_out_right);
+        }
     }
 
     @Override
