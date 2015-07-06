@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
@@ -25,7 +26,14 @@ public class ExtractFileInBackground extends AsyncTask<Void, String, Boolean> {
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        Boolean status = UtilsApp.copyFile(appInfo);
+        Boolean status;
+
+        if (!appInfo.getAPK().equals(MLManagerApplication.getProPackage())) {
+            status = UtilsApp.copyFile(appInfo);
+        } else {
+            status = UtilsApp.extractMLManagerPro(context, appInfo);
+        }
+
         return status;
     }
 
