@@ -10,6 +10,11 @@ android {
         targetSdkVersion 22
         versionCode 13
         versionName "1.0"
+        // Steps before doing a release //
+        // 1. Update versionCode and versionName
+        // 2. Update applicatonId
+        // 3. Update MLManagerApplication
+        // 4. Update app_name (string)
     }
     buildTypes {
         release {
