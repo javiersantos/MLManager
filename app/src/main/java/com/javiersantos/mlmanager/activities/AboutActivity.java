@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager.activities;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +20,15 @@ public class AboutActivity extends AppCompatActivity {
     // Load Settings
     AppPreferences appPreferences;
 
+    // About variables
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         this.appPreferences = MLManagerApplication.getAppPreferences();
+        this.context = this;
 
         setInitialConfiguration();
         setScreenElements();
@@ -77,7 +82,7 @@ public class AboutActivity extends AppCompatActivity {
         about_googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlay("com.javiersantos.mlmanager"));
+                startActivity(UtilsApp.goToGooglePlay(context.getPackageName()));
             }
         });
         about_googleplus.setOnClickListener(new View.OnClickListener() {
