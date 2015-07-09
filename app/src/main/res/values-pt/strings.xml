@@ -10,7 +10,7 @@
     <string name="action_hidden_apps">Aplicações ocultas</string>
     <string name="action_hide">Ocultar</string>
     <string name="action_unhide">Mostrar</string>
-    <string name="action_buy">Comprar versão Pro</string>
+    <string name="action_buy">Comprar Pro</string>
     <string name="action_buy_description">Com funções root</string>
     <string name="send_to">Enviar \"%s\" por</string>
     <string name="deleting">A apagar&#8230;</string>
@@ -29,7 +29,7 @@
     <string name="dialog_run">Abrir</string>
     <string name="dialog_run_description">Iniciar aplicação</string>
     <string name="dialog_extract">Extrair</string>
-    <string name="dialog_extract_description">Extrair esta aplicação no diretório \"MLManager\"</string>
+    <string name="dialog_extract_description">Extrair para o diretório \"MLManager\"</string>
     <string name="dialog_extract_fail">Falha ao extrair</string>
     <string name="dialog_extract_fail_description">Não foi possível extrair. Experimente após reiniciar o dispositivo.</string>
     <string name="dialog_uninstall">Desinstalar</string>
