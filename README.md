@@ -37,6 +37,7 @@ Modern, easy and customizable app manager for Android with root features and Mat
 * Japanese
 * Portuguese
 * Italian - Thanks to Lucian Sipos -
+* Polish - Thanks to TykTak -
 
 ## Third Party Libraries
 * [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
@@ -46,6 +47,7 @@ Modern, easy and customizable app manager for Android with root features and Mat
 * [Materialish Progress](https://github.com/pnikosis/materialish-progress)
 * [Material Drawer](https://github.com/mikepenz/MaterialDrawer)
 * [RecyclerViewFastScroller](https://github.com/danoz73/RecyclerViewFastScroller)
+* [Phoenix](https://github.com/Yalantis/Phoenix)
 
 ## License
 
