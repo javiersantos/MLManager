@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if (search.isEmpty()) {
             ((AppAdapter) recyclerView.getAdapter()).getFilter().filter("");
         } else {
-            ((AppAdapter) recyclerView.getAdapter()).getFilter().filter(search);
+            ((AppAdapter) recyclerView.getAdapter()).getFilter().filter(search.toLowerCase());
         }
 
         return false;
