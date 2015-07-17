@@ -89,6 +89,24 @@ public class UtilsRoot {
         return status;
     }
 
+    public static boolean uninstallWithRootPermission(String source) {
+        boolean status = false;
+        try {
+            String[] command = new String[]{"su", "-c", "rm -r " + source + "\n"};
+
+            Process process = Runtime.getRuntime().exec(command);
+            process.waitFor();
+            int i = process.exitValue();
+            if (i == 0) {
+                status = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
     public static boolean rebootSystem() {
         boolean status = false;
         try {

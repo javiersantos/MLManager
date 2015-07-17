@@ -39,6 +39,8 @@
     <string name="dialog_extract_fail_description">Unable to extract this APK. Please, try to restart your device.</string>
     <string name="dialog_uninstall">Uninstall</string>
     <string name="dialog_uninstall_description">Uninstall this app right now</string>
+    <string name="dialog_uninstalling">Uninstalling %s APK&#8230;</string>
+    <string name="dialog_uninstalling_description">ML Manager is uninstalling this app. Please wait.</string>
     <string name="dialog_cache">Remove cache</string>
     <string name="dialog_cache_description">Remove the cache for this app</string>
     <string name="dialog_cache_success">Cache deleted</string>
@@ -51,10 +53,12 @@
     <string name="dialog_clear_data_deleting_description">Please wait while all files are being deleted.</string>
     <string name="dialog_clear_data_success">Data deleted</string>
     <string name="dialog_clear_data_success_description">All data for %s has been removed</string>
-    <string name="dialog_cache_and_data_error">Root required</string>
-    <string name="dialog_cache_and_data_error_description">To delete data your device must be rooted with root permission given. If you have denied access once: Go to SuperUser app to give access to ML Manager.</string>
+    <string name="dialog_root_required">Root required</string>
+    <string name="dialog_root_required_description">Your device must be rooted with root permission given. If you have denied access once: Go to SuperUser app to give access to ML Manager.</string>
     <string name="dialog_reboot">Reboot is necessary to display the changes. Do you want to reboot now?</string>
     <string name="dialog_cannot_open">%s can\'t be opened because it\'s hidden. Try to unhide before opening this app.</string>
+    <string name="dialog_uninstall_root">Are you sure you want to uninstall?</string>
+    <string name="dialog_uninstall_root_description">You are just one step of removing a system app. Do not delete it if you are unsure, it could cause malfunction of the device.</string>
 
     <!-- Buttons -->
     <string name="button_cancel">Cancel</string>
@@ -63,6 +67,7 @@
     <string name="button_share">Share APK</string>
     <string name="button_undo">Undo</string>
     <string name="button_reboot">Reboot</string>
+    <string name="button_uninstall">Uninstall</string>
 
     <!-- Settings -->
     <string name="settings_delete_all">Delete all extracted APKs</string>

@@ -28,6 +28,7 @@ import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.async.DeleteDataInBackground;
 import com.javiersantos.mlmanager.async.ExtractFileInBackground;
+import com.javiersantos.mlmanager.async.UninstallInBackground;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsRoot;
 import com.javiersantos.mlmanager.utils.UtilsApp;
@@ -127,11 +128,9 @@ public class AppActivity extends AppCompatActivity {
         if (appInfo.isSystem()) {
             icon_googleplay.setVisibility(View.GONE);
             start.setVisibility(View.GONE);
-            uninstall.setVisibility(View.GONE);
 
             googleplay.setForeground(null);
             start.setForeground(null);
-            uninstall.setForeground(null);
         } else {
             googleplay.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -174,6 +173,25 @@ public class AppActivity extends AppCompatActivity {
         });
 
         if(UtilsRoot.isRooted() && MLManagerApplication.isPro()) {
+            if (appInfo.isSystem()) {
+                uninstall.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MaterialDialog.Builder materialBuilder = UtilsDialog.showUninstall(context)
+                                .callback(new MaterialDialog.ButtonCallback() {
+                                    @Override
+                                    public void onPositive(MaterialDialog dialog) {
+                                        MaterialDialog dialogUninstalling = UtilsDialog.showTitleContentWithProgress(context
+                                                , getResources().getString(R.string.dialog_uninstalling)
+                                                , getResources().getString(R.string.dialog_uninstalling_description));
+                                        new UninstallInBackground(context, dialogUninstalling, appInfo).execute();
+                                        dialog.dismiss();
+                                    }
+                                });
+                        materialBuilder.show();
+                    }
+                });
+            }
             cache.setVisibility(View.VISIBLE);
             cache.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -196,6 +214,9 @@ public class AppActivity extends AppCompatActivity {
                             , getResources().getString(R.string.dialog_clear_data_success_description, appInfo.getName())).execute();
                 }
             });
+        } else if (appInfo.isSystem()) {
+            uninstall.setVisibility(View.GONE);
+            uninstall.setForeground(null);
         }
 
         // FAB (Share)
@@ -257,7 +278,7 @@ public class AppActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Log.i("App", "OK");
                 finish();
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(context, MainActivity.class));
             } else if (resultCode == RESULT_CANCELED) {
                 Log.i("App", "CANCEL");
             }
