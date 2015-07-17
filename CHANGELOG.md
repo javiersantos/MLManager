@@ -1,6 +1,13 @@
+### 1.0.1
+###### Released: 17 July, 2015
+* [NEW](https://github.com/javiersantos/MLManager/commit/ecd0435fcfb8ed0afa0b416b0755be13863cb549) System apps can be now uninstalled.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/707324e723268c3ead8ed0d1852ce2f8a05ff229) Translators now appear on About.
+* [FIX](https://github.com/javiersantos/MLManager/commit/aaf66ae1996989b49a80fa9b5a4def23433ba3a2) Search apps were not working properly when including upper case.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/b575040574f6eaf9b10539e75c44ccd658f34727) Polish translation. Thanks to TykTak.
+
 ### 1.0
 ###### Code name: Diagolo
-###### To Be Released
+###### Released: 6 July, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/9aaa6baf6b1295e1d01e9665d3be36225903c17c) Root feature: hide apps.
 * [NEW](https://github.com/javiersantos/MLManager/commit/e6e176c739a7491b98dd513046672e624d888e03) Root feature: clear cache and clear data for every app.
 * [NEW](https://github.com/javiersantos/MLManager/commit/09a9453ff17cad95a18298e331ca12195ed66760) Mark apps as favorite.
@@ -18,8 +25,8 @@
 * [IMPROVE](https://github.com/javiersantos/MLManager/commit/80ecb9815c27651bb4d08d2a51fa2ed0ba996d46) A modern icon has been added for apps without icon.
 * [FIX](https://github.com/javiersantos/MLManager/commit/6e996eafe6fc5333c8953588717778ee947d1783) Navigation Drawer uses the correct position for "Settings" and "About".
 * [FIX](https://github.com/javiersantos/MLManager/commit/3b0732807d47bf4f6ce8313bbb0c33983668b5fb) FAB was showing as a square for some Android 4+ devices.
-* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/3a7a1cc2a790c07454610576d6fe3eec55c3ba70) Portuguese.
-* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/403ffcaad45567320e54f5fcbfa41355f0dc4f37) Japanese.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/3a7a1cc2a790c07454610576d6fe3eec55c3ba70) Portuguese translation.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/403ffcaad45567320e54f5fcbfa41355f0dc4f37) Japanese translation.
 
 ### 0.5 Beta
 ###### Released: 14 June, 2015
