@@ -16,7 +16,7 @@
     <string name="deleting">Eliminando&#8230;</string>
     <string name="loading">Cargando&#8230;</string>
     <string name="deleting_done">¡Archivos eliminados!</string>
-    <string name="deleting_error">Algo fué mal eliminando los archivos</string>
+    <string name="deleting_error">Algo fue mal eliminando los archivos</string>
     <string name="search">Buscar</string>
     <string name="search_hint">Buscar por nombre&#8230;</string>
     <string name="search_noresults">No se encontraron resultados para esa búsqueda</string>
