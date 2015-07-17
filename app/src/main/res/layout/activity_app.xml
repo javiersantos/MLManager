@@ -55,12 +55,10 @@
         android:layout_marginRight="16dp"
         android:id="@+id/relativeLayout2">
         <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/id_card"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            card_view:cardCornerRadius="2dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_margin="5dp">
             <ImageView
@@ -96,12 +94,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp">
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/start_card"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
@@ -111,7 +107,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/card_horizontal_margin"
                     android:text="@string/dialog_run"
-                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
                     android:fontFamily="sans-serif-thin"
@@ -121,19 +116,16 @@
                     android:layout_marginRight="@dimen/card_description_horizontal_margin"
                     android:layout_marginTop="50dp"
                     android:text="@string/dialog_run_description"
-                    android:textColor="@android:color/black"
                     android:textSize="14dp"
                     android:ellipsize="end"
                     android:singleLine="true" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_below="@id/start_card"
                 android:id="@+id/extract_card"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
@@ -143,7 +135,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/card_horizontal_margin"
                     android:text="@string/dialog_extract"
-                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
                     android:fontFamily="sans-serif-thin"
@@ -153,19 +144,16 @@
                     android:layout_marginRight="@dimen/card_description_horizontal_margin"
                     android:layout_marginTop="50dp"
                     android:text="@string/dialog_extract_description"
-                    android:textColor="@android:color/black"
                     android:textSize="14dp"
                     android:ellipsize="end"
                     android:singleLine="true" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_below="@id/extract_card"
                 android:id="@+id/uninstall_card"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp">
                 <TextView
@@ -175,7 +163,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/card_horizontal_margin"
                     android:text="@string/dialog_uninstall"
-                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
                     android:fontFamily="sans-serif-thin"
@@ -185,19 +172,16 @@
                     android:layout_marginRight="@dimen/card_description_horizontal_margin"
                     android:layout_marginTop="50dp"
                     android:text="@string/dialog_uninstall_description"
-                    android:textColor="@android:color/black"
                     android:textSize="14dp"
                     android:ellipsize="end"
                     android:singleLine="true" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_below="@id/uninstall_card"
                 android:id="@+id/cache_card"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp"
                 android:visibility="gone">
@@ -208,7 +192,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/card_horizontal_margin"
                     android:text="@string/dialog_cache"
-                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
                     android:fontFamily="sans-serif-thin"
@@ -217,20 +200,17 @@
                     android:layout_marginLeft="@dimen/card_description_horizontal_margin"
                     android:layout_marginRight="@dimen/card_description_horizontal_margin"
                     android:layout_marginTop="50dp"
-                    android:textColor="@android:color/black"
                     android:text="@string/dialog_cache_description"
                     android:textSize="14dp"
                     android:ellipsize="end"
                     android:singleLine="true" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_below="@id/cache_card"
                 android:id="@+id/clear_data_card"
                 android:layout_width="match_parent"
                 android:layout_height="85dp"
-                card_view:cardCornerRadius="2dp"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="5dp"
                 android:visibility="gone">
@@ -241,7 +221,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/card_horizontal_margin"
                     android:text="@string/dialog_clear_data"
-                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
                 <TextView
                     android:id="@+id/clear_data_description"
@@ -251,7 +230,6 @@
                     android:layout_marginLeft="@dimen/card_description_horizontal_margin"
                     android:layout_marginRight="@dimen/card_description_horizontal_margin"
                     android:layout_marginTop="50dp"
-                    android:textColor="@android:color/black"
                     android:text="@string/dialog_clear_data_description"
                     android:textSize="14dp"
                     android:ellipsize="end"
