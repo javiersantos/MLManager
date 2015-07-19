@@ -8,13 +8,13 @@ Modern, easy and customizable app manager for Android with root features and Mat
 * Extract installed & system apps and save locally as APK.
 * Organize your applications marking them as favorite.
 * Uninstall apps easily.
-* Customization options available in Settings.
+* Customizations available in Settings.
 * No root required.
 * Material Design.
 * Really easy to use.
 
 #### Root features
-* Hide apps from launcher.
+* Hide apps from the device launcher.
 * Easily access your hidden apps from the side panel.
 * Remove cache per app.
 * Clean data per app.
