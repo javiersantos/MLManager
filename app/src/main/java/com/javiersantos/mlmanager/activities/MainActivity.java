@@ -1,6 +1,7 @@
 package com.javiersantos.mlmanager.activities;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -334,6 +335,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         searchItem = menu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
