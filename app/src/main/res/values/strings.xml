@@ -58,7 +58,9 @@
     <string name="dialog_reboot">Reboot is necessary to display the changes. Do you want to reboot now?</string>
     <string name="dialog_cannot_open">%s can\'t be opened because it\'s hidden. Try to unhide before opening this app.</string>
     <string name="dialog_uninstall_root">Are you sure you want to uninstall?</string>
-    <string name="dialog_uninstall_root_description">You are one step away of removing a system app. Do not delete it if you are unsure, it could cause malfunction of the device. Once uninstalled it is highly recommended to restart.</string>
+    <string name="dialog_uninstall_root_description">You are one step away of removing a system app. Do not delete it if you are unsure, it could cause malfunction of the device.</string>
+    <string name="dialog_uninstalled_root">%s uninstalled</string>
+    <string name="dialog_uninstalled_root_description">Some changes will not be applied until you restart your device. Do you want to restart now?</string>
 
     <!-- Buttons -->
     <string name="button_cancel">Cancel</string>
@@ -67,6 +69,7 @@
     <string name="button_share">Share APK</string>
     <string name="button_undo">Undo</string>
     <string name="button_reboot">Reboot</string>
+    <string name="button_later">Later</string>
     <string name="button_uninstall">Uninstall</string>
 
     <!-- Settings -->
