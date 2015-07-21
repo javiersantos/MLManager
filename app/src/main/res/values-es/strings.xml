@@ -53,7 +53,7 @@
     <string name="dialog_reboot">Es necesario reiniciar para mostrar los cambios. ¿Quieres reiniciar ahora?</string>
     <string name="dialog_cannot_open">%s no puede iniciarse porque está oculto. Intenta mostrarla antes de abrir la aplicación.</string>
     <string name="dialog_uninstall_root">¿Seguro que quieres desinstalar?</string>
-    <string name="dialog_uninstall_root_description">Estás a un solo paso de eliminar una aplicación del sistema. No desinstales si no estás seguro, podría ocasionar un mal funcionamiento del dispositivo.</string>
+    <string name="dialog_uninstall_root_description">Estás a un solo paso de eliminar una aplicación del sistema. No desinstales si no estás seguro, podría ocasionar un mal funcionamiento del dispositivo. Una vez desinstalada es altamente recomendable reiniciar.</string>
     <string name="button_cancel">Cancelar</string>
     <string name="button_ok">Aceptar</string>
     <string name="button_extract">Extraer</string>
