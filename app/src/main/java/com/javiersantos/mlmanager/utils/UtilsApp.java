@@ -29,6 +29,10 @@ public class UtilsApp {
     // Load Settings
     private static AppPreferences appPreferences;
 
+    /**
+     * Folder where APKs will be saved
+     * @return File with the path
+     */
     public static File getAppFolder() {
         return new File(Environment.getExternalStorageDirectory() + "/MLManager");
     }
@@ -49,6 +53,11 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Retrieve the name of the extracted APK
+     * @param appInfo
+     * @return String with the output name
+     */
     public static String getAPKFilename(AppInfo appInfo) {
         appPreferences = MLManagerApplication.getAppPreferences();
         String res;
@@ -71,10 +80,19 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Retrieve the name of the extracted APK with the path
+     * @param appInfo AppInfo
+     * @return File with the path and output name
+     */
     public static File getOutputFilename(AppInfo appInfo) {
         return new File(getAppFolder().getPath() + "/" + getAPKFilename(appInfo) + ".apk");
     }
 
+    /**
+     * Delete all the extracted APKs
+     * @return true if all files have been deleted, false otherwise
+     */
     public static Boolean deleteAppFiles() {
         Boolean res = false;
         File f = getAppFolder();
@@ -90,6 +108,11 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Intent for a Google Play URL
+     * @param id PackageName on Google Play
+     * @return Intent
+     */
     public static Intent goToGooglePlay(String id) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + id));
@@ -97,6 +120,11 @@ public class UtilsApp {
         return intent;
     }
 
+    /**
+     * Intent for a Google Plus URL
+     * @param id Name on Google Play
+     * @return Intent
+     */
     public static Intent goToGooglePlus(String id) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://plus.google.com/" + id));
@@ -104,6 +132,11 @@ public class UtilsApp {
         return intent;
     }
 
+    /**
+     * Retrieve your own app version
+     * @param context Context
+     * @return String with the app version
+     */
     public static String getAppVersionName(Context context) {
         String res = "0.0.0.0";
         try {
@@ -115,6 +148,11 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Retrieve your own app version code
+     * @param context Context
+     * @return int with the app version code
+     */
     public static int getAppVersionCode(Context context) {
         int res = 0;
         try {
@@ -136,6 +174,12 @@ public class UtilsApp {
         return intent;
     }
 
+    /**
+     * Retrieve if an app has been marked as favorite
+     * @param apk App to check
+     * @param appFavorites Set with apps
+     * @return true if the app is marked as favorite, false otherwise
+     */
     public static Boolean isAppFavorite(String apk, Set<String> appFavorites) {
         Boolean res = false;
         if (appFavorites.contains(apk)) {
@@ -145,6 +189,12 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Save the app as favorite
+     * @param context Context
+     * @param menuItem Item of the ActionBar
+     * @param isFavorite true if the app is favorite, false otherwise
+     */
     public static void setAppFavorite(Context context, MenuItem menuItem, Boolean isFavorite) {
         if (isFavorite) {
             menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_white));
@@ -153,6 +203,12 @@ public class UtilsApp {
         }
     }
 
+    /**
+     * Retrieve if an app is hidden
+     * @param appInfo App to check
+     * @param appHidden Set with apps
+     * @return true if the app is hidden, false otherwise
+     */
     public static Boolean isAppHidden(AppInfo appInfo, Set<String> appHidden) {
         Boolean res = false;
         if (appHidden.contains(appInfo.toString())) {
@@ -162,6 +218,12 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Save the app as hidden
+     * @param context Context
+     * @param fabHide FAB button to change
+     * @param isHidden true if the app is hidden, false otherwise
+     */
     public static void setAppHidden(Context context, FloatingActionButton fabHide, Boolean isHidden) {
         if (isHidden) {
             fabHide.setTitle(context.getResources().getString(R.string.action_unhide));
@@ -172,6 +234,12 @@ public class UtilsApp {
         }
     }
 
+    /**
+     * Save an app icon to cache folder
+     * @param context Context
+     * @param appInfo App to save icon
+     * @return true if the icon has been saved, false otherwise
+     */
     public static Boolean saveIconToCache(Context context, AppInfo appInfo) {
         Boolean res = false;
 
@@ -192,11 +260,23 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Delelete an app icon from cache folder
+     * @param context Context
+     * @param appInfo App to remove icon
+     * @return true if the icon has been removed, false otherwise
+     */
     public static Boolean removeIconFromCache(Context context, AppInfo appInfo) {
         File file = new File(context.getCacheDir(), appInfo.getAPK());
         return file.delete();
     }
 
+    /**
+     * Get an app icon from cache folder
+     * @param context Context
+     * @param appInfo App to get icon
+     * @return Drawable with the app icon
+     */
     public static Drawable getIconFromCache(Context context, AppInfo appInfo) {
         Drawable res;
 

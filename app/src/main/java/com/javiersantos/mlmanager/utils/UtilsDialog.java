@@ -2,6 +2,7 @@ package com.javiersantos.mlmanager.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -55,7 +56,17 @@ public class UtilsDialog {
     // 1: APK Extracted
     // 2: Snackbar without Button
     // 3: App unhide
-    public static SnackBar showSnackbar(Activity activity, String text, String buttonText, final File file, Integer style) {
+
+    /**
+     * Show Snackbar
+     * @param activity Activity
+     * @param text Text of the Snackbar
+     * @param buttonText Button text of the Snackbar
+     * @param file File to remove if style == 1
+     * @param style 1 for extracted APKs, 2 display without button and 3 for hidden apps
+     * @return Snackbar to show
+     */
+    public static SnackBar showSnackbar(Activity activity, String text, @Nullable String buttonText, @Nullable final File file, Integer style) {
         SnackBar snackBar;
 
         switch (style) {

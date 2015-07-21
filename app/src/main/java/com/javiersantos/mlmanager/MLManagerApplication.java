@@ -18,8 +18,10 @@ public class MLManagerApplication extends Application {
         return sAppPreferences;
     }
 
-    // TRUE: ML Manager Pro
-    // FALSE: ML Manager
+    /**
+     * Retrieve ML Manager Pro
+     * @return true for ML Manager Pro, false otherwise
+     */
     public static Boolean isPro() {
         return false;
     }
