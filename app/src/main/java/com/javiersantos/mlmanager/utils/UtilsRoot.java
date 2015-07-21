@@ -92,13 +92,19 @@ public class UtilsRoot {
     public static boolean uninstallWithRootPermission(String source) {
         boolean status = false;
         try {
-            String[] command = new String[]{"su", "-c", "rm -r " + source + "\n"};
+            String[] command_mount = new String[]{"su", "-c", "mount -o remount,rw /system /system\n"};
+            String[] command_delete = new String[]{"su", "-c", "rm -r " + "/" + source + "\n"};
 
-            Process process = Runtime.getRuntime().exec(command);
+            Process process = Runtime.getRuntime().exec(command_mount);
             process.waitFor();
             int i = process.exitValue();
             if (i == 0) {
-                status = true;
+                process = Runtime.getRuntime().exec(command_delete);
+                process.waitFor();
+                i = process.exitValue();
+                if (i == 0) {
+                    status = true;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

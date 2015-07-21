@@ -182,7 +182,7 @@ public class AppActivity extends AppCompatActivity {
                                     @Override
                                     public void onPositive(MaterialDialog dialog) {
                                         MaterialDialog dialogUninstalling = UtilsDialog.showTitleContentWithProgress(context
-                                                , getResources().getString(R.string.dialog_uninstalling)
+                                                , String.format(getResources().getString(R.string.dialog_uninstalling),appInfo.getName())
                                                 , getResources().getString(R.string.dialog_uninstalling_description));
                                         new UninstallInBackground(context, dialogUninstalling, appInfo).execute();
                                         dialog.dismiss();
@@ -277,8 +277,10 @@ public class AppActivity extends AppCompatActivity {
         if (requestCode == UNINSTALL_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Log.i("App", "OK");
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
-                startActivity(new Intent(context, MainActivity.class));
+                startActivity(intent);
             } else if (resultCode == RESULT_CANCELED) {
                 Log.i("App", "CANCEL");
             }
