@@ -182,7 +182,7 @@ public class AppActivity extends AppCompatActivity {
                                     @Override
                                     public void onPositive(MaterialDialog dialog) {
                                         MaterialDialog dialogUninstalling = UtilsDialog.showTitleContentWithProgress(context
-                                                , String.format(getResources().getString(R.string.dialog_uninstalling),appInfo.getName())
+                                                , String.format(getResources().getString(R.string.dialog_uninstalling), appInfo.getName())
                                                 , getResources().getString(R.string.dialog_uninstalling_description));
                                         new UninstallInBackground(context, dialogUninstalling, appInfo).execute();
                                         dialog.dismiss();

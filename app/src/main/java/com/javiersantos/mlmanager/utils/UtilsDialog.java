@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gc.materialdesign.widgets.SnackBar;
+import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 
 import java.io.File;
@@ -53,9 +54,15 @@ public class UtilsDialog {
         return materialBuilder;
     }
 
-    // 1: APK Extracted
-    // 2: Snackbar without Button
-    // 3: App unhide
+    public static MaterialDialog.Builder showUninstalled(Context context, AppInfo appInfo) {
+        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+                .title(String.format(context.getResources().getString(R.string.dialog_uninstalled_root), appInfo.getName()))
+                .content(context.getResources().getString(R.string.dialog_uninstalled_root_description))
+                .positiveText(context.getResources().getString(R.string.button_reboot))
+                .negativeText(context.getResources().getString(R.string.button_later))
+                .cancelable(false);
+        return materialBuilder;
+    }
 
     /**
      * Show Snackbar

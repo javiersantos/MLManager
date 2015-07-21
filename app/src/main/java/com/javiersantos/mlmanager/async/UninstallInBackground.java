@@ -35,10 +35,25 @@ public class UninstallInBackground extends AsyncTask<Void, String, Boolean> {
         super.onPostExecute(status);
         dialog.dismiss();
         if (status) {
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            activity.finish();
-            context.startActivity(intent);
+            MaterialDialog.Builder materialDialog = UtilsDialog.showUninstalled(context, appInfo);
+                    materialDialog.callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            UtilsRoot.rebootSystem();
+                            dialog.dismiss();
+                        }
+                    });
+                    materialDialog.callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onNegative(MaterialDialog dialog) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(context, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            activity.finish();
+                            context.startActivity(intent);
+                        }
+                    });
+            materialDialog.show();
         } else {
             UtilsDialog.showTitleContent(context, context.getResources().getString(R.string.dialog_root_required), context.getResources().getString(R.string.dialog_root_required_description));
         }

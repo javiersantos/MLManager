@@ -92,10 +92,11 @@ public class UtilsRoot {
     public static boolean uninstallWithRootPermission(String source) {
         boolean status = false;
         try {
-            String[] command_mount = new String[]{"su", "-c", "mount -o remount,rw /system /system\n"};
+            String[] command_write = new String[]{"su", "-c", "mount -o rw,remount /system\n"};
             String[] command_delete = new String[]{"su", "-c", "rm -r " + "/" + source + "\n"};
+            String[] command_read = new String[]{"su", "-c", "mount -o ro,remount /system\n"};
 
-            Process process = Runtime.getRuntime().exec(command_mount);
+            Process process = Runtime.getRuntime().exec(command_write);
             process.waitFor();
             int i = process.exitValue();
             if (i == 0) {
@@ -103,7 +104,12 @@ public class UtilsRoot {
                 process.waitFor();
                 i = process.exitValue();
                 if (i == 0) {
-                    status = true;
+                    process = Runtime.getRuntime().exec(command_read);
+                    process.waitFor();
+                    i = process.exitValue();
+                    if (i == 0) {
+                        status = true;
+                    }
                 }
             }
         } catch (Exception e) {
