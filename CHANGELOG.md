@@ -1,3 +1,9 @@
+### 1.0.2
+###### Released: 21 July, 2015
+* [FIX](https://github.com/javiersantos/MLManager/commit/e629e75998a3456e9594f68812406b6c38b489d2) Search View displays the correct translation.
+* [FIX](https://github.com/javiersantos/MLManager/commit/deef7b923b9e7aae3ad6cf887a5a782be751c71b) Refresh Navigation Drawer when it is reloaded.
+* [FIX](https://github.com/javiersantos/MLManager/commit/2e57b3c25118af8b1ee0780ffc425a9416b66c3b) System apps are now uninstalled properly.
+
 ### 1.0.1
 ###### Released: 17 July, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/ecd0435fcfb8ed0afa0b416b0755be13863cb549) System apps can be now uninstalled.
