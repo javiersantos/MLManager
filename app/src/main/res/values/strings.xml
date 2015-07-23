@@ -23,6 +23,7 @@
     <string name="search">Search</string>
     <string name="search_hint">Search by name&#8230;</string>
     <string name="search_noresults">No results were found for your search</string>
+    <string name="copied_clipboard">Copied to clipboard</string>
 
     <!-- Dialogs -->
     <string name="dialog_saved">\"%s\" APK saved</string>

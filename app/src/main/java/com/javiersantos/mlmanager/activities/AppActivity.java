@@ -1,6 +1,8 @@
 package com.javiersantos.mlmanager.activities;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,6 +51,7 @@ public class AppActivity extends AppCompatActivity {
     // Configuration variables
     private int UNINSTALL_REQUEST_CODE = 1;
     private Context context;
+    private Activity activity;
     private MenuItem item_favorite;
 
     // UI variables
@@ -59,6 +62,7 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         this.context = this;
+        this.activity = (Activity) context;
         this.appPreferences = MLManagerApplication.getAppPreferences();
 
         getInitialConfiguration();
@@ -128,14 +132,25 @@ public class AppActivity extends AppCompatActivity {
         if (appInfo.isSystem()) {
             icon_googleplay.setVisibility(View.GONE);
             start.setVisibility(View.GONE);
-
-            googleplay.setForeground(null);
-            start.setForeground(null);
         } else {
             googleplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
+                }
+            });
+
+            googleplay.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    ClipData clipData;
+
+                    ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    clipData = ClipData.newPlainText("text", appInfo.getAPK());
+                    clipboardManager.setPrimaryClip(clipData);
+                    UtilsDialog.showSnackbar(activity, context.getResources().getString(R.string.copied_clipboard), null, null, 2).show();
+
+                    return false;
                 }
             });
 
@@ -147,7 +162,7 @@ public class AppActivity extends AppCompatActivity {
                         startActivity(intent);
                     } catch (NullPointerException e) {
                         e.printStackTrace();
-                        UtilsDialog.showSnackbar((Activity) context, String.format(getResources().getString(R.string.dialog_cannot_open), appInfo.getName()), null, null, 2).show();
+                        UtilsDialog.showSnackbar(activity, String.format(getResources().getString(R.string.dialog_cannot_open), appInfo.getName()), null, null, 2).show();
                     }
                 }
             });
@@ -244,7 +259,7 @@ public class AppActivity extends AppCompatActivity {
                                 UtilsApp.removeIconFromCache(context, appInfo);
                                 appsHidden.remove(appInfo.toString());
                                 appPreferences.setHiddenApps(appsHidden);
-                                UtilsDialog.showSnackbar((Activity) context, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
+                                UtilsDialog.showSnackbar(activity, getResources().getString(R.string.dialog_reboot), getResources().getString(R.string.button_reboot), null, 3).show();
                             }
                         } else {
                             UtilsApp.saveIconToCache(context, appInfo);
