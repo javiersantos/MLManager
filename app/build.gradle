@@ -5,30 +5,37 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.javiersantos.mlmanager"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 18
         versionName "1.0.2"
         // Steps before doing a release //
         // 1. Update versionCode and versionName
-        // 2. Update applicatonId
-        // 3. Update MLManagerApplication
-        // 4. Update app_name (string)
+        // 2. Update MLManagerApplication
+        // 3. Update app_name (string)
     }
+
+    productFlavors {
+        pro {
+            applicationId = "com.javiersantos.mlmanager.pro"
+        }
+        basic {
+            applicationId = "com.javiersantos.mlmanager"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    android {
-        lintOptions {
-            checkReleaseBuilds false
-            // Or, if you prefer, you can continue to check for errors in release builds,
-            // but continue the build even when errors are found:
-            abortOnError false
-        }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 
