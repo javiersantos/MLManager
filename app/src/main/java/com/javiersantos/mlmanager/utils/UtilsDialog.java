@@ -18,7 +18,7 @@ public class UtilsDialog {
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
                 .title(title)
                 .content(content)
-                .positiveText(context.getResources().getString(R.string.button_ok))
+                .positiveText(context.getResources().getString(android.R.string.ok))
                 .cancelable(true)
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -43,7 +43,7 @@ public class UtilsDialog {
                 .title(context.getResources().getString(R.string.dialog_uninstall_root))
                 .content(context.getResources().getString(R.string.dialog_uninstall_root_description))
                 .positiveText(context.getResources().getString(R.string.button_uninstall))
-                .negativeText(context.getResources().getString(R.string.button_cancel))
+                .negativeText(context.getResources().getString(android.R.string.cancel))
                 .cancelable(false)
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

@@ -26,15 +26,22 @@ import java.io.IOException;
 import java.util.Set;
 
 public class UtilsApp {
-    // Load Settings
-    private static AppPreferences appPreferences;
 
     /**
-     * Folder where APKs will be saved
+     * Default folder where APKs will be saved
+     * @return File with the path
+     */
+    public static File getDefaultAppFolder() {
+        return new File(Environment.getExternalStorageDirectory() + "/MLManager");
+    }
+
+    /**
+     * Custom folder where APKs will be saved
      * @return File with the path
      */
     public static File getAppFolder() {
-        return new File(Environment.getExternalStorageDirectory() + "/MLManager");
+        AppPreferences appPreferences = MLManagerApplication.getAppPreferences();
+        return new File(appPreferences.getCustomPath());
     }
 
     public static Boolean copyFile(AppInfo appInfo) {
@@ -59,7 +66,7 @@ public class UtilsApp {
      * @return String with the output name
      */
     public static String getAPKFilename(AppInfo appInfo) {
-        appPreferences = MLManagerApplication.getAppPreferences();
+        AppPreferences appPreferences = MLManagerApplication.getAppPreferences();
         String res;
 
         switch (appPreferences.getCustomFilename()) {

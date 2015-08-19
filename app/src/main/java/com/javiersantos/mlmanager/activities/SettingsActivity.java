@@ -9,6 +9,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,21 +23,21 @@ import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+import net.rdrei.android.dirchooser.DirectoryChooserFragment;
+
 import yuku.ambilwarna.widget.AmbilWarnaPreference;
 
-public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener, DirectoryChooserFragment.OnFragmentInteractionListener {
     // Load Settings
     private AppPreferences appPreferences;
     private Toolbar toolbar;
+    private Context context;
 
-    // Settings variables
-    private SharedPreferences prefs;
-    private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack;
+    private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack, prefCustomPath;
     private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
     private ListPreference prefCustomFilename, prefSortMode;
-    private String versionName;
-    private int versionCode;
-    private Context context;
+    private DirectoryChooserFragment chooserDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         this.context = this;
         this.appPreferences = MLManagerApplication.getAppPreferences();
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         prefVersion = findPreference("prefVersion");
@@ -56,11 +57,12 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefNavigationBlack = findPreference("prefNavigationBlack");
         prefCustomFilename = (ListPreference) findPreference("prefCustomFilename");
         prefSortMode = (ListPreference) findPreference("prefSortMode");
+        prefCustomPath = findPreference("prefCustomPath");
 
         setInitialConfiguration();
 
-        versionName = UtilsApp.getAppVersionName(context);
-        versionCode = UtilsApp.getAppVersionCode(context);
+        String versionName = UtilsApp.getAppVersionName(context);
+        int versionCode = UtilsApp.getAppVersionCode(context);
 
         prefVersion.setTitle(getResources().getString(R.string.app_name) + " v" + versionName + " (" + versionCode + ")");
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -77,6 +79,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         // prefSortMode
         setSortModeSummary();
+
+        // prefCustomPath
+        setCustomPathSummary();
 
         // prefDeleteAll
         prefDeleteAll.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -102,6 +107,24 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 appPreferences.setPrimaryColorPref(getResources().getColor(R.color.primary));
                 appPreferences.setFABColorPref(getResources().getColor(R.color.fab));
                 return true;
+            }
+        });
+
+        // prefCustomPath
+        prefCustomPath.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                final DirectoryChooserConfig chooserConfig = DirectoryChooserConfig.builder()
+                        .newDirectoryName("ML Manager APKs")
+                        .allowReadOnlyDirectory(false)
+                        .allowNewDirectoryNameModification(true)
+                        .initialDirectory(appPreferences.getCustomPath())
+                        .build();
+
+                chooserDialog = DirectoryChooserFragment.newInstance(chooserConfig);
+                chooserDialog.show(getFragmentManager(), null);
+
+                return false;
             }
         });
 
@@ -148,13 +171,22 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     private void setCustomFilenameSummary() {
-        int filenameValue = new Integer(appPreferences.getCustomFilename())-1;
+        int filenameValue = Integer.valueOf(appPreferences.getCustomFilename())-1;
         prefCustomFilename.setSummary(getResources().getStringArray(R.array.filenameEntries)[filenameValue]);
     }
 
     private void setSortModeSummary() {
-        int sortValue = new Integer(appPreferences.getSortMode())-1;
+        int sortValue = Integer.valueOf(appPreferences.getSortMode())-1;
         prefSortMode.setSummary(getResources().getStringArray(R.array.sortEntries)[sortValue]);
+    }
+
+    private void setCustomPathSummary() {
+        String path = appPreferences.getCustomPath();
+        if (path.equals(UtilsApp.getDefaultAppFolder().getPath())) {
+            prefCustomPath.setSummary(getResources().getString(R.string.button_default) + ": " + UtilsApp.getDefaultAppFolder().getPath());
+        } else {
+            prefCustomPath.setSummary(path);
+        }
     }
 
     @Override
@@ -165,7 +197,21 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             setCustomFilenameSummary();
         } else if (pref == prefSortMode) {
             setSortModeSummary();
+        } else if (pref == prefCustomPath) {
+            setCustomPathSummary();
         }
+    }
+
+    @Override
+    public void onSelectDirectory(@NonNull String path) {
+        appPreferences.setCustomPath(path);
+        setCustomPathSummary();
+        chooserDialog.dismiss();
+    }
+
+    @Override
+    public void onCancelChooser() {
+        chooserDialog.dismiss();
     }
 
     @Override

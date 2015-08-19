@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.javiersantos.mlmanager"
     android:installLocation="auto">
 
@@ -11,7 +12,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/MLManager"
-        android:name=".MLManagerApplication">
+        android:name=".MLManagerApplication"
+        tools:replace="android:theme">
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name" >
@@ -29,14 +31,11 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".activities.AppActivity">
-        </activity>
+            android:name=".activities.AppActivity" />
         <activity
-            android:name=".activities.SettingsActivity">
-        </activity>
+            android:name=".activities.SettingsActivity" />
         <activity
-            android:name=".activities.AboutActivity">
-        </activity>
+            android:name=".activities.AboutActivity" />
     </application>
 
 </manifest>

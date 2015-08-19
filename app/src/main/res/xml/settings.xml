@@ -7,6 +7,9 @@
             android:key="prefDeleteAll"
             android:title="@string/settings_delete_all"
             android:summary="@string/settings_delete_all_description" />
+        <Preference
+            android:key="prefCustomPath"
+            android:title="@string/settings_custom_path" />
         <ListPreference
             android:key="prefCustomFilename"
             android:title="@string/settings_custom_filename"

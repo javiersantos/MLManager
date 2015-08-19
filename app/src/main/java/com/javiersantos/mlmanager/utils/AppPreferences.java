@@ -21,6 +21,9 @@ public class AppPreferences {
     public static final String KeyCustomFilename = "prefCustomFilename";
     public static final String KeySortMode = "prefSortMode";
     public static final String KeyIsRooted = "prefIsRooted";
+    public static final String KeyCustomPath = "prefCustomPath";
+
+    // List
     public static final String KeyFavoriteApps = "prefFavoriteApps";
     public static final String KeyHiddenApps = "prefHiddenApps";
 
@@ -84,6 +87,15 @@ public class AppPreferences {
     }
     public void setSortMode(String res) {
         editor.putString(KeySortMode, res);
+        editor.commit();
+    }
+
+    public String getCustomPath() {
+        return sharedPreferences.getString(KeyCustomPath, UtilsApp.getDefaultAppFolder().getPath());
+    }
+
+    public void setCustomPath(String path) {
+        editor.putString(KeyCustomPath, path);
         editor.commit();
     }
 
