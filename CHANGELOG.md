@@ -1,5 +1,5 @@
 ### 1.0.3
-###### Released: To Be Released
+###### Released: 19 August, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/b51ff8e555de24df1699081ea7ef711edd078a24) Long press the APK name to copy to the clipboard.
 * [NEW](https://github.com/javiersantos/MLManager/commit/a0a8f7c5facfd8c5925dee2d92c4ffcc27f2ef73) Custom path for extracted APKs.
 
