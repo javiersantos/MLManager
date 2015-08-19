@@ -20,6 +20,7 @@
     <string name="search">Buscar</string>
     <string name="search_hint">Buscar por nombre&#8230;</string>
     <string name="search_noresults">No se encontraron resultados para esa búsqueda</string>
+    <string name="copied_clipboard">Copiado al portapapeles</string>
     <string name="dialog_saved">APK \"%s\" guardado</string>
     <string name="dialog_saved_description">El APK \"%1$s\" ha sido guardado en la carpeta \"MLManager\" con nombre: %2$s</string>
     <string name="dialog_saving">Guardando APK %s&#8230;</string>
@@ -56,16 +57,16 @@
     <string name="dialog_uninstall_root_description">Estás a un solo paso de eliminar una aplicación del sistema. No desinstales si no estás seguro, podría ocasionar un mal funcionamiento del dispositivo.</string>
     <string name="dialog_uninstalled_root">%s desinstalado</string>
     <string name="dialog_uninstalled_root_description">Algunos cambios no se aplicarán hasta reiniciar el dispositivo. ¿Quieres reiniciar ahora?</string>
-    <string name="button_cancel">Cancelar</string>
-    <string name="button_ok">Aceptar</string>
     <string name="button_extract">Extraer</string>
     <string name="button_share">Compartir APK</string>
     <string name="button_undo">Deshacer</string>
     <string name="button_reboot">Reiniciar</string>
     <string name="button_later">Después</string>
     <string name="button_uninstall">Desinstalar</string>
+    <string name="button_default">Por defecto</string>
     <string name="settings_delete_all">Eliminar todos los APK extraídos</string>
     <string name="settings_delete_all_description">Eliminar los archivos APK extraídos en la carpeta de extracción</string>
+    <string name="settings_custom_path">Carpeta personalizada para APK extraídos</string>
     <string name="settings_custom_filename">Nombre de los archivos APK extraídos</string>
     <string name="settings_sort_mode">Ordenar aplicaciones por</string>
     <string name="settings_customizations">Personalizaciones</string>
