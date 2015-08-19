@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 18
-        versionName "1.0.2"
+        versionCode 19
+        versionName "1.0.3"
         // Steps before doing a release //
         // 1. Update versionCode and versionName
         // 2. Update MLManagerApplication
@@ -17,7 +17,7 @@ android {
 
     productFlavors {
         pro {
-            applicationId = "com.javiersantos.mlmanager.pro"
+            applicationId = "com.javiersantos.mlmanagerpro"
         }
         basic {
             applicationId = "com.javiersantos.mlmanager"
@@ -64,6 +64,6 @@ dependencies {
     compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
     compile 'com.yalantis:phoenix:1.2.2'
     compile('com.mikepenz:materialdrawer:3.1.2@aar') { transitive = true; }
-    compile ('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
+    compile('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
 
 }
