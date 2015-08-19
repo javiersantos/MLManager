@@ -1,3 +1,8 @@
+### 1.0.3
+###### Released: To Be Released
+* [NEW](https://github.com/javiersantos/MLManager/commit/b51ff8e555de24df1699081ea7ef711edd078a24) Long press the APK name to copy to the clipboard.
+* [NEW](https://github.com/javiersantos/MLManager/commit/a0a8f7c5facfd8c5925dee2d92c4ffcc27f2ef73) Custom path for extracted APKs.
+
 ### 1.0.2
 ###### Released: 21 July, 2015
 * [FIX](https://github.com/javiersantos/MLManager/commit/e629e75998a3456e9594f68812406b6c38b489d2) Search View displays the correct translation.
