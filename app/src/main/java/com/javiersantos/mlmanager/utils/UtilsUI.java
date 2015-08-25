@@ -18,6 +18,7 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
@@ -74,6 +75,8 @@ public class UtilsUI {
                 .withHeaderBackground(header)
                 .build();
 
+        BadgeStyle badgeStyle = new BadgeStyle(appPreferences.getPrimaryColorPref(), UtilsUI.darker(appPreferences.getPrimaryColorPref(), 0.8)).withTextColor(Color.WHITE);
+
         DrawerBuilder drawerBuilder = new DrawerBuilder();
         drawerBuilder.withActivity(activity);
         drawerBuilder.withToolbar(toolbar);
@@ -82,21 +85,21 @@ public class UtilsUI {
 
         if (MLManagerApplication.isPro()) {
             drawerBuilder.addDrawerItems(
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps).withIdentifier(1),
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps).withIdentifier(2),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps).withBadgeStyle(badgeStyle).withIdentifier(1),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps).withBadgeStyle(badgeStyle).withIdentifier(2),
                     new DividerDrawerItem(),
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps).withIdentifier(3),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps).withBadgeStyle(badgeStyle).withIdentifier(3),
                     new DividerDrawerItem(),
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_hidden_apps)).withIcon(FontAwesome.Icon.faw_eye_slash).withBadge(hiddenApps).withIdentifier(4),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_hidden_apps)).withIcon(FontAwesome.Icon.faw_eye_slash).withBadge(hiddenApps).withBadgeStyle(badgeStyle).withIdentifier(4),
                     new DividerDrawerItem(),
                     new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withSelectable(false).withIdentifier(6),
                     new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_about)).withIcon(FontAwesome.Icon.faw_info_circle).withSelectable(false).withIdentifier(7));
         } else {
             drawerBuilder.addDrawerItems(
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps).withIdentifier(1),
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps).withIdentifier(2),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_apps)).withIcon(FontAwesome.Icon.faw_mobile).withBadge(apps).withBadgeStyle(badgeStyle).withIdentifier(1),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_system_apps)).withIcon(FontAwesome.Icon.faw_android).withBadge(systemApps).withBadgeStyle(badgeStyle).withIdentifier(2),
                     new DividerDrawerItem(),
-                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps).withIdentifier(3),
+                    new PrimaryDrawerItem().withName(context.getResources().getString(R.string.action_favorites)).withIcon(FontAwesome.Icon.faw_star).withBadge(favoriteApps).withBadgeStyle(badgeStyle).withIdentifier(3),
                     new DividerDrawerItem(),
                     new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_buy)).withIcon(FontAwesome.Icon.faw_shopping_cart).withBadge(context.getResources().getString(R.string.action_buy_description)).withSelectable(false).withIdentifier(5),
                     new SecondaryDrawerItem().withName(context.getResources().getString(R.string.action_settings)).withIcon(FontAwesome.Icon.faw_cog).withSelectable(false).withIdentifier(6),
