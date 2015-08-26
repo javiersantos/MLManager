@@ -1,8 +1,11 @@
-# ML Manager [![Build Status](https://travis-ci.org/javiersantos/MLManager.svg?branch=master)](https://travis-ci.org/javiersantos/MLManager)
+<h1 align="center">ML Manager</h1>
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg?style=flat)](http://android-arsenal.com/details/3/2003)
+<p align="center">
+  <a target="_blank" href="https://travis-ci.org/javiersantos/MLManager"><img src="https://travis-ci.org/javiersantos/MLManager.svg?branch=master"></a>
+  <a target="_blank" href="http://android-arsenal.com/details/3/2003"><img src="https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg?style=flat"></a>
+</p>
 
-Modern, easy and customizable app manager for Android with root features and Material Design.
+<p align="center">Modern, easy and customizable app manager for Android with root features and Material Design.</p>
 
 ### Features
 * Extract installed & system apps and save locally as APK.
