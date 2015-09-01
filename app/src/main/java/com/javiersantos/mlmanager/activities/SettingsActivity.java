@@ -34,7 +34,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     private Toolbar toolbar;
     private Context context;
 
-    private Preference prefVersion, prefDeleteAll, prefDefaultValues, prefNavigationBlack, prefCustomPath;
+    private Preference prefVersion, prefLicense, prefDeleteAll, prefDefaultValues, prefNavigationBlack, prefCustomPath;
     private AmbilWarnaPreference prefPrimaryColor, prefFABColor;
     private ListPreference prefCustomFilename, prefSortMode;
     private DirectoryChooserFragment chooserDialog;
@@ -50,6 +50,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         prefVersion = findPreference("prefVersion");
+        prefLicense = findPreference("prefLicense");
         prefPrimaryColor = (AmbilWarnaPreference) findPreference("prefPrimaryColor");
         prefFABColor = (AmbilWarnaPreference) findPreference("prefFABColor");
         prefDeleteAll = findPreference("prefDeleteAll");
@@ -68,9 +69,18 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefVersion.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+                startActivity(new Intent(context, AboutActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
-                return true;
+                return false;
+            }
+        });
+
+        prefLicense.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(context, LicenseActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
+                return false;
             }
         });
 

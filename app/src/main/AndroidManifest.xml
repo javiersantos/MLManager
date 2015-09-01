@@ -36,6 +36,8 @@
             android:name=".activities.SettingsActivity" />
         <activity
             android:name=".activities.AboutActivity" />
+        <activity
+            android:name=".activities.LicenseActivity" />
     </application>
 
 </manifest>

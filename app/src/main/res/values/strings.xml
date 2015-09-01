@@ -91,6 +91,7 @@
     <string name="settings_googleplay_description">Do you have a few seconds to rate this app? We want to hear your opinion</string>
     <string name="settings_googleplus">Join the community on Google+</string>
     <string name="settings_googleplus_description">Want to talk about APKs and keep abreast of developments in the application? Join to our community!</string>
+    <string name="settings_license">Open Source licenses</string>
     <string name="settings_about">Made with \u2665 from Spain</string>
 
     <!-- About -->
