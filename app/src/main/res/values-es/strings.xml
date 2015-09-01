@@ -82,6 +82,7 @@
     <string name="settings_googleplay_description">¿Tienes unos segundos para valorar esta aplicación? Queremos escuchar tu opinión</string>
     <string name="settings_googleplus">Únete a la comunidad en Google+</string>
     <string name="settings_googleplus_description">¿Quieres estar al tanto de las novedades de la aplicación? ¡Únete a nuestra comunidad!</string>
+    <string name="settings_license">Licencias Open Source</string>
     <string name="settings_about">Hecho con \u2665 en España</string>
     <string name="about_description_1">Desarrollador</string>
     <string name="about_description_2">Icono</string>
