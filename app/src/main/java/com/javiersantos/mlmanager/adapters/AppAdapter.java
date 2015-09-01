@@ -1,10 +1,12 @@
 package com.javiersantos.mlmanager.adapters;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,7 +71,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
     private void setButtonEvents(AppViewHolder appViewHolder, final AppInfo appInfo) {
         ButtonFlat appExtract = appViewHolder.vExtract;
         ButtonFlat appShare = appViewHolder.vShare;
-        CardView cardView = appViewHolder.vCard;
+        final ImageView appIcon = appViewHolder.vIcon;
+        final CardView cardView = appViewHolder.vCard;
 
         appExtract.setBackgroundColor(appPreferences.getPrimaryColorPref());
         appShare.setBackgroundColor(appPreferences.getPrimaryColorPref());
@@ -107,8 +110,15 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
                 intent.putExtra("app_icon", bitmap);
                 intent.putExtra("app_isSystem", appInfo.isSystem());
 
-                context.startActivity(intent);
-                activity.overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    String transitionName = context.getResources().getString(R.string.transition_app_icon);
+
+                    ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity, appIcon, transitionName);
+                    context.startActivity(intent, transitionActivityOptions.toBundle());
+                } else {
+                    context.startActivity(intent);
+                    activity.overridePendingTransition(R.anim.slide_in_right, R.anim.fade_back);
+                }
             }
         });
 
