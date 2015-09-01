@@ -10,7 +10,6 @@
         android:layout_height="120dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="5dp">
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -21,20 +20,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginRight="70dp"
+                android:layout_marginEnd="70dp"
                 android:text="App"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
             <TextView
                 android:id="@+id/txtApk"
                 android:fontFamily="sans-serif-thin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:text="Package"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
             <ImageView
                 android:id="@+id/imgIcon"
                 android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
                 android:maxWidth="50dp"
                 android:maxHeight="50dp"
                 android:src="@drawable/ic_android"
+                android:transitionName="@string/transition_app_icon"
                 android:layout_marginRight="14dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignTop="@+id/txtName"
@@ -59,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:background="@color/primary"
                     android:text="@string/button_extract"
-                    android:layout_marginLeft="12dp" />
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp" />
                 <com.gc.materialdesign.views.ButtonFlat
                     android:id="@+id/btnShare"
                     android:layout_width="wrap_content"

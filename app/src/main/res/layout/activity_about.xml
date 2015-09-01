@@ -29,6 +29,7 @@
             android:text="@string/app_name"
             android:textSize="22dp"
             android:textColor="@color/white"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_below="@id/app_icon"
             android:layout_centerHorizontal="true" />
@@ -39,7 +40,7 @@
             android:fontFamily="sans-serif-thin"
             android:text="@string/app_description"
             android:lines="3"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:gravity="center_horizontal"
             android:layout_below="@id/app_name"
@@ -65,7 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin"
                     android:layout_marginTop="10dp"
                     android:maxWidth="80dp"
                     android:maxHeight="80dp"
@@ -74,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:orientation="vertical">
                     <TextView
@@ -81,13 +84,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Javier Santos"
-                        android:textSize="22dp" />
+                        android:textSize="22sp" />
                     <TextView
                         android:fontFamily="sans-serif-thin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/about_description_1"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
@@ -102,7 +105,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin"
                     android:layout_marginTop="10dp"
                     android:maxWidth="30dp"
                     android:maxHeight="30dp"
@@ -112,18 +116,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Javier Toro"
-                    android:textSize="22dp"
-                    android:gravity="left"
+                    android:textSize="22sp"
+                    android:gravity="start"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="70dp"/>
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginStart="70dp" />
                 <TextView
                     android:fontFamily="sans-serif-thin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/about_description_2"
-                    android:textSize="18dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="20dp" />
+                    android:textSize="18sp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginRight="@dimen/horizontal_margin"
+                    android:layout_marginEnd="@dimen/horizontal_margin" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -139,7 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/ic_googleplay" />
                 <TextView
@@ -148,9 +155,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/settings_googleplay"
                     android:textColor="@android:color/white"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -166,7 +174,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/ic_googleplus" />
                 <TextView
@@ -176,10 +185,12 @@
                     android:text="@string/settings_googleplus"
                     android:lines="2"
                     android:textColor="@android:color/white"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="70dp"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginStart="70dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginEnd="30dp" />
             </android.support.v7.widget.CardView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -198,15 +209,17 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/ic_italy" />
                     <TextView
                         android:fontFamily="sans-serif-light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lucian Sipos"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="@dimen/horizontal_margin"
+                        android:layout_marginStart="@dimen/horizontal_margin" />
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -219,15 +232,17 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:src="@drawable/ic_poland" />
                 <TextView
                     android:fontFamily="sans-serif-light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TykTak"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginLeft="@dimen/horizontal_margin"
+                    android:layout_marginStart="@dimen/horizontal_margin" />
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </RelativeLayout>

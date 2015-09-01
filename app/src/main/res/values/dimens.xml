@@ -5,6 +5,6 @@
 
     <!-- Custom dimens -->
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="card_horizontal_margin">20dp</dimen>
-    <dimen name="card_description_horizontal_margin">22dp</dimen>
+    <dimen name="horizontal_margin">20dp</dimen>
+    <dimen name="horizontal_description_margin">22dp</dimen>
 </resources>

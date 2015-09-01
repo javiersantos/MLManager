@@ -94,6 +94,9 @@
     <string name="settings_license">Open Source licenses</string>
     <string name="settings_about">Made with \u2665 from Spain</string>
 
+    <!-- Transitions -->
+    <string name="transition_app_icon" translatable="false">App Icon Transition</string>
+
     <!-- About -->
     <string name="about_description_1">App Developer</string>
     <string name="about_description_2">Icon Designer</string>

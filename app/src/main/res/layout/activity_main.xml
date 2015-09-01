@@ -47,7 +47,8 @@
                 android:id="@+id/appList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingRight="25dp" />
+                android:paddingRight="25dp"
+                android:paddingEnd="25dp" />
         </com.yalantis.phoenix.PullToRefreshView>
         <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
             android:id="@+id/fast_scroller"
