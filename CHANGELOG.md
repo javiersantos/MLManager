@@ -1,3 +1,10 @@
+### 1.0.4
+###### To Be Released
+* [NEW](https://github.com/javiersantos/MLManager/commit/0a803519ea6d63781e765c3ef9bb3fbb2aa43e2e) Transitions between activities (API 21+ required).
+* [NEW](https://github.com/javiersantos/MLManager/commit/5306d64ed1d76f41f907c3f3e8540b97b3a0128e) Screen showing Open Source licenses.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/a7d7fe98d66c77309d8bbd059b03423d3f868111) - [IMPROVE](https://github.com/javiersantos/MLManager/commit/c83913cb0efe07374b6de92e5e9d25c9da0ac75b) Some design tweaks to the Navigation Drawer.
+* [LANGUAGE](https://github.com/javiersantos/MLManager/commit/6fe62f9c06c43cf86cc713cf5f2ff3f7cb61d004) Italian, Japanese and Portugese translations have been updated.
+
 ### 1.0.3
 ###### Released: 19 August, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/b51ff8e555de24df1699081ea7ef711edd078a24) Long press the APK name to copy to the clipboard.
