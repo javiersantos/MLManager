@@ -1,8 +1,10 @@
 ### 1.0.4
-###### To Be Released
+###### Released: 2 September, 2015
 * [NEW](https://github.com/javiersantos/MLManager/commit/0a803519ea6d63781e765c3ef9bb3fbb2aa43e2e) Transitions between activities (API 21+ required).
 * [NEW](https://github.com/javiersantos/MLManager/commit/5306d64ed1d76f41f907c3f3e8540b97b3a0128e) Screen showing Open Source licenses.
-* [IMPROVE](https://github.com/javiersantos/MLManager/commit/a7d7fe98d66c77309d8bbd059b03423d3f868111) - [IMPROVE](https://github.com/javiersantos/MLManager/commit/c83913cb0efe07374b6de92e5e9d25c9da0ac75b) Some design tweaks to the Navigation Drawer.
+* [NEW](https://github.com/javiersantos/MLManager/commit/e0737b359863c3c46897d5b2cf4c82dcefc78e1f) - [NEW](https://github.com/javiersantos/MLManager/commit/58eebc3eb31564586e8c9e3bf8fe480cd2512cc6) Dialog with ML Manager Pro features.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/a7d7fe98d66c77309d8bbd059b03423d3f868111) - [IMPROVE](https://github.com/javiersantos/MLManager/commit/c83913cb0efe07374b6de92e5e9d25c9da0ac75b) - [IMPROVE](https://github.com/javiersantos/MLManager/commit/a57423ed3a7c8318159ce517509c993c1ee879f0) Some design tweaks to the Navigation Drawer.
+* [IMPROVE](https://github.com/javiersantos/MLManager/commit/bcbab6fe871eae74412217d4ad03ca0943ec7f8f) ML Manager Pro opens directly on Google Play if installed.
 * [LANGUAGE](https://github.com/javiersantos/MLManager/commit/6fe62f9c06c43cf86cc713cf5f2ff3f7cb61d004) Italian, Japanese and Portugese translations have been updated.
 
 ### 1.0.3
