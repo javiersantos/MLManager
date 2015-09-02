@@ -124,7 +124,7 @@ public class UtilsUI {
                         recyclerView.setAdapter(appHiddenAdapter);
                         break;
                     case 5:
-                        context.startActivity(UtilsApp.goToGooglePlay(MLManagerApplication.getProPackage()));
+                        UtilsDialog.showProFeatures(context);
                         break;
                     case 6:
                         context.startActivity(new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
