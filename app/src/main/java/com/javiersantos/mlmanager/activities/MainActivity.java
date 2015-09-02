@@ -3,6 +3,7 @@ package com.javiersantos.mlmanager.activities;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -24,12 +25,23 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.batch.android.Batch;
+import com.batch.android.BatchCodeListener;
+import com.batch.android.BatchRestoreListener;
+import com.batch.android.BatchURLListener;
+import com.batch.android.BatchUnlockListener;
+import com.batch.android.CodeErrorInfo;
+import com.batch.android.FailReason;
+import com.batch.android.Feature;
+import com.batch.android.Offer;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.adapters.AppAdapter;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
+import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsUI;
 import com.mikepenz.materialdrawer.Drawer;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -45,7 +57,7 @@ import java.util.Set;
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, BatchUnlockListener, BatchURLListener {
     // Load Settings
     private AppPreferences appPreferences;
 
@@ -71,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private SearchView searchView;
     private static VerticalRecyclerViewFastScroller fastScroller;
     private static LinearLayout noResults;
+
+    // BATCH.COM
+    private MaterialDialog batchIndeterminateDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
             setPullToRefreshView(pullToRefreshView);
             drawer.closeDrawer();
-            drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
+            updateDrawer();
         }
 
     }
@@ -276,6 +291,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 }, 2000);
             }
         });
+    }
+
+    private void updateDrawer() {
+        drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
     }
 
     private void setAppDir() {
@@ -325,7 +344,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        onCodeEntered(query.toUpperCase());
+        return true;
     }
 
     @Override
@@ -363,6 +383,104 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 }
             }, 2000);
         }
+    }
+
+    // BATCH.COM //
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Batch.Unlock.setUnlockListener(this);
+        Batch.Unlock.setURLListener(this);
+        Batch.onStart(this);
+        onRestore();
+    }
+
+    @Override
+    public void onRedeemAutomaticOffer(Offer offer) {
+        for (Feature feature : offer.getFeatures()) {
+            String featureRef = feature.getReference();
+            String value = feature.getValue();
+
+            if (featureRef.equals("PRO_MODE")) {
+                MLManagerApplication.setPro(true);
+            }
+        }
+    }
+
+    @Override
+    public void onURLWithCodeFound(String code) {
+        batchIndeterminateDialog = UtilsDialog.showBatchIndeterminate(context);
+    }
+
+    @Override
+    public void onURLCodeSuccess(String code, Offer offer) {
+        batchIndeterminateDialog.dismiss();
+        MLManagerApplication.setPro(true);
+        updateDrawer();
+        UtilsDialog.showBatchRedeemed(context, true);
+    }
+
+    @Override
+    public void onURLCodeFailed(String code, FailReason reason, CodeErrorInfo info) {
+        batchIndeterminateDialog.dismiss();
+        UtilsDialog.showBatchRedeemed(context, false);
+    }
+
+    @Override
+    protected void onStop() {
+        Batch.onStop(this);
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Batch.onDestroy(this);
+
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Batch.onNewIntent(this, intent);
+
+        super.onNewIntent(intent);
+    }
+
+    private void onCodeEntered(String code) {
+        Batch.Unlock.redeemCode(code, new BatchCodeListener() {
+            @Override
+            public void onRedeemCodeSuccess(String code, Offer offer) {
+                MLManagerApplication.setPro(true);
+                updateDrawer();
+                UtilsDialog.showBatchRedeemed(context, true);
+            }
+
+
+            @Override
+            public void onRedeemCodeFailed(String code, FailReason reason, CodeErrorInfo info) {}
+        });
+    }
+
+    private void onRestore() {
+        Batch.Unlock.restore(new BatchRestoreListener() {
+
+            @Override
+            public void onRestoreSucceed(List<Feature> features) {
+                if (!features.isEmpty()) {
+                    MLManagerApplication.setPro(true);
+                } else {
+                    if (!context.getPackageName().equals(MLManagerApplication.getProPackage())) {
+                        MLManagerApplication.setPro(false);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onRestoreFailed(FailReason reason) {}
+        });
     }
 
 }

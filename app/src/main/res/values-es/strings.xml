@@ -91,4 +91,9 @@
     <string name="about_description_1">Desarrollador</string>
     <string name="about_description_2">Icono</string>
     <string name="tap_exit">Pulsa de nuevo para salir</string>
+    <string name="batch_indeterminate">Por favor espera mientras se comprueba la validez del cupón.</string>
+    <string name="batch_redeemed">¡Pro canjeado!</string>
+    <string name="batch_redeemed_description">Has canjeado el cupón correctamente. ¡Disfruta ML Manager Pro!</string>
+    <string name="batch_not_redeemed">Ups, este cupón no es válido</string>
+    <string name="batch_not_redeemed_description">El cupón no es válido o ha sido usado con anterioridad. Lo siento :(</string>
 </resources>

@@ -107,4 +107,11 @@
 
     <!-- Toasts -->
     <string name="tap_exit">Tap again to close the app</string>
+
+    <!-- BATCH.COM -->
+    <string name="batch_indeterminate">Please wait while we check if the code is valid.</string>
+    <string name="batch_redeemed">Pro redeemed!</string>
+    <string name="batch_redeemed_description">You have redeemed the coupon correctly. Enjoy ML Manager Pro!</string>
+    <string name="batch_not_redeemed">Ups, this coupon is not valid</string>
+    <string name="batch_not_redeemed_description">Your coupon is not valid or has been used before. Sorry :(</string>
 </resources>

@@ -153,4 +153,28 @@ public class UtilsDialog {
         return materialBuilder.show();
     }
 
+    // BATCH.COM //
+    public static MaterialDialog showBatchIndeterminate(Context context) {
+        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+                .title(R.string.loading)
+                .content(R.string.batch_indeterminate)
+                .progress(true, 0);
+
+        return materialBuilder.show();
+    }
+
+    public static MaterialDialog showBatchRedeemed(Context context, Boolean valid) {
+        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context);
+        if (valid) {
+            materialBuilder.title(R.string.batch_redeemed);
+            materialBuilder.content(R.string.batch_redeemed_description);
+        } else {
+            materialBuilder.title(R.string.batch_not_redeemed);
+            materialBuilder.content(R.string.batch_not_redeemed_description);
+        }
+        materialBuilder.positiveText(android.R.string.ok);
+
+        return materialBuilder.show();
+    }
+
 }
