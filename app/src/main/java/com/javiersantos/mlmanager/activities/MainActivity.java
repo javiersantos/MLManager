@@ -400,10 +400,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void onRedeemAutomaticOffer(Offer offer) {
         for (Feature feature : offer.getFeatures()) {
             String featureRef = feature.getReference();
-            String value = feature.getValue();
-
             if (featureRef.equals("PRO_MODE")) {
                 MLManagerApplication.setPro(true);
+                updateDrawer();
+                UtilsDialog.showBatchRedeemed(context, true);
             }
         }
     }
@@ -416,9 +416,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public void onURLCodeSuccess(String code, Offer offer) {
         batchIndeterminateDialog.dismiss();
-        MLManagerApplication.setPro(true);
-        updateDrawer();
-        UtilsDialog.showBatchRedeemed(context, true);
+        for (Feature feature : offer.getFeatures()) {
+            String featureRef = feature.getReference();
+            if (featureRef.equals("PRO_MODE")) {
+                MLManagerApplication.setPro(true);
+                updateDrawer();
+                UtilsDialog.showBatchRedeemed(context, true);
+            }
+        }
     }
 
     @Override
@@ -452,9 +457,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         Batch.Unlock.redeemCode(code, new BatchCodeListener() {
             @Override
             public void onRedeemCodeSuccess(String code, Offer offer) {
-                MLManagerApplication.setPro(true);
-                updateDrawer();
-                UtilsDialog.showBatchRedeemed(context, true);
+                for (Feature feature : offer.getFeatures()) {
+                    String featureRef = feature.getReference();
+                    if (featureRef.equals("PRO_MODE")) {
+                        MLManagerApplication.setPro(true);
+                        updateDrawer();
+                        UtilsDialog.showBatchRedeemed(context, true);
+                    }
+                }
             }
 
 

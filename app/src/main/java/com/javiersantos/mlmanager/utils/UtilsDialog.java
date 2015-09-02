@@ -168,6 +168,7 @@ public class UtilsDialog {
         if (valid) {
             materialBuilder.title(R.string.batch_redeemed);
             materialBuilder.content(R.string.batch_redeemed_description);
+            materialBuilder.icon(context.getResources().getDrawable(R.mipmap.ic_launcher_pro));
         } else {
             materialBuilder.title(R.string.batch_not_redeemed);
             materialBuilder.content(R.string.batch_not_redeemed_description);
