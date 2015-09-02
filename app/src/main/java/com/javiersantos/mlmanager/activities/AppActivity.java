@@ -136,7 +136,7 @@ public class AppActivity extends AppCompatActivity {
             googleplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(UtilsApp.goToGooglePlay(appInfo.getAPK()));
+                    UtilsApp.goToGooglePlay(context, appInfo.getAPK());
                 }
             });
 
@@ -275,11 +275,11 @@ public class AppActivity extends AppCompatActivity {
             }
         } else {
             fab_buy.setVisibility(View.VISIBLE);
-            fab_buy.setTitle(context.getResources().getString(R.string.action_buy) + " (" + context.getResources().getString(R.string.action_buy_description) + ")");
+            fab_buy.setTitle(context.getResources().getString(R.string.action_buy));
             fab_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(UtilsApp.goToGooglePlay(MLManagerApplication.getProPackage()));
+                    UtilsDialog.showProFeatures(context);
                 }
             });
         }

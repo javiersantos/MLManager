@@ -1,5 +1,6 @@
 package com.javiersantos.mlmanager.utils;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -116,27 +117,25 @@ public class UtilsApp {
     }
 
     /**
-     * Intent for a Google Play URL
+     * Opens Google Play if installed, if not opens browser
+     * @param context Context
      * @param id PackageName on Google Play
-     * @return Intent
      */
-    public static Intent goToGooglePlay(String id) {
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + id));
-
-        return intent;
+    public static void goToGooglePlay(Context context, String id) {
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + id)));
+        } catch (ActivityNotFoundException e) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + id)));
+        }
     }
 
     /**
-     * Intent for a Google Plus URL
+     * Opens Google Plus
+     * @param context Context
      * @param id Name on Google Play
-     * @return Intent
      */
-    public static Intent goToGooglePlus(String id) {
-        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://plus.google.com/" + id));
-
-        return intent;
+    public static void goToGooglePlus(Context context, String id) {
+        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/" + id)));
     }
 
     /**

@@ -70,25 +70,25 @@ public class AboutActivity extends AppCompatActivity {
         about_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlus("+JavierSantos"));
+                UtilsApp.goToGooglePlus(context, "+JavierSantos");
             }
         });
         about_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlus("+javitoro95"));
+                UtilsApp.goToGooglePlus(context, "+javitoro95");
             }
         });
         about_googleplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlay(context.getPackageName()));
+                UtilsApp.goToGooglePlay(context, context.getPackageName());
             }
         });
         about_googleplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(UtilsApp.goToGooglePlus("communities/111960842500303983487"));
+                UtilsApp.goToGooglePlus(context, "communities/111960842500303983487");
             }
         });
     }
