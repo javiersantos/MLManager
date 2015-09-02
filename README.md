@@ -18,7 +18,7 @@
 
 #### Root features
 * Hide apps from the device launcher.
-* Easily access your hidden apps from the side panel.
+* Easily manage your hidden apps from the side panel.
 * Remove cache per app.
 * Clean data per app.
 
@@ -29,7 +29,7 @@
 * [Download on F-Droid](https://f-droid.org/repository/browse/?fdid=com.javiersantos.mlmanager)
 
 ### ML Manager Pro
-* [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanagerpro) - 1.43 $ -
+* [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanagerpro) - $ 1.43 -
 
 ![ML Manager](https://raw.githubusercontent.com/javiersantos/MLManager/master/Screenshots/header-basic.png)
 
@@ -52,6 +52,7 @@
 * [RecyclerViewFastScroller](https://github.com/danoz73/RecyclerViewFastScroller)
 * [Phoenix](https://github.com/Yalantis/Phoenix)
 * [DirectoryChooser](https://github.com/passy/Android-DirectoryChooser)
+* [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
 
 ## License
 

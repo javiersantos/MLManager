@@ -103,8 +103,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         progressWheel = (ProgressWheel) findViewById(R.id.progress);
         noResults = (LinearLayout) findViewById(R.id.noResults);
 
-        fastScroller.setRecyclerView(recyclerView);
-        recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
         pullToRefreshView.setEnabled(false);
 
         recyclerView.setHasFixedSize(true);
@@ -265,6 +263,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             pullToRefreshView.setEnabled(true);
             progressWheel.setVisibility(View.GONE);
             searchItem.setVisible(true);
+
+            fastScroller.setRecyclerView(recyclerView);
+            recyclerView.setOnScrollListener(fastScroller.getOnScrollListener());
 
             setPullToRefreshView(pullToRefreshView);
             drawer.closeDrawer();
