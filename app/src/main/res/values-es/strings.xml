@@ -22,7 +22,7 @@
     <string name="search_noresults">No se encontraron resultados para esa búsqueda</string>
     <string name="copied_clipboard">Copiado al portapapeles</string>
     <string name="pro_feature_1">Oculta aplicaciones del launcher</string>
-    <string name="pro_feature_2">Accede fácilmente a las aplicaciones ocultas desde el panel lateral</string>
+    <string name="pro_feature_2">Gestiona fácilmente las aplicaciones ocultas desde el panel lateral</string>
     <string name="pro_feature_3">Desinstala aplicaciones del sistema</string>
     <string name="pro_feature_4">Elimina la caché y limpia datos por aplicación</string>
     <string name="dialog_saved">APK \"%s\" guardado</string>
