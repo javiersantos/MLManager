@@ -24,6 +24,10 @@
     <string name="search_hint">Search by name&#8230;</string>
     <string name="search_noresults">No results were found for your search</string>
     <string name="copied_clipboard">Copied to clipboard</string>
+    <string name="pro_feature_1">Hide apps from the device launcher</string>
+    <string name="pro_feature_2">Easily access your hidden apps from the side panel</string>
+    <string name="pro_feature_3">Uninstall system apps</string>
+    <string name="pro_feature_4">Remove cache and clean data per app</string>
 
     <!-- Dialogs -->
     <string name="dialog_saved">\"%s\" APK saved</string>
