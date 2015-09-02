@@ -76,7 +76,7 @@ public class UtilsUI {
                 .build();
 
         Integer badgeColor = context.getResources().getColor(R.color.divider);
-        BadgeStyle badgeStyle = new BadgeStyle(badgeColor, UtilsUI.darker(badgeColor, 0.9)).withTextColor(Color.GRAY);
+        BadgeStyle badgeStyle = new BadgeStyle(badgeColor, badgeColor).withTextColor(Color.GRAY);
 
         DrawerBuilder drawerBuilder = new DrawerBuilder();
         drawerBuilder.withActivity(activity);
