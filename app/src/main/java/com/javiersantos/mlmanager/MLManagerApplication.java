@@ -8,13 +8,14 @@ import com.javiersantos.mlmanager.utils.AppPreferences;
 
 public class MLManagerApplication extends Application {
     private static AppPreferences sAppPreferences;
-    private static Boolean isPro = false;
+    private static Boolean isPro;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sAppPreferences = new AppPreferences(this);
         Batch.setConfig(new Config(Keys.getBatchAPIKey()));
+        isPro = this.getPackageName().equals(getProPackage());
 
     }
 

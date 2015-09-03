@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
@@ -401,10 +402,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void onRedeemAutomaticOffer(Offer offer) {
         for (Feature feature : offer.getFeatures()) {
             String featureRef = feature.getReference();
-            if (featureRef.equals("PRO_MODE")) {
-                MLManagerApplication.setPro(true);
-                updateDrawer();
-                UtilsDialog.showBatchRedeemed(context, true);
+            if (featureRef.equals("PRO_MODE") && !MLManagerApplication.isPro()) {
+                applyAndShowReward(offer);
             }
         }
     }
@@ -419,10 +418,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         batchIndeterminateDialog.dismiss();
         for (Feature feature : offer.getFeatures()) {
             String featureRef = feature.getReference();
-            if (featureRef.equals("PRO_MODE")) {
-                MLManagerApplication.setPro(true);
-                updateDrawer();
-                UtilsDialog.showBatchRedeemed(context, true);
+            if (featureRef.equals("PRO_MODE") && !MLManagerApplication.isPro()) {
+                applyAndShowReward(offer);
             }
         }
     }
@@ -430,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public void onURLCodeFailed(String code, FailReason reason, CodeErrorInfo info) {
         batchIndeterminateDialog.dismiss();
-        UtilsDialog.showBatchRedeemed(context, false);
+        UtilsDialog.showBatchRedeemed(context, null, false);
     }
 
     @Override
@@ -454,16 +451,28 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onNewIntent(intent);
     }
 
+    private void applyAndShowReward(Offer offer) {
+        Map<String, String> additionalParameters = offer.getOfferAdditionalParameters();
+        String rewardMessage = additionalParameters.get("reward_message");
+
+        MLManagerApplication.setPro(true);
+        updateDrawer();
+
+        if (rewardMessage == null) {
+            UtilsDialog.showBatchRedeemed(context, null, true);
+        } else {
+            UtilsDialog.showBatchRedeemed(context, rewardMessage, true);
+        }
+    }
+
     private void onCodeEntered(String code) {
         Batch.Unlock.redeemCode(code, new BatchCodeListener() {
             @Override
             public void onRedeemCodeSuccess(String code, Offer offer) {
                 for (Feature feature : offer.getFeatures()) {
                     String featureRef = feature.getReference();
-                    if (featureRef.equals("PRO_MODE")) {
-                        MLManagerApplication.setPro(true);
-                        updateDrawer();
-                        UtilsDialog.showBatchRedeemed(context, true);
+                    if (featureRef.equals("PRO_MODE") && !MLManagerApplication.isPro()) {
+                        applyAndShowReward(offer);
                     }
                 }
             }

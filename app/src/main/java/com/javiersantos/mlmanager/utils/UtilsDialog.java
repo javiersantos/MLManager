@@ -163,11 +163,15 @@ public class UtilsDialog {
         return materialBuilder.show();
     }
 
-    public static MaterialDialog showBatchRedeemed(Context context, Boolean valid) {
+    public static MaterialDialog showBatchRedeemed(Context context, String content, Boolean valid) {
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context);
         if (valid) {
             materialBuilder.title(R.string.batch_redeemed);
-            materialBuilder.content(R.string.batch_redeemed_description);
+            if (content == null) {
+                materialBuilder.content(R.string.batch_redeemed_description);
+            } else {
+                materialBuilder.content(content);
+            }
             materialBuilder.icon(context.getResources().getDrawable(R.mipmap.ic_launcher_pro));
         } else {
             materialBuilder.title(R.string.batch_not_redeemed);
