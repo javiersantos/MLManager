@@ -63,7 +63,7 @@ dependencies {
     compile 'com.pnikosis:materialish-progress:1.5'
     compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
     compile 'com.yalantis:phoenix:1.2.2'
-    compile('com.mikepenz:materialdrawer:4.0.3@aar') { transitive = true; }
+    compile('com.mikepenz:materialdrawer:4.0.5@aar') { transitive = true; }
     compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
     compile('net.rdrei.android.dirchooser:library:3.0@aar') { transitive = true; }
     compile('com.mikepenz:aboutlibraries:5.2.1@aar') { transitive = true; }
