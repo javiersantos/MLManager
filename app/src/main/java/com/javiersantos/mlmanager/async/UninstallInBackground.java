@@ -9,6 +9,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.R;
 import com.javiersantos.mlmanager.activities.MainActivity;
+import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsRoot;
 
@@ -27,7 +28,13 @@ public class UninstallInBackground extends AsyncTask<Void, String, Boolean> {
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        return UtilsRoot.uninstallWithRootPermission(appInfo.getSource());
+        Boolean status = false;
+
+        if (UtilsApp.checkPermissions(activity)) {
+            status = UtilsRoot.uninstallWithRootPermission(appInfo.getSource());
+        }
+
+        return status;
     }
 
     @Override
