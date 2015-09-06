@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.javiersantos.mlmanager.R;
+import com.javiersantos.mlmanager.utils.UtilsApp;
 import com.javiersantos.mlmanager.utils.UtilsDialog;
 import com.javiersantos.mlmanager.utils.UtilsRoot;
 
@@ -26,7 +27,13 @@ public class DeleteDataInBackground extends AsyncTask<Void, String, Boolean> {
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        return UtilsRoot.removeWithRootPermission(directory);
+        Boolean status = false;
+
+        if (UtilsApp.checkPermissions(activity)) {
+            status = UtilsRoot.removeWithRootPermission(directory);
+        }
+
+        return status;
     }
 
     @Override

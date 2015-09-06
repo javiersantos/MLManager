@@ -66,6 +66,8 @@
     <string name="dialog_uninstall_root_description">You are one step away of removing a system app. Do not delete it if you are unsure, it could cause malfunction of the device.</string>
     <string name="dialog_uninstalled_root">%s uninstalled</string>
     <string name="dialog_uninstalled_root_description">Some changes will not be applied until you restart your device. Do you want to restart now?</string>
+    <string name="dialog_permissions">Permissions are required</string>
+    <string name="dialog_permissions_description">You must accept the permissions to extract and share APKs, clean cache and data.</string>
 
     <!-- Buttons -->
     <string name="button_extract">Extract</string>

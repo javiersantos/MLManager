@@ -1,5 +1,7 @@
 package com.javiersantos.mlmanager.utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -27,6 +30,7 @@ import java.io.IOException;
 import java.util.Set;
 
 public class UtilsApp {
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_READ = 1;
 
     /**
      * Default folder where APKs will be saved
@@ -63,7 +67,7 @@ public class UtilsApp {
 
     /**
      * Retrieve the name of the extracted APK
-     * @param appInfo
+     * @param appInfo AppInfo
      * @return String with the output name
      */
     public static String getAPKFilename(AppInfo appInfo) {
@@ -313,6 +317,17 @@ public class UtilsApp {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public static Boolean checkPermissions(Activity activity) {
+        Boolean res = false;
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_READ);
+        } else {
+            res = true;
         }
 
         return res;

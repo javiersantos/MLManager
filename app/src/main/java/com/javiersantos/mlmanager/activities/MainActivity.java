@@ -59,6 +59,8 @@ import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScrol
 
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, BatchUnlockListener, BatchURLListener {
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_READ = 1;
+
     // Load Settings
     private AppPreferences appPreferences;
 
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     // Configuration variables
     private Boolean doubleBackToExitPressedOnce = false;
     private Toolbar toolbar;
+    private Activity activity;
     private Context context;
     private RecyclerView recyclerView;
     private PullToRefreshView pullToRefreshView;
@@ -93,9 +96,11 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.appPreferences = MLManagerApplication.getAppPreferences();
+        this.activity = this;
         this.context = this;
 
         setInitialConfiguration();
+        checkAndAddPermissions(activity);
         setAppDir();
 
         recyclerView = (RecyclerView) findViewById(R.id.appList);
@@ -299,6 +304,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
     }
 
+    private void checkAndAddPermissions(Activity activity) {
+        UtilsApp.checkPermissions(activity);
+    }
+
     private void setAppDir() {
         File appDir = UtilsApp.getAppFolder();
         if(!appDir.exists()) {
@@ -363,6 +372,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_READ: {
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    UtilsDialog.showTitleContent(context, getResources().getString(R.string.dialog_permissions), getResources().getString(R.string.dialog_permissions_description));
+                }
+            }
+        }
     }
 
     @Override
