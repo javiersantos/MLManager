@@ -34,7 +34,7 @@
 ### ML Manager Pro
 * [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanagerpro) - $ 1.43 -
 
-### Creating your ML Manager
+## Creating your ML Manager
 All developers are welcome to use the source code to create derivate applications. There are several things I require from all developers for the moment.
 
 1. Please do not use the name ML Manager for your app.
