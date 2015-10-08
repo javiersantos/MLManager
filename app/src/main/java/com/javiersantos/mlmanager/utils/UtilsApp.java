@@ -322,6 +322,11 @@ public class UtilsApp {
         return res;
     }
 
+    /**
+     * Request for permissions on Android 6.0 Marshmallow
+     * @param activity Activity
+     * @return true if permissions are granted, otherwise false
+     */
     public static Boolean checkPermissions(Activity activity) {
         Boolean res = false;
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
