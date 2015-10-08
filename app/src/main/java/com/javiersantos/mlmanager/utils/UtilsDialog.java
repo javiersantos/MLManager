@@ -115,18 +115,22 @@ public class UtilsDialog {
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_1))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_visibility_off).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_2))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_list).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_3))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_phonelink_erase).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_4))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_delete).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
 
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
