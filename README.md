@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">Modern, easy and customizable app manager for Android with root features and Material Design.</p>
-<p align="center"><a href="https://plus.google.com/communities/111960842500303983487">Community on Google+</a>
+<p align="center"><a href="https://plus.google.com/communities/111960842500303983487">Community on Google+</a> | <a href="https://www.paypal.me/javiersantos">Donate</a></p>
 
 ![ML Manager](https://raw.githubusercontent.com/javiersantos/MLManager/master/Screenshots/header-basic.png)
 
