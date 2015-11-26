@@ -7,7 +7,7 @@
 
 <p align="center"><img src="https://github.com/javiersantos/MLManager/blob/master/app/src/main/ic_launcher-web.png" width="100" height="100"></p>
 <p align="center">Modern, easy and customizable app manager for Android with root features and Material Design.</p>
-<p align="center"><a href="https://plus.google.com/communities/111960842500303983487">Community on Google+</a> | <a href="https://www.paypal.me/javiersantos">Donate</a></p>
+<p align="center"><a href="https://plus.google.com/communities/111960842500303983487">Community on Google+</a> | <a href="https://www.paypal.me/javiersantos">Donate</a> | <a href="https://www.patreon.com/javiersantos">Patreon</a></p>
 
 ### Features
 * Extract installed & system apps and save locally as APK.
