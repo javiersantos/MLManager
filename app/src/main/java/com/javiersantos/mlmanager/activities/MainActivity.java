@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.content.pm.ApplicationInfo;
 
 import com.javiersantos.mlmanager.AppInfo;
 import com.javiersantos.mlmanager.MLManagerApplication;
@@ -189,7 +190,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             // Installed & System Apps
             for (PackageInfo packageInfo : packages) {
                 if (!(packageManager.getApplicationLabel(packageInfo.applicationInfo).equals("") || packageInfo.packageName.equals(""))) {
-                    if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
+                    
+                    if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                         try {
                             // Non System Apps
                             AppInfo tempApp = new AppInfo(packageManager.getApplicationLabel(packageInfo.applicationInfo).toString(), packageInfo.packageName, packageInfo.versionName, packageInfo.applicationInfo.sourceDir, packageInfo.applicationInfo.dataDir, packageManager.getApplicationIcon(packageInfo.applicationInfo), false);
