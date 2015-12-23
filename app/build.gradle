@@ -60,6 +60,7 @@ dependencies {
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') { transitive = true; }
+    compile('com.github.afollestad.material-dialogs:commons:0.8.5.3@aar') { transitive = true; }
     compile 'com.github.yukuku:ambilwarna:2.0.1'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
