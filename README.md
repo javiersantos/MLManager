@@ -2,9 +2,9 @@
 
 <p align="center">
   <a target="_blank" href="https://travis-ci.org/javiersantos/MLManager"><img src="https://travis-ci.org/javiersantos/MLManager.svg?branch=master"></a>
-  <a target="_blank" href="http://android-arsenal.com/details/3/2003"><img src="https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg?style=flat"></a>
-  <span class="badge-paypal"><a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a></span>
-  <span class="badge-patreon"><a target="_blank" href="http://patreon.com/javiersantos" title="Donate using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" /></a></span>
+  <a target="_blank" href="http://android-arsenal.com/details/3/2003"><img src="https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg"></a>
+  <a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
+  <a target="_blank" href="http://patreon.com/javiersantos" title="Donate using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" /></a>
 </p>
 
 <p align="center"><img src="https://github.com/javiersantos/MLManager/blob/master/app/src/main/ic_launcher-web.png" width="100" height="100"></p>
