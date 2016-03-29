@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">ML Manager</string>
     <string name="app_codename" translatable="false">Diagolo</string>
     <string name="app_description">Modern, easy and customizable app manager for Android</string>
 
