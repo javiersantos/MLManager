@@ -3,9 +3,12 @@ package com.javiersantos.mlmanager.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
@@ -25,13 +28,7 @@ public class UtilsDialog {
                 .title(title)
                 .content(content)
                 .positiveText(context.getResources().getString(android.R.string.ok))
-                .cancelable(true)
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        dialog.dismiss();
-                    }
-                });
+                .cancelable(true);
         return materialBuilder.show();
     }
 
@@ -45,29 +42,21 @@ public class UtilsDialog {
     }
 
     public static MaterialDialog.Builder showUninstall(Context context) {
-        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+        return new MaterialDialog.Builder(context)
                 .title(context.getResources().getString(R.string.dialog_uninstall_root))
                 .content(context.getResources().getString(R.string.dialog_uninstall_root_description))
                 .positiveText(context.getResources().getString(R.string.button_uninstall))
                 .negativeText(context.getResources().getString(android.R.string.cancel))
-                .cancelable(false)
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onNegative(MaterialDialog dialog) {
-                        dialog.dismiss();
-                    }
-                });
-        return materialBuilder;
+                .cancelable(false);
     }
 
     public static MaterialDialog.Builder showUninstalled(Context context, AppInfo appInfo) {
-        MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
+        return new MaterialDialog.Builder(context)
                 .title(String.format(context.getResources().getString(R.string.dialog_uninstalled_root), appInfo.getName()))
                 .content(context.getResources().getString(R.string.dialog_uninstalled_root_description))
                 .positiveText(context.getResources().getString(R.string.button_reboot))
                 .negativeText(context.getResources().getString(R.string.button_later))
                 .cancelable(false);
-        return materialBuilder;
     }
 
     /**
@@ -115,38 +104,37 @@ public class UtilsDialog {
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_1))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_visibility_off).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_2))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_list).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_3))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_phonelink_erase).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content(context.getResources().getString(R.string.pro_feature_4))
                 .icon(new IconicsDrawable(context).icon(GoogleMaterial.Icon.gmd_delete).color(Color.GRAY).sizeDp(18))
+                .backgroundColor(Color.WHITE)
                 .build());
 
         MaterialDialog.Builder materialBuilder = new MaterialDialog.Builder(context)
                 .title(context.getResources().getString(R.string.action_buy) + " (" + context.getResources().getString(R.string.action_buy_description) + ")")
-                .icon(context.getResources().getDrawable(R.mipmap.ic_launcher_pro))
+                .icon(ContextCompat.getDrawable(context, R.mipmap.ic_launcher_pro))
                 .adapter(adapter, new MaterialDialog.ListCallback() {
                     @Override
                     public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {}
                 })
                 .positiveText(context.getResources().getString(R.string.action_buy) + " ($1.43)")
                 .negativeText(context.getResources().getString(R.string.button_later))
-                .callback(new MaterialDialog.ButtonCallback() {
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onPositive(MaterialDialog dialog) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         UtilsApp.goToGooglePlay(context, MLManagerApplication.getProPackage());
-                    }
-
-                    @Override
-                    public void onNegative(MaterialDialog dialog) {
-                        dialog.dismiss();
                     }
                 });
 

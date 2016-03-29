@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -75,7 +76,7 @@ public class UtilsUI {
                 .withHeaderBackground(header)
                 .build();
 
-        Integer badgeColor = context.getResources().getColor(R.color.divider);
+        Integer badgeColor = ContextCompat.getColor(context, R.color.divider);
         BadgeStyle badgeStyle = new BadgeStyle(badgeColor, badgeColor).withTextColor(Color.GRAY);
 
         DrawerBuilder drawerBuilder = new DrawerBuilder();

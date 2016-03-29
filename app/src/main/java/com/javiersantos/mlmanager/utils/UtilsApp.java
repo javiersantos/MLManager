@@ -207,9 +207,9 @@ public class UtilsApp {
      */
     public static void setAppFavorite(Context context, MenuItem menuItem, Boolean isFavorite) {
         if (isFavorite) {
-            menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_white));
+            menuItem.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_star_white));
         } else {
-            menuItem.setIcon(context.getResources().getDrawable(R.drawable.ic_star_border_white));
+            menuItem.setIcon(ContextCompat.getDrawable(context, R.drawable.ic_star_border_white));
         }
     }
 
