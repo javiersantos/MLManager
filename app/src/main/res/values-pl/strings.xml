@@ -46,12 +46,8 @@
     <string name="dialog_clear_data_deleting_description">Proszę poczekaj chwilę podczas usuwania danych.</string>
     <string name="dialog_clear_data_success">Dane zostały usunięte</string>
     <string name="dialog_clear_data_success_description">Wszystkie dane aplikacji %s zostały usunięte</string>
-    <string name="dialog_cache_and_data_error">Wymagane uprawnienia root</string>
-    <string name="dialog_cache_and_data_error_description">Aby usunąć dane aplikacji, Twoje urządzenie musi być zrootowane, a aplikacja musi posiadać uprawnienia roota. Jeżeli ich odmówiłeś to przejdź do swojej aplikacji SuperUser i nadaj uprawnienia aplikacji ML Manager.</string>
     <string name="dialog_reboot">Musisz uruchomić ponownie swoje urządzenie, aby zmiany zostały pokazane. Czy chcesz teraz uruchomić ponownie swoje urządzenie?</string>
     <string name="dialog_cannot_open">%s nie może został otwarte, gdyż ta aplikacja jest ukryta. Spróbuj usunąć tę aplikację z ukrytych przed jej uruchomieniem.</string>
-    <string name="button_cancel">Anuluj</string>
-    <string name="button_ok">Ok</string>
     <string name="button_extract">Rozpakuj</string>
     <string name="button_share">Udostępnij APK</string>
     <string name="button_undo">Cofnij</string>
