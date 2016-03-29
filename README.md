@@ -1,6 +1,7 @@
-<h1 align="center">ML Manager</h1>
+<h1 align="center">ML Manager 1.X</h1>
 
 <p align="center">
+  <a target="_blank" href="https://plus.google.com/+JavierSantos/posts/Hpx9DVVSVhn"><img src="https://img.shields.io/badge/status-deprecated-red.svg"></a>
   <a target="_blank" href="https://travis-ci.org/javiersantos/MLManager"><img src="https://travis-ci.org/javiersantos/MLManager.svg?branch=master"></a>
   <a target="_blank" href="http://android-arsenal.com/details/3/2003"><img src="https://img.shields.io/badge/Android%20Arsenal-MLManager-blue.svg"></a>
   <a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
@@ -8,7 +9,7 @@
 </p>
 
 <p align="center"><img src="https://github.com/javiersantos/MLManager/blob/master/app/src/main/ic_launcher-web.png" width="100" height="100"></p>
-<p align="center">Modern, easy and customizable app manager for Android with root features and Material Design.</p>
+<p align="center">A modern, easy and customizable app manager for Android with root features and Material Design.</p>
 <p align="center"><a target="_blank" href="https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="59" width="170"></a></p>
 
 ### Features
@@ -27,10 +28,12 @@
 * Clean data per app.
 
 ## APK Download
-### ML Manager
-* [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager) - Recommended -
+### ML Manager 1.X
 * [Download on GitHub](https://github.com/javiersantos/MLManager/releases)
 * [Download on F-Droid](https://f-droid.org/repository/browse/?fdid=com.javiersantos.mlmanager)
+
+### ML Manager
+* [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager)
 
 ### ML Manager Pro
 * [Download on Google Play](https://play.google.com/store/apps/details?id=com.javiersantos.mlmanagerpro) - $ 1.43 -
