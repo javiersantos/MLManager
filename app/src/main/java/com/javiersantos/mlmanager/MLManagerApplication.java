@@ -41,6 +41,6 @@ public class MLManagerApplication extends Application {
     }
 
     public static String getProPackage() {
-        return "com.javiersantos.mlmanagerpro";
+        return "com.javiersantos.mlmanager.pro";
     }
 }
