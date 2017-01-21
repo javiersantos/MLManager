@@ -86,4 +86,11 @@
     <string name="about_description_1">Programador da aplicação</string>
     <string name="about_description_2">Criador do ícone</string>
     <string name="tap_exit">Toque novamente para fechar</string>
+    <string name="dialog_permissions">Permissões são necessárias</string>
+    <string name="dialog_permissions_description">Você deve aceitar as permissões para extrair e compartilhar APKs, limpar cache e dados.</string>
+    <string name="pro_feature_1">Ocultar apps da inicialização do dispositivo</string>
+    <string name="pro_feature_2">Gerenciar facilmente seus aplicativos ocultas no painel lateral</string>
+    <string name="pro_feature_3">Desinstala aplicativos do sistema</string>
+    <string name="pro_feature_4">Remove cache e limpa os dados por aplicativo</string>
+    <string name="settings_license">Licenças Open Source</string>
 </resources>
