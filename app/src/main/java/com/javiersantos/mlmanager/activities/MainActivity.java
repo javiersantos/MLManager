@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private Drawer drawer;
     private MenuItem searchItem;
     private SearchView searchView;
-    private static VerticalRecyclerViewFastScroller fastScroller;
-    private static LinearLayout noResults;
+    private VerticalRecyclerViewFastScroller fastScroller;
+    private LinearLayout noResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         }
     }
 
-    class getInstalledApps extends AsyncTask<Void, String, Void> {
+    class getInstalledApps extends AsyncTask<Void, String, Void> implements AppAdapter.ResultsMessageListener {
         private Integer totalApps;
         private Integer actualApps;
 
@@ -247,9 +247,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             super.onPostExecute(aVoid);
 
             appAdapter = new AppAdapter(appList, context);
+            appAdapter.setResultsMessageListener(this);
             appSystemAdapter = new AppAdapter(appSystemList, context);
+            appSystemAdapter.setResultsMessageListener(this);
             appFavoriteAdapter = new AppAdapter(getFavoriteList(appList, appSystemList), context);
+            appFavoriteAdapter.setResultsMessageListener(this);
             appHiddenAdapter = new AppAdapter(appHiddenList, context);
+            appHiddenAdapter.setResultsMessageListener(this);
 
             fastScroller.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(appAdapter);
@@ -265,6 +269,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
         }
 
+        @Override
+        public void setResultsMessage(Boolean result) {
+            MainActivity.this.setResultsMessage(result);
+        }
     }
 
     private void setPullToRefreshView(final PullToRefreshView pullToRefreshView) {
@@ -326,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return false;
     }
 
-    public static void setResultsMessage(Boolean result) {
+    private void setResultsMessage(Boolean result) {
         if (result) {
             noResults.setVisibility(View.VISIBLE);
             fastScroller.setVisibility(View.GONE);
