@@ -263,7 +263,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             setPullToRefreshView(pullToRefreshView);
             drawer.closeDrawer();
             drawer = UtilsUI.setNavigationDrawer((Activity) context, context, toolbar, appAdapter, appSystemAdapter, appFavoriteAdapter, appHiddenAdapter, recyclerView);
-        }
+        
+			pullToRefreshView.setRefreshing(false);
+		}
 
     }
 
@@ -271,16 +273,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         pullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                appAdapter.clear();
-                appSystemAdapter.clear();
-                appFavoriteAdapter.clear();
-                recyclerView.setAdapter(null);
-                new getInstalledApps().execute();
-
                 pullToRefreshView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        pullToRefreshView.setRefreshing(false);
+						appAdapter.clear();
+						appSystemAdapter.clear();
+						appFavoriteAdapter.clear();
+						recyclerView.setAdapter(null);
+						new getInstalledApps().execute();
                     }
                 }, 2000);
             }
