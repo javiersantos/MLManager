@@ -19,11 +19,10 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gc.materialdesign.views.ButtonFlat;
-import com.javiersantos.mlmanager.MLManagerApplication;
-import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.AppInfo;
+import com.javiersantos.mlmanager.MLManagerApplication;
 import com.javiersantos.mlmanager.R;
-import com.javiersantos.mlmanager.activities.MainActivity;
+import com.javiersantos.mlmanager.activities.AppActivity;
 import com.javiersantos.mlmanager.async.ExtractFileInBackground;
 import com.javiersantos.mlmanager.utils.AppPreferences;
 import com.javiersantos.mlmanager.utils.UtilsApp;
@@ -150,14 +149,27 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> i
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 if (filterResults.count > 0) {
-                    MainActivity.setResultsMessage(false);
+                    if(resultsMessageListener != null){
+                        resultsMessageListener.setResultsMessage(false);
+                    }
                 } else {
-                    MainActivity.setResultsMessage(true);
+                    if(resultsMessageListener != null){
+                        resultsMessageListener.setResultsMessage(true);
+                    }
                 }
                 appList = (ArrayList<AppInfo>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
+    }
+    private ResultsMessageListener resultsMessageListener;
+
+    public void setResultsMessageListener(ResultsMessageListener resultsMessageListener) {
+        this.resultsMessageListener = resultsMessageListener;
+    }
+
+    public interface ResultsMessageListener {
+        void setResultsMessage(Boolean result);
     }
 
     @Override
