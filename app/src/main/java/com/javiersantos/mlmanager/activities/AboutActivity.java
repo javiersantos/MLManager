@@ -28,7 +28,9 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         this.appPreferences = MLManagerApplication.getAppPreferences();
-        this.context = this;
+        
+//Assign context
+this.context = this;
 
         setInitialConfiguration();
         setScreenElements();
